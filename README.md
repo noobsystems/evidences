@@ -232,8 +232,8 @@ evidence:removeFromPlayer(playerId)
 -- While destroying the evidence triggers the removeFromCoords() function, collecting the evidence also transfers it to an item created for that purpose.
 ---@param coords vector3 The coords of for that evidence
 ---@param metadata? table
-api:atCoords(coords, metadata)
-api:removeFromCoords(coords)
+evidence:atCoords(coords, metadata)
+evidence:removeFromCoords(coords)
 
 -- Binds the evidence to an item. Items can hold only one evidence of each type at a time. The currently stored evidence of this type on the item is overwritten.
 -- Those items holding evidences inventories or inside containers in the inventories are listet in the dna and fingerprint app on the evidence laptop.
@@ -241,17 +241,17 @@ api:removeFromCoords(coords)
 ---@param inventory table|string|number The inventory of the item holding the evidence (cf. https://coxdocs.dev/ox_inventory/Functions/Server#additem)
 ---@param slot number The slot of the item in the inventory
 ---@param data? table
-api:atItem(inventory, slot, data)
+evidence:atItem(inventory, slot, data)
 
 -- Binds the evidence to the last item a player used.
 ---@param playerId number The serverId of the player
 ---@param data? table
-api:atLastUsedItemOf(playerId, data)
+evidence:atLastUsedItemOf(playerId, data)
 
 -- Binds the evidence to the current weapon of a player.
 ---@param playerId number The serverId of the player
 ---@param data? table
-api:atWeaponOf(attacker, data)
+evidence:atWeaponOf(attacker, data)
 ```
 
 

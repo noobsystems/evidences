@@ -1,0 +1,31 @@
+.input {
+    width: 100%;
+    padding: 12.5px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    font-size: 33px;
+}
+
+.save__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: unset;
+    border-radius: 10px;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.save__button {
+    background: rgb(48, 209, 88);
+}
+
+.save__button:hover {
+    transform: translate(0, -2.5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}

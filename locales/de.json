@@ -1,0 +1,181 @@
+{
+    "commands": {
+        "invalid_radius": {
+            "title": "Evidences",
+            "description": "Löschen der Beweise fehlgeschlagen, der angegebene Radius ist ungültig. (Muss eine Zahl zwischen 1 und 500 sein)"
+        },
+        "no_evidences": {
+            "title": "Evidences",
+            "description": "Löschen der Beweise fehlgeschlagen, es gibt keine Beweise innerhalb des angegebenen Radius."
+        },
+        "evidences_deleted": {
+            "title": "Evidences",
+            "description": "Alle Beweise im Radius von %s wurden gelöscht. (Anzahl: %s)"
+        }
+    },
+    "evidences": {
+        "evidece_box_label_dialog": {
+            "title": "Box beschriften",
+            "name_textfield_title": "Name",
+            "name_textfield_details": "Angezeigter Name im Inventar",
+            "description_textfield_title": "Beschreibung",
+            "description_textfield_details": "Kurze Beschreibung, die du im Inventar unter dem Item siehst"
+        },
+        "fingerprint": {
+            "collecting_label": "Fingerabdruck sichern",
+            "destroying_label": "Fingerabdruck beseitigen"
+        },
+        "blood": {
+            "collecting_label": "Blutspur sichern",
+            "destroying_label": "Blutspur beseitigen"
+        },
+        "magazine": {
+            "collecting_label": "Magazin sichern",
+            "destroying_label": "Magazin beseitigen"
+        },
+        "information": {
+            "in_vehicle": "auf %s (Kfz-Kennzeichen: %s)",
+            "at_vehicle": "auf Kfz (Kennzeichen: %s)",
+            "at_coords": "auf dem Boden",
+            "metadata": {
+                "crime_scene": "Tatort",
+                "collection_time": "Sammelzeit",
+                "additionalData": "Informationen",
+                "weapon_label": "Waffe",
+                "serial_number": "Seriennummer",
+                "firstname": "Vorname",
+                "lastname": "Nachname",
+                "birthdate": "Geburtsdatum"
+            },
+            "seats": {
+                "-1": "vorderem Fahrersitz",
+                "0": "vorderem Beifahrersitz",
+                "1": "hinterem Fahrersitz",
+                "2": "hinterem Beifahrersitz"
+            },
+            "doors": {
+                "0": "vorderer Fahrertür",
+                "1": "vorderer Beifahrertür",
+                "2": "hinterer Fahrertür",
+                "3": "hinterer Beifahrertür"
+            }
+        },
+        "notifications": {
+            "common": {
+                "placeholders": {
+                    "at_coords": "auf dem Boden",
+                    "at_player": "auf diesem Menschen",
+                    "at_vehicle_door": "auf dieser Fahrzeugtür",
+                    "at_vehicle_seat": "auf deinem Sitzplatz",
+                    "at_entity": "auf diesem Objekt"
+                },
+                "errors": {
+                    "invalid_item": {
+                        "title": "Evidences",
+                        "description": "Das Item %s existiert nicht"
+                    },
+                    "invalid_inventory": {
+                        "title": "Evidences",
+                        "description": "Das Inventar %s existiert nicht"
+                    },
+                    "not_enough_items": {
+                        "title": "Evidences",
+                        "description": "Du benötigst mehr davon: %s"
+                    },
+                    "inventory_full": {
+                        "title": "Evidences",
+                        "description": "Du hast nicht genug Platz in deinem Inventar"
+                    }
+                }
+            },
+            "collect": {
+                "title": "Evidences",
+                "description": "Beweisstücke %s wurden sichergestellt"
+            },
+            "destroy": {
+                "title": "Evidences",
+                "description": "Beweisstücke %s wurden beseitigt"
+            }
+        }
+    },
+    "fingerprint_scanner": {
+        "target": "Finger auflegen",
+        "scanned_successful": {
+            "title": "Evidences",
+            "description": "Fingerabdruck eingescannt"
+        },
+        "scan_failed": {
+            "title": "Evidences",
+            "description": "Fingerabdruck konnte nicht gescannt werden"
+        }
+    },
+    "laptop": {
+        "notifications": {
+            "error_laptop_creation": {
+                "title": "Evidences",
+                "description": "Fehler beim Abstellen des Laptops"
+            },
+            "error_laptop_pickup": {
+                "title": "Evidences",
+                "description": "Fehler beim Aufheben des Laptops"
+            },
+            "input_help": "Drücke %s, um den Laptop zu platzieren.%sBenutze %s um abzubrechen."
+        },
+        "target": {
+            "interact": "Zugreifen",
+            "pickup": "Aufheben"
+        },
+        "screen_saver": {
+            "date_locales": "de-DE"
+        },
+        "login_screen": {
+            "title": "Anderer Benutzer",
+            "username_placeholder": "Nutzername",
+            "password_placeholder": "Passwort",
+            "welcome": "Willkommen",
+            "missing_permission": "Falscher Benutzername oder Passwort",
+            "ok_button": "OK"
+        },
+        "desktop_screen": {
+            "common": {
+                "crime_scene_placeholder": "Tatort",
+                "collection_time_placeholder": "Sammelzeit",
+                "additional_data_placeholder": "Informationen",
+                "firstname_placeholder": "Vorname",
+                "lastname_placeholder": "Nachname",
+                "birthdate_placeholder": "Geburtsdatum",
+                "save_button": "Datenbankeintrag speichern",
+                "delete_button": "Löschen",
+                "label_button": "Item-Label aktualisieren",
+                "tooltip_label": "Änderungen des Tatorts, der Fundzeit und weiterer Informationen, sowie den angezeigten Datenbankeintrag auf das Ettiket des Beweismittels übernehmen"
+            },
+            "fingerprint_app": {
+                "name": "Fingerabdrücke",
+                "tooltip_save": "Wenn ein Datenbankeintrag zu dem Fingerabdruck auf diesem Beweisstück existiert, wird er hier angezeigt und kann bearbeitet werden; ansonsten kann ein neuer Eintrag angelegt werden.",
+                "tooltip_label": "",
+                "no_fingerprint_selected": "Wähle aus der Liste ein Beweisstück mit einem Fingerabdruck aus.",
+                "no_items_with_fingerprints": "Es befinden sich keine Items mit Fingerabdrücken in deinem Inventar."
+            },
+            "dna_app": {
+                "name": "DNS",
+                "tooltip_save": "Wenn ein Datenbankeintrag zu der DNS auf diesem Beweisstück existiert, wird er hier angezeigt und kann bearbeitet werden; ansonsten kann ein neuer Eintrag angelegt werden.",
+                "no_dna_selected": "Wähle aus der Liste ein Beweisstück mit einer DNS aus.",
+                "no_items_with_dna": "Es befinden sich keine Items mit DNA in deinem Inventar."
+            },
+            "database_app": {
+                "name": "Datenbank",
+                "search_placeholder": "Suche...",
+                "type": "Typ",
+                "types": {
+                    "fingerprint": "Fingerabdruck",
+                    "dna": "DNS"
+                },
+                "citizen": "Bürger",
+                "page": "Seite %s von %s",
+                "search_result_error": "Fehler beim Laden der Daten!",
+                "search_result_empty": "Keine Einträge gefunden!",
+                "inspect_button": "Ansicht"
+            }
+        }
+    }
+}

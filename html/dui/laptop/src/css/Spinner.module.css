@@ -1,0 +1,42 @@
+.spinner {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+
+.circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -6px 0 0 -6px;
+    animation: spin 1s linear infinite;
+    transform: rotate(0deg) translateX(30px) rotate(0deg);
+}
+
+.circle__black .circle {
+    background-color: black;
+}
+
+.circle__white .circle {
+    background-color: white;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+
+.circle__0 { animation-delay: 0s; }
+.circle__1 { animation-delay: 0.125s; }
+.circle__2 { animation-delay: 0.25s; }
+.circle__3 { animation-delay: 0.375s; }
+.circle__4 { animation-delay: 0.5s; }
+.circle__5 { animation-delay: 0.625s; }
+.circle__6 { animation-delay: 0.75s; }
+.circle__7 { animation-delay: 0.875s; }

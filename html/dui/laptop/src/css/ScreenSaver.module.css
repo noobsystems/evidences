@@ -1,0 +1,8 @@
+.screensaver__container {
+    transition: all 0.5s ease-in-out;
+}
+
+.screensaver__container.slide__up {
+    transform: translateY(-750px);
+    opacity: 0;
+}

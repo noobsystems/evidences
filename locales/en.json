@@ -1,0 +1,181 @@
+{
+    "commands": {
+        "invalid_radius": {
+            "title": "Evidences",
+            "description": "Deletion of evidences failed, the provided radius is invalid. (Must be an integer between 1-500)"
+        },
+        "no_evidences": {
+            "title": "Evidences",
+            "description": "Deletion of evidences failed, there are no evidences within the provided radius."
+        },
+        "evidences_deleted": {
+            "title": "Evidences",
+            "description": "All evidences in the radius of %s were deleted. (Amount: %s)"
+        }
+    },
+    "evidences": {
+        "evidece_box_label_dialog": {
+            "title": "Label box",
+            "name_textfield_title": "Name",
+            "name_textfield_details": "Name displayed in inventory",
+            "description_textfield_title": "Description",
+            "description_textfield_details": "Short description that you will see in the inventory below the item"
+        },
+        "fingerprint": {
+            "collecting_label": "Collect fingerprint",
+            "destroying_label": "Destroy fingerprint"
+        },
+        "blood": {
+            "collecting_label": "Collect blood trace",
+            "destroying_label": "Destroy blood trace"
+        },
+        "magazine": {
+            "collecting_label": "Collect magazine",
+            "destroying_label": "Destroy magazine"
+        },
+        "information": {
+            "in_vehicle": "on %s (license plate: %s)",
+            "at_vehicle": "on vehicle (license plate: %s)",
+            "at_coords": "on ground",
+            "metadata": {
+                "crime_scene": "Crime scene",
+                "collection_time": "Time of collection",
+                "additionalData": "Information",
+                "weapon_label": "Weapon",
+                "serial_number": "Serial number",
+                "firstname": "First name",
+                "lastname": "Last name",
+                "birthdate": "Birthdate"
+            },
+            "seats": {
+                "-1": "front driver's seat",
+                "0": "front passenger's seat",
+                "1": "rear driver's seat",
+                "2": "rear passenger's seat"
+            },
+            "doors": {
+                "0": "front driver's door",
+                "1": "front passenger's door",
+                "2": "rear driver's door",
+                "3": "rear passenger's door"
+            }
+        },
+        "notifications": {
+            "common": {
+                "placeholders": {
+                    "at_coords": "on the ground",
+                    "at_player": "at this player",
+                    "at_vehicle_door": "at this vehicle door",
+                    "at_vehicle_seat": "on your vehicle seat",
+                    "at_entity": "onn this entity"
+                },
+                "errors": {
+                    "invalid_item": {
+                        "title": "Evidences",
+                        "description": "The item %s doesn't exit"
+                    },
+                    "invalid_inventory": {
+                        "title": "Evidences",
+                        "description": "The inventory %s doesn't exist"
+                    },
+                    "not_enough_items": {
+                        "title": "Evidences",
+                        "description": "You lack: %s"
+                    },
+                    "inventory_full": {
+                        "title": "Evidences",
+                        "description": "Your inventory is full"
+                    }
+                }
+            },
+            "collect": {
+                "title": "Evidenees",
+                "description": "Evidences %s were collected"
+            },
+            "destroy": {
+                "title": "Evidences",
+                "description": "Evidences %s were destroyed"
+            }
+        }
+    },
+    "fingerprint_scanner": {
+        "target": "Place your finger on the scanner",
+        "scanned_successful": {
+            "title": "Evidences",
+            "description": "Fingerprint scanned"
+        },
+        "scan_failed": {
+            "title": "Evidences",
+            "description": "Fingerprint couldn't be scanned"
+        }
+    },
+    "laptop": {
+        "notifications": {
+            "error_laptop_creation": {
+                "title": "Evidences",
+                "description": "Error while placing the laptop"
+            },
+            "error_laptop_pickup": {
+                "title": "Evidences",
+                "description": "Error picking up the laptop"
+            },
+            "input_help": "Press %s to place the laptop.%sUse %s to cancel this action."
+        },
+        "target": {
+            "interact": "Interact",
+            "pickup": "Pick up"
+        },
+        "screen_saver": {
+            "date_locales": "en-US"
+        },
+        "login_screen": {
+            "title": "Other user",
+            "username_placeholder": "Username",
+            "password_placeholder": "Password",
+            "welcome": "Welcome",
+            "missing_permission": "Wrong username or password",
+            "ok_button": "OK"
+        },
+        "desktop_screen": {
+            "common": {
+                "crime_scene_placeholder": "Crime scene",
+                "collection_time_placeholder": "Time of collection",
+                "additional_data_placeholder": "Additional information",
+                "firstname_placeholder": "First name",
+                "lastname_placeholder": "Last name",
+                "birthdate_placeholder": "Birthdate",
+                "save_button": "Save database record",
+                "delete_button": "Delete",
+                "label_button": "Update item label",
+                "tooltip_label": "Apply changes to the crime scene, time of collection and additional information, as well as the displayed database entry to the label of the evidence."
+            },
+            "fingerprint_app": {
+                "name": "Fingerprints",
+                "tooltip_save": "If a database record exists for the fingerprint on this piece of evidence, it is displayed here and can be edited; otherwise, a new record can be created.",
+                "no_fingerprint_selected": "Select a piece of evidence bearing a fingerprint from the list.",
+                "no_items_with_fingerprints": "No items holding fingerprints in your inventory."
+            },
+            "dna_app": {
+                "name": "DNA",
+                "tooltip_save": "If a database record exists for the DNA on this piece of evidence, it is displayed here and can be edited; otherwise, a new record can be created.",
+                "tooltip_label": "",
+                "no_dna_selected": "Select a piece of evidence bearing a DNA from the list.",
+                "no_items_with_dna": "No items holding DNA in your inventory."
+            },
+            "database_app": {
+                "name": "Database",
+                "search_placeholder": "Search...",
+                "type": "Type",
+                "types": {
+                    "fingerprint": "Fingerprint",
+                    "dna": "DNA"
+                },
+                "citizen": "Citizen",
+                "page": "Page %s of %s",
+                "search_result_error": "An error occurred while loading data!",
+                "search_result_empty": "No entries found!",
+                "inspect_button": "Inspect"
+            }
+        }
+    }
+}

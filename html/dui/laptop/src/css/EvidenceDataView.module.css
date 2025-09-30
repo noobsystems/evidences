@@ -1,0 +1,61 @@
+.input {
+    width: 100%;
+    padding: 12.5px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    font-size: 33px;
+}
+
+
+.textarea {
+    resize: none;
+}
+
+.textarea::-webkit-scrollbar {
+    width: 25px;
+}
+
+.textarea::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 5px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+    background: rgb(174, 174, 178);
+    background-clip: content-box;
+    border: 5px solid transparent;
+    border-radius: 20px;
+}
+
+
+.save__button, .label__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: unset;
+    border-radius: 10px;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.save__button {
+    background: rgb(48, 209, 88);
+}
+
+.save__button:hover {
+    transform: translate(0, -2.5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.label__button {
+    background: rgb(255, 141, 40);
+}
+
+.label__button:hover {
+    transform: translate(0, -2.5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}

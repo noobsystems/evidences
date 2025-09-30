@@ -1,0 +1,38 @@
+.minimize__button, .close__button {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    transition-duration: 0.4s;
+}
+
+.minimize__button svg, .close__button svg {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.minimize__button {
+    background: #383838;
+}
+
+.close__button {
+    background: #d62e30;
+}
+
+.minimize__button:hover {
+    height: 25px;
+    width: 25px;
+}
+
+.close__button:hover {
+    height: 25px;
+    width: 25px;
+}
+
+.minimize__button:hover svg, .close__button:hover svg {
+    opacity: 1;
+}

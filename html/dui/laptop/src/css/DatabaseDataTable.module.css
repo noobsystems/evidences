@@ -1,0 +1,70 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.table .header th {
+    border-bottom: 2px solid gray;
+}
+
+.table .row td {
+    padding: 10px 0;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 2px solid gray;
+}
+
+
+.inspect__button, .delete__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: unset;
+    border-radius: 10px;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.inspect__button {
+    background: rgb(30, 110, 244);
+}
+
+.inspect__button:hover {
+    transform: translate(0, -2.5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.delete__button {
+    background: rgb(233, 21, 45);
+}
+
+.delete__button:hover {
+    transform: translate(0, -2.5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.switchpage__button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5px;
+    border: unset;
+    border-radius: 10px;
+    background: transparent;
+    transition-duration: 0.4s;
+}
+
+.switchpage__button:hover {
+    background: rgb(174, 174, 178);
+}

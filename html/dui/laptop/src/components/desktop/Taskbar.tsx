@@ -36,7 +36,7 @@ export default function Taskbar(props: TaskbarProps) {
         props.switchScreen("screensaver");
 
         // make the player unfocus the laptop by emulating pressing the Escape key
-        fetch("https://evidences/keydown", {
+        fetch(`https://${location.host}/keydown`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",

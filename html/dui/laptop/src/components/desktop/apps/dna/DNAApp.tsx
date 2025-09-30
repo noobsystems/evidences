@@ -23,7 +23,7 @@ export default function DNAApp() {
         });
         setEvidenceDetails(details);
 
-        fetch("https://evidences/triggerServerCallback", {
+        fetch(`https://${location.host}/triggerServerCallback`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",
@@ -67,7 +67,7 @@ export default function DNAApp() {
             Object.entries(dnaData).map(([key, value]) => [key, value.trim() || ""])
         );
 
-        fetch("https://evidences/triggerServerCallback", {
+        fetch(`https://${location.host}/triggerServerCallback`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",
@@ -94,7 +94,7 @@ export default function DNAApp() {
             Object.entries(dnaData || {}).map(([key, value]) => [key, value.trim() || ""])
         );
 
-        fetch("https://evidences/triggerServerCallback", {
+        fetch(`https://${location.host}/triggerServerCallback`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",

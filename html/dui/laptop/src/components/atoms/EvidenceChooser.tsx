@@ -61,7 +61,7 @@ export default function EvidenceChooser(props: EvidenceChooserProps) {
 
 
     const updateInventories = () => {
-        fetch("https://evidences/triggerServerCallback", {
+        fetch(`https://${location.host}/triggerServerCallback`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",

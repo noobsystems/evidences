@@ -1,4 +1,5 @@
 local framework = {}
+local ESX <const> = exports.es_extended:getSharedObject()
 
 function framework.getIdentifier(playerId)
     local xPlayer <const> = ESX.GetPlayerFromId(playerId)

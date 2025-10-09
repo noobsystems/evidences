@@ -14,8 +14,25 @@ if lib.checkDependency("ox_inventory", "2.44.4") then
         maxWeight = 5000
     })
 else
-    if not exports.ox_inventory:Items("evidence_box").metadata.container then
+    -- https://github.com/noobsystems/evidences/discussions/1
+    -- Create a temporary stash to check if the item evidence_box is a container.
+    -- That's needed because old versions of ox_inventory don't return the item metadata via exports.ox_inventory:Items(itemName).metadata.
+    local temporaryInv <const> = exports.ox_inventory:CreateTemporaryStash({
+        label = "Evidences",
+        slots = 1,
+        maxWeight = 0,
+        groups = {
+            ["admin"] = 1
+        },
+        items = {{"evidence_box", 1}}
+    })
+
+    local evidenceBox <const> = exports.ox_inventory:GetSlot(temporaryInv, 1)
+    exports.ox_inventory:RemoveInventory(temporaryInv)
+
+    if evidenceBox and evidenceBox.metadata and (not evidenceBox.metadata.container) then
         lib.print.error("Setup step missing: Make the evidence_box a container item (https://coxdocs.dev/ox_inventory/Guides/creatingItems#creating-container-items) or use ox_inventory version 2.44.4 or higher")
+        return false
     end
 end
 

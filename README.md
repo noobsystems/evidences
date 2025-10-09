@@ -260,3 +260,8 @@ Moreover, you can get a player's biometric data by calling:
 exports.evidences:getFingerprint(playerId)
 exports.evidences:getDNA(playerId)
 ```
+
+## License
+This project is licensed under the GNU General Public License v3.0 or later.
+See the [LICENSE](LICENSE) file for the full text.  
+Copyright &copy; 2025 noobsystems (https://github.com/noobsystems)

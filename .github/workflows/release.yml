@@ -1,0 +1,62 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: ./html/dui/laptop/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: html/dui/laptop
+
+      - name: Build Project
+        run: npm run build
+        working-directory: html/dui/laptop
+      
+      - name: Bundle files
+        run: |
+          mkdir -p ./temp/evidences
+          mkdir -p ./temp/evidences/html
+          mkdir -p ./temp/evidences/html/dui
+          mkdir -p ./temp/evidences/html/dui/laptop
+          cp ./{config.lua,fxmanifest.lua,LICENSE,README.md} ./temp/evidences
+          cp -r ./{client,common,locales,server} ./temp/evidences
+          cp -r html/nui ./temp/evidences/html
+          cp -r html/dui/scanner ./temp/evidences/html/dui
+          cp -r html/dui/laptop/dist ./temp/evidences/html/dui/laptop
+
+          mkdir -p ./temp/item_images
+          cp ./.github/setup/images/* ./temp/item_images
+
+          cd ./temp
+          cd evidences && zip -r ../evidences.zip ./*
+          cd ../item_images && zip -r ../item_images.zip ./*
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: false
+          make_latest: true
+          files: |
+            ./temp/evidences.zip
+            ./temp/item_images.zip

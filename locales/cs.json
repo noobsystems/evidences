@@ -1,0 +1,181 @@
+{
+    "commands": {
+        "invalid_radius": {
+            "title": "Důkazy",
+            "description": "Smazání důkazů selhalo, zadaný dosah je neplatný. (Musí být celé číslo mezi 1-500)"
+        },
+        "no_evidences": {
+            "title": "Důkazy",
+            "description": "Smazání důkazů selhalo, v zadaném dosahu se nenacházejí žádné důkazy."
+        },
+        "evidences_deleted": {
+            "title": "Důkazy",
+            "description": "Všechny důkazy v dosahu %s byly smazány. (Počet: %s)"
+        }
+    },
+    "evidences": {
+        "evidece_box_label_dialog": {
+            "title": "Přejmenovat krabici",
+            "name_textfield_title": "Název",
+            "name_textfield_details": "Název zobrazený v inventáři",
+            "description_textfield_title": "Popis",
+            "description_textfield_details": "Krátký popis, který uvidíte v inventáři pod předmětem"
+        },
+        "fingerprint": {
+            "collecting_label": "Sebrat otisk prstu",
+            "destroying_label": "Zničit otisk prstu"
+        },
+        "blood": {
+            "collecting_label": "Sebrat krevní stopu",
+            "destroying_label": "Zničit krevní stopu"
+        },
+        "magazine": {
+            "collecting_label": "Sebrat zásobník",
+            "destroying_label": "Zničit zásobník"
+        },
+        "information": {
+            "in_vehicle": "ve vozidle %s (SPZ: %s)",
+            "at_vehicle": "na vozidle (SPZ: %s)",
+            "at_coords": "na zemi",
+            "metadata": {
+                "crime_scene": "Místo činu",
+                "collection_time": "Čas sběru",
+                "additionalData": "Informace",
+                "weapon_label": "Zbraň",
+                "serial_number": "Sériové číslo",
+                "firstname": "Jméno",
+                "lastname": "Příjmení",
+                "birthdate": "Datum narození"
+            },
+            "seats": {
+                "-1": "přední sedadlo řidiče",
+                "0": "přední sedadlo spolujezdce",
+                "1": "zadní sedadlo za řidičem",
+                "2": "zadní sedadlo za spolujezdcem"
+            },
+            "doors": {
+                "0": "přední dveře řidiče",
+                "1": "přední dveře spolujezdce",
+                "2": "zadní dveře za řidičem",
+                "3": "zadní dveře za spolujezdcem"
+            }
+        },
+        "notifications": {
+            "common": {
+                "placeholders": {
+                    "at_coords": "na zemi",
+                    "at_player": "u tohoto hráče",
+                    "at_vehicle_door": "u těchto dveří vozidla",
+                    "at_vehicle_seat": "na sedadle vašeho vozidla",
+                    "at_entity": "u této entity"
+                },
+                "errors": {
+                    "invalid_item": {
+                        "title": "Důkazy",
+                        "description": "Předmět %s neexistuje"
+                    },
+                    "invalid_inventory": {
+                        "title": "Důkazy",
+                        "description": "Inventář %s neexistuje"
+                    },
+                    "not_enough_items": {
+                        "title": "Důkazy",
+                        "description": "Chybí vám: %s"
+                    },
+                    "inventory_full": {
+                        "title": "Důkazy",
+                        "description": "Váš inventář je plný"
+                    }
+                }
+            },
+            "collect": {
+                "title": "Důkazy",
+                "description": "Důkazy %s byly sebrány"
+            },
+            "destroy": {
+                "title": "Důkazy",
+                "description": "Důkazy %s byly zničeny"
+            }
+        }
+    },
+    "fingerprint_scanner": {
+        "target": "Položte prst na skener",
+        "scanned_successful": {
+            "title": "Důkazy",
+            "description": "Otisk prstu byl naskenován"
+        },
+        "scan_failed": {
+            "title": "Důkazy",
+            "description": "Otisk prstu se nepodařilo naskenovat"
+        }
+    },
+    "laptop": {
+        "notifications": {
+            "error_laptop_creation": {
+                "title": "Důkazy",
+                "description": "Chyba při pokládání laptopu"
+            },
+            "error_laptop_pickup": {
+                "title": "Důkazy",
+                "description": "Chyba při zvedání laptopu"
+            },
+            "input_help": "Stiskněte %s pro položení laptopu.%sPoužijte %s pro zrušení této akce."
+        },
+        "target": {
+            "interact": "Použít",
+            "pickup": "Zvednout"
+        },
+        "screen_saver": {
+            "date_locales": "cs-CZ"
+        },
+        "login_screen": {
+            "title": "Jiný uživatel",
+            "username_placeholder": "Uživatelské jméno",
+            "password_placeholder": "Heslo",
+            "welcome": "Vítejte",
+            "missing_permission": "Špatné uživatelské jméno nebo heslo",
+            "ok_button": "OK"
+        },
+        "desktop_screen": {
+            "common": {
+                "crime_scene_placeholder": "Místo činu",
+                "collection_time_placeholder": "Čas sběru",
+                "additional_data_placeholder": "Další informace",
+                "firstname_placeholder": "Jméno",
+                "lastname_placeholder": "Příjmení",
+                "birthdate_placeholder": "Datum narození",
+                "save_button": "Uložit záznam do databáze",
+                "delete_button": "Smazat",
+                "label_button": "Aktualizovat označení předmětu",
+                "tooltip_label": "Aplikovat změny na místo činu, čas sběru a další informace, stejně jako zobrazený záznam databáze na označení důkazu."
+            },
+            "fingerprint_app": {
+                "name": "Otisky prstů",
+                "tooltip_save": "Pokud existuje záznam v databázi pro otisk prstu na tomto důkazu, je zde zobrazen a lze jej upravit; jinak lze vytvořit nový záznam.",
+                "no_fingerprint_selected": "Vyberte ze seznamu důkaz obsahující otisk prstu.",
+                "no_items_with_fingerprints": "Ve vašem inventáři nejsou žádné předměty s otisky prstů."
+            },
+            "dna_app": {
+                "name": "DNA",
+                "tooltip_save": "Pokud existuje záznam v databázi pro DNA na tomto důkazu, je zde zobrazen a lze jej upravit; jinak lze vytvořit nový záznam.",
+                "tooltip_label": "",
+                "no_dna_selected": "Vyberte ze seznamu důkaz obsahující DNA.",
+                "no_items_with_dna": "Ve vašem inventáři nejsou žádné předměty s DNA."
+            },
+            "database_app": {
+                "name": "Databáze",
+                "search_placeholder": "Hledat...",
+                "type": "Typ",
+                "types": {
+                    "fingerprint": "Otisk prstu",
+                    "dna": "DNA"
+                },
+                "citizen": "Občan",
+                "page": "Strana %s z %s",
+                "search_result_error": "Při načítání dat došlo k chybě!",
+                "search_result_empty": "Nebyly nalezeny žádné záznamy!",
+                "inspect_button": "Prohlédnout"
+            }
+        }
+    }
+}

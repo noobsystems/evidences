@@ -3,14 +3,20 @@ local ox = require "@ox_core.lib.init"
 
 function framework.getPlayerName()
     local oxPlayer <const> = ox.GetPlayer()
-    return {
-        firstName = oxPlayer.get("firstName"),
-        lastName = oxPlayer.get("lastName")
-    }
+
+    if oxPlayer then
+        return {
+            firstName = oxPlayer.get("firstName"),
+            lastName = oxPlayer.get("lastName")
+        }
+    end
+
+    return {}
 end
 
 function framework.hasJob(job)
-    return Ox.GetPlayer().getGroups()[job]
+    local oxPlayer <const> = ox.GetPlayer()
+    return oxPlayer and oxPlayer.getGroups()[job] or false
 end
 
 return framework

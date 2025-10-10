@@ -11,8 +11,10 @@ Citizen.CreateThread(function() -- detects healing
         end
 
         for _, evidence in ipairs(EvidencesAtCoords) do
-            if evidence:isExposedToRain() then
-                evidence:destroy()
+            if evidence.evidenceType == "BLOOD" then
+                if evidence:isExposedToRain() then
+                    evidence:destroy()
+                end
             end
         end
         

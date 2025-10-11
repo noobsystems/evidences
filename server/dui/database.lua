@@ -50,6 +50,7 @@ end
 
 function database.getStoredBiometricDataEntries(types, search, page)
     local statements, params = {}, {}
+    local entriesPerPage <const> = 5
 
     search = search or ""
     local pattern <const> = "%" .. search:gsub("\\", "\\\\"):gsub("%%", "\\%%"):gsub("_", "\\_") .. "%"
@@ -66,11 +67,11 @@ function database.getStoredBiometricDataEntries(types, search, page)
                 FROM stored_%s
                 WHERE (
                     %s LIKE ? OR
-                    firstname LIKE ? OR
-                    lastname LIKE ? OR
-                    birthdate LIKE ?
+                    birthdate LIKE ? OR
+                    CONCAT_WS(' ', firstname, lastname) LIKE ? OR
+                    CONCAT_WS(' ', lastname, firstname) LIKE ?
                 )
-                ]], type, type, type, type)
+            ]], type, type, type, type)
 
             params[#params + 1] = pattern
             params[#params + 1] = pattern
@@ -90,7 +91,6 @@ function database.getStoredBiometricDataEntries(types, search, page)
     local query <const> = table.concat(statements, "\nUNION ALL\n")
 
     page = page or 1
-    local entriesPerPage <const> = 5
     local totalCount <const> = MySQL.scalar.await("SELECT COUNT(*) AS total_count FROM (" .. query .. ") AS sub", params) or 0
 
     params[#params + 1] = entriesPerPage
@@ -99,7 +99,7 @@ function database.getStoredBiometricDataEntries(types, search, page)
 
     return {
         entries = entries,
-        maxPages = math.ceil(totalCount / entriesPerPage),
+        maxPages = math.max(1, math.ceil(totalCount / entriesPerPage)),
         currentPage = page
     }
 end

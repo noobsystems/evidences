@@ -248,6 +248,20 @@ function EVIDENCE:atItem(inventory, slot, data)
     end
 end
 
+-- Removes the evidence from the given item.
+---@param inventory table|string|number The inventory of the item holding the evidence (cf. https://coxdocs.dev/ox_inventory/Functions/Server#additem)
+---@param slot number The slot of the item in the inventory
+function EVIDENCE:removeFromItem(inventory, slot)
+    local item <const> = exports.ox_inventory:GetSlot(inventory, slot)
+
+    if item or next(item) == nil then
+        local metadata <const> = item.metadata or {}
+        metadata[self.superClassName] = nil
+
+        exports.ox_inventory:SetMetadata(inventory, slot, metadata)
+    end
+end
+
 
 local lastUsedItems = {}
 eventHandler.onLocal("ox_inventory:usedItem", function(event)

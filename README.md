@@ -243,6 +243,11 @@ evidence:removeFromCoords(coords)
 ---@param data? table
 evidence:atItem(inventory, slot, data)
 
+-- Removes the evidence from the given item.
+---@param inventory table|string|number The inventory of the item holding the evidence (cf. https://coxdocs.dev/ox_inventory/Functions/Server#additem)
+---@param slot number The slot of the item in the inventory
+evidence:removeFromItem(inventory, slot)
+
 -- Binds the evidence to the last item a player used.
 ---@param playerId number The serverId of the player
 ---@param data? table

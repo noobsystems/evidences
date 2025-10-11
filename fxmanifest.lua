@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'noobsystems'
 description 'Advanced FiveM evidence script'
-version '1.0.3'
+version '1.0.4'
 
 dependencies {
     '/onesync',

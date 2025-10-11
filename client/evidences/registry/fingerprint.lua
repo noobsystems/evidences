@@ -31,3 +31,14 @@ lib.onCache("seat", function(value, oldValue)
         end
     end
 end)
+
+-- weapon fingerprint
+-- Only add fingerprints to weapons, as adding them to other items would prevent stacking them
+-- This is because fingerprints are stored in the item's metadata and item's with different metadata cannot be stacked
+AddEventHandler("ox_inventory:usedItem", function(name, slotId)
+    if string.sub(string.lower(name), 1, #"weapon") == "weapon" then
+        if not config.isPedWearingGloves() then
+            TriggerServerEvent("evidences:new", "FINGERPRINT", cache.serverId, "atItem", cache.serverId, slotId)
+        end
+    end
+end)

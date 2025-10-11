@@ -92,6 +92,13 @@ exports.ox_target:addModel(`p_cs_cam_phone`, {
     onSelect = function(data)
         local ped <const> = GetEntityAttachedTo(data.entity) -- the person holding the scanner
         if ped and DoesEntityExist(ped) then
+            if config.isPedWearingGloves() then
+                config.notify({
+                    key = "fingerprint_scanner.scan_failed"
+                }, "error")
+                return
+            end
+
             lib.callback("evidences:scanner:scan", false, function(success)
                 if success then
                     config.notify({

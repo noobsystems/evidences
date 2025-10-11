@@ -35,7 +35,7 @@ return {
             destroy = {
                 label = locale("evidences.fingerprint.destroying_label"),
                 icon = "fa-solid fa-fingerprint",
-                requiredItem = nil
+                requiredItem = "hydrogen_peroxide"
             }
         },
         visualize = {}

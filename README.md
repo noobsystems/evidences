@@ -76,11 +76,12 @@ Below, we show all scenarios in which evidence is created, how criminals can des
     <tr>
         <td>
             If the fingerprint is not already present on an item (like a weapon), it must be transferred to a <code>fingerprint_taken</code> in order to continue <a href="#fingerprint-and-dna-app">working with it</a>.
-            Therefore, the evidence has to be collected by targetting on it or its holder (this requires a <code>fingerprint_brush</code>) before it gets destroyed by another player.
+            Therefore, the evidence has to be collected by targetting on it or its holder (this requires a <code>fingerprint_brush</code>) before it gets destroyed by another player using <code>hydrogen_peroxide</code>.
             <br>
             <p align="center">
                 <img src="/.github/setup/images/fingerprint_taken.png">
                 <img src="/.github/setup/images/fingerprint_brush.png">
+                <img src="/.github/setup/images/hydrogen_peroxide.png">
             </p>
         </td>
     </tr>

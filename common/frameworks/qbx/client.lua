@@ -17,8 +17,8 @@ function framework.getPlayerName()
     return {}
 end
 
-function framework.hasJob(job)
-    return exports.qbx_core:HasGroup(job)
+function framework.getGrade(job)
+    return exports.qbx_core:GetGroups()[job] or false
 end
 
 return framework

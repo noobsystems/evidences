@@ -1,9 +1,17 @@
 local config <const> = require "config"
 local eventHandler <const> = require "common.events.handler"
+local framework <const> = require "common.frameworks.framework"
 
 local tempObject = nil
 
 exports("evidence_laptop", function(data, slot)
+    if not framework.hasPermission("place") then
+        config.notify({
+            key = "laptop.notifications.error_laptop_creation"
+        }, "error")
+        return
+    end
+
     if tempObject then
         return
     end

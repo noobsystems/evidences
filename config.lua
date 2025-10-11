@@ -21,10 +21,27 @@ config.isPedWearingGloves = function()
 end
 
 
--- Define the jobs which are allowed to interact with the evidence system.
--- Only players with one of this jobs may collect evidence, log into the evidence laptop and pick it up.
-config.allowedJobs = {
-    "police", "fib"
+-- Defines the conditions a player must match to perform specific actions of this script.
+config.permissions = {
+    pickup = { -- Allowed jobs and their minimum grades required to pick up a laptop
+        police = 0,
+        fib = 0
+    },
+
+    place = { -- Allowed jobs and their minimum grades required to place a laptop
+        police = 0,
+        fib = 0
+    },
+
+    access = { -- Allowed jobs and their minimum grades required to access the laptop (log in)
+        police = 0,
+        fib = 0
+    },
+
+    collect = { -- Allowed jobs and their minimum grades required to collect evidence
+        police = 0,
+        fib = 0
+    }
 }
 
 

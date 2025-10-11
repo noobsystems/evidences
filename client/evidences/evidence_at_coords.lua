@@ -27,7 +27,7 @@ function EvidenceAtCoords:constructor(evidenceType, owner, coords, data)
                 label = self.options.target.collect.label,
                 icon = self.options.target.collect.icon or "fa-solid fa-magnifying-glass",
                 distance = 2,
-                groups = config.allowedJobs,
+                groups = config.permissions.collect or false,
                 items = self.options.target.collect.requiredItem or nil,
                 onSelect = function(data)
                     local metadata <const> = self.options.target.collect.createMetadata(self.evidenceType, self.data, data.coords)

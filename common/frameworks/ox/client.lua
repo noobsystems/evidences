@@ -1,5 +1,5 @@
 local framework = {}
-local ox = require "@ox_core.lib.init"
+local ox <const> = require "@ox_core.lib.init"
 
 function framework.getPlayerName()
     local oxPlayer <const> = ox.GetPlayer()
@@ -14,7 +14,7 @@ function framework.getPlayerName()
     return {}
 end
 
-function framework.hasJob(job)
+function framework.getGrade(job)
     local oxPlayer <const> = ox.GetPlayer()
     return oxPlayer and oxPlayer.getGroups()[job] or false
 end

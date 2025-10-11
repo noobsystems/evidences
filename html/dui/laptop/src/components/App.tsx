@@ -37,15 +37,19 @@ export default function App() {
             }
 
             if (event.data.action && event.data.action == "focus") {
-                setLang(event.data.language)
-                setCanAccess(event.data.canAccess)
+                setLang(event.data.language);
                 setPlayerName(event.data.playerName);
+
+                setCanAccess(event.data.canAccess);
+                if (!event.data.canAccess) {
+                    switchScreen("screensaver");
+                }
             }
 
             if (event.data.action && event.data.action == "keydown") {
                 if (document.activeElement
                     && (document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement)) {
-                    simulateTyping(event.data.key, document.activeElement)
+                    simulateTyping(event.data.key, document.activeElement);
                 }
             }
 

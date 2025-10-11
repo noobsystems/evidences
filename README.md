@@ -145,11 +145,32 @@ By using the `evidence_laptop` item, players can place evidence laptops on a tab
     <img src="/.github/assets/evidence_laptop.gif">
 </p>
 
-Only players with an autorized job can acces those laptops. They log into their user account automatically, so there is no need for creating/deleting accounts and no one has to remember their password. You can edit the list of allowed jobs in `config.lua`:
+Only players with an autorized job can access those laptops. They log into their user account automatically, so there is no need for creating/deleting accounts and no one has to remember their password. You can edit the list of allowed jobs in `config.lua`:
 ```lua
-26      config.allowedJobs = {
-27          "police", "fib"
-28      }
+25     config.permissions = {
+26         pickup = {
+27             police = 3, -- Only players with police job and a grade >= 3 or
+28             fib = 0     -- players with job fib can pick up laptops
+29         },
+30         ...
+```
+Within that config option, you can define jobs and grades the player must have in order to perform other actions:
+```lua
+31         place = { -- Allowed jobs and their minimum grades required to place a laptop
+32             police = 0,
+33             fib = 0
+34         },
+35 
+36         access = { -- Allowed jobs and their minimum grades required to access (log into) the laptop
+37             police = 0,
+38             fib = 0
+39         },
+40 
+41         collect = { -- Allowed jobs and their minimum grades required to collect evidence
+42             police = 0,
+43             fib = 0
+44         }
+45     }
 ```
 
 > [!TIP]

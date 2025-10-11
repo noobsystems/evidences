@@ -5,6 +5,12 @@ RegisterNetEvent("esx:playerLoaded", function(xPlayer)
     ESX.PlayerData = xPlayer
 end)
 
+RegisterNetEvent("esx:setJob", function(job)
+    if ESX.PlayerData then
+        ESX.PlayerData.job = job
+    end
+end)
+
 function framework.getPlayerName()
     local playerData <const> = ESX.PlayerData
     
@@ -18,12 +24,12 @@ function framework.getPlayerName()
     return {}
 end
 
-function framework.hasJob(job)
+function framework.getGrade(job)
     local playerData <const> = ESX.PlayerData
 
     if playerData then
         if playerData.job then
-            return playerData.job.name == job
+            return playerData.job.name == job and playerData.job.grade or false
         end
     end
 

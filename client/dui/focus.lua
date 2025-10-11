@@ -62,9 +62,7 @@ function focus.start(laptop)
             action = "focus",
             language = GetConvar("ox:locale", "en"),
             playerName = framework.getPlayerName(),
-            canAccess = lib.array.find(config.allowedJobs, function(job)
-                return framework.hasJob(job)
-            end) and true or false
+            canAccess = framework.hasPermission("access")
         })
 
         -- Create a cam that faces the laptop's screen and render it for the player.

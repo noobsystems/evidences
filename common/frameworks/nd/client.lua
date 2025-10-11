@@ -13,9 +13,9 @@ function framework.getPlayerName()
     return {}
 end
 
-function framework.hasJob(job)
+function framework.getGrade(job)
     local player <const> = exports.ND_Core:getPlayer()
-    return player and player.groups[job] or false
+    return (player and player.groups[job]) and player.groups[job].rank or false
 end
 
 return framework

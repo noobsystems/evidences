@@ -30,7 +30,7 @@ local function createPlayerTarget(evidenceType, options, action)
         name = string.format("%s:player:%s", evidenceType, action),
         label = options.target[action].label,
         icon = options.target[action].icon or "fa-solid fa-magnifying-glass",
-        groups = config.allowedJobs,
+        groups = config.permissions.collect or false,
         items = options.target[action].requiredItem or nil,
         canInteract = function(entity, distance, coords, name, bone)
             -- get all evidences of evidenceType on the player
@@ -76,7 +76,7 @@ local function createVehicleDoorTarget(evidenceType, options, action)
         name = string.format("%s:vehicle_door:%s", evidenceType, action),
         label = options.target[action].label,
         icon = options.target[action].icon or "fa-solid fa-magnifying-glass",
-        groups = config.allowedJobs,
+        groups = config.permissions.collect or false,
         items = options.target[action].requiredItem or nil,
         distance = 2,
         bones = { "door_dside_f", "door_pside_f", "door_dside_r", "door_pside_r" },
@@ -141,7 +141,7 @@ local function createVehicleSeatTarget(evidenceType, options, action)
         name = string.format("%s:vehicle_seat:%s", evidenceType, action),
         label = options.target[action].label,
         icon = options.target[action].icon or "fa-solid fa-magnifying-glass",
-        groups = config.allowedJobs,
+        groups = config.permissions.collect or false,
         items = options.target[action].requiredItem or nil,
         canInteract = function(entity, distance, coords, name, bone)
             if distance > 2 then
@@ -197,7 +197,7 @@ local function createEntityTarget(evidenceType, options, action)
         name = string.format("%s:entity:%s", evidenceType, action),
         label = options.target[action].label,
         icon = options.target[action].icon or "fa-solid fa-magnifying-glass",
-        groups = config.allowedJobs,
+        groups = config.permissions.collect or false,
         items = options.target[action].requiredItem or nil,
         canInteract = function(entity, distance, coords, name, bone)
             if distance > 2 then

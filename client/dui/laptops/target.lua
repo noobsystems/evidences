@@ -40,6 +40,7 @@ exports.ox_target:addModel(`p_laptop_02_s`, {
         label = locale("laptop.target.pickup"),
         icon = "fa-solid fa-arrow-up-from-bracket",
         distance = 2,
+        groups = config.permissions.pickup or false,
         canInteract = function(entity)
             for _, point in pairs(sync.points) do
                 if point.entity == entity then

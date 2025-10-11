@@ -21,9 +21,7 @@ else
         label = "Evidences",
         slots = 1,
         maxWeight = 0,
-        groups = {
-            ["admin"] = 1
-        },
+        groups = {},
         items = {{"evidence_box", 1}}
     })
 

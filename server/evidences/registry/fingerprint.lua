@@ -1,4 +1,3 @@
-local eventHandler <const> = require "common.events.handler"
 local api <const> = require "server.evidences.api"
 
 -- Add fingerprints on the fingerprint_scanner item everytime a player is scanning their fingerprint

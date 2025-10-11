@@ -38,7 +38,9 @@ end
 
 RegisterNetEvent("evidences:new", function(evidenceClass, owner, fun, ...)
     local object <const> = api.get(evidenceClass, owner)
-    object[fun](object, ...)
+    if object then
+        object[fun](object, ...)
+    end
 end)
 
 return api

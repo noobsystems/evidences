@@ -287,3 +287,26 @@ eventHandler.onLocal("onResourceStop", function(event)
         end
     end
 end)
+
+
+exports("hydrogen_peroxide", function(data, slot)
+    local weapon <const> = exports.ox_inventory:getCurrentWeapon()
+    if weapon and weapon.slot and weapon.metadata then
+        exports.ox_inventory:useItem(data, function(data)
+            if weapon.metadata["FINGERPRINT"] then
+                TriggerServerEvent("evidences:new", "FINGERPRINT", weapon.metadata["FINGERPRINT"].owner,
+                    "removeFromItem", cache.serverId, weapon.slot)
+            end
+
+            if weapon.metadata["DNA"] then
+                TriggerServerEvent("evidences:new", "BLOOD", weapon.metadata["DNA"].owner,
+                    "removeFromItem", cache.serverId, weapon.slot)
+            end
+            
+            config.notify({
+                key = "evidences.notifications.destroy", 
+                arguments = { locale("evidences.notifications.common.placeholders.at_weapon") }
+            }, "success")
+        end)
+    end
+end)

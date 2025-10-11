@@ -67,7 +67,8 @@
                     "at_player": "auf diesem Menschen",
                     "at_vehicle_door": "auf dieser Fahrzeugtür",
                     "at_vehicle_seat": "auf deinem Sitzplatz",
-                    "at_entity": "auf diesem Objekt"
+                    "at_entity": "auf diesem Objekt",
+                    "at_weapon": "auf der Waffe"
                 },
                 "errors": {
                     "invalid_item": {

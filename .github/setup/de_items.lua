@@ -43,7 +43,10 @@
 ['hydrogen_peroxide'] = {
     label = 'Wasserstoffperoxid',
     weight = 500,
-    stack = true
+    stack = true,
+    client = {
+        export = 'evidences.hydrogen_peroxide'
+    }
 },
 ['fingerprint_brush'] = {
     label = 'Fingerabdruck-Pinsel',

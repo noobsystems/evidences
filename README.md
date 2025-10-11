@@ -51,7 +51,7 @@ Below, we show all scenarios in which evidence is created, how criminals can des
         </td>
         <td width="33%" valign="top">
             <img src="/.github/assets/fingerprint_at_weapon.png" />
-            Players leave fingerprints on <b>weapon items</b> when equipping them.
+            Players leave fingerprints on <b>weapon items</b> when equipping them. Fingerprints can be removed by using <code>hydrogen_peroxide</code> while the weapon is equipped.
         </td>
         <td width="33%" valign="top">
             <img src="/.github/assets/fingerprint_at_scanner.png">
@@ -102,7 +102,7 @@ Below, we show all scenarios in which evidence is created, how criminals can des
         </td>
         <td width="33%" valign="top">
             <img src="/.github/assets/blood_at_weapon.png" />
-            Player's blood is left on every <b>weapon item</b> used to attack them in a melee.
+            Player's blood is left on every <b>weapon item</b> used to attack them in a melee. Blood can be removed by using <code>hydrogen_peroxide</code> while the weapon is equipped.
         </td>
     </tr>
     <tr>

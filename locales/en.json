@@ -67,7 +67,8 @@
                     "at_player": "at this player",
                     "at_vehicle_door": "at this vehicle door",
                     "at_vehicle_seat": "on your vehicle seat",
-                    "at_entity": "onn this entity"
+                    "at_entity": "on this entity",
+                    "at_weapon": "on the weapon"
                 },
                 "errors": {
                     "invalid_item": {

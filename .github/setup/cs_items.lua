@@ -43,7 +43,10 @@
 ['hydrogen_peroxide'] = {
     label = 'Peroxid vodíku',
     weight = 500,
-    stack = true
+    stack = true,
+    client = {
+        export = 'evidences.hydrogen_peroxide'
+    }
 },
 ['fingerprint_brush'] = {
     label = 'Štětec na otisky prstů',

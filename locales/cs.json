@@ -67,7 +67,8 @@
                     "at_player": "u tohoto hráče",
                     "at_vehicle_door": "u těchto dveří vozidla",
                     "at_vehicle_seat": "na sedadle vašeho vozidla",
-                    "at_entity": "u této entity"
+                    "at_entity": "u této entity",
+                    "at_weapon": "na zbrani"
                 },
                 "errors": {
                     "invalid_item": {

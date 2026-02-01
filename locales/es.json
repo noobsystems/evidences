@@ -34,8 +34,8 @@
             "destroying_label": "Destruir cargador"
         },
         "information": {
-            "in_vehicle": "en %s (placa de matricula: %s)",
-            "at_vehicle": "en el vehículo (placa de matricula: %s)",
+            "in_vehicle": "en %s (matricula: %s)",
+            "at_vehicle": "en el vehículo (matricula: %s)",
             "at_coords": "en el suelo",
             "metadata": {
                 "crime_scene": "Lugar del delito",
@@ -120,7 +120,7 @@
                 "title": "Pruebas",
                 "description": "Error al recibir la computadora portátil"
             },
-            "input_help": "Presione %s para colocar la computadora portátil.%sUse %s para cancelar esta acción"
+            "input_help": "Presione %s para colocar el portátil.%sUse %s para cancelar esta acción"
         },
         "target": {
             "interact": "Interactuar",

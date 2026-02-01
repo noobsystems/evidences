@@ -1,0 +1,257 @@
+{
+    "commands": {
+        "invalid_radius": {
+            "title": "Pruebas",
+            "description": "La eliminación de pruebas falló, el radio proporcionado es inválido. (Debe ser un entero entre 1-500)"
+        },
+        "no_evidences": {
+            "title": "Pruebas",
+            "description": "La eliminación de pruebas falló, no hay pruebas dentro del radio proporcionado."
+        },
+        "evidences_deleted": {
+            "title": "Pruebas",
+            "description": "Todas las pruebas en el radio de %s fueron eliminadas. (Cantidad: %s)"
+        }
+    },
+    "evidences": {
+        "evidence_box_label_dialog": {
+            "title": "Etiqueta de caja",
+            "name_textfield_title": "Nombre",
+            "name_textfield_details": "Nombre que se muestra en el inventario",
+            "description_textfield_title": "Descripción",
+            "description_textfield_details": "Descripción corta que verá en el inventario debajo del objeto"
+        },
+        "fingerprint": {
+            "collecting_label": "Recopilar huella digital",
+            "destroying_label": "Destruir huella digital"
+        },
+        "blood": {
+            "collecting_label": "Recopilar rastro de sangre",
+            "destroying_label": "Destruir rastro de sangre"
+        },
+        "magazine": {
+            "collecting_label": "Recopilar cargador",
+            "destroying_label": "Destruir cargador"
+        },
+        "information": {
+            "in_vehicle": "en %s (placa de matricula: %s)",
+            "at_vehicle": "en el vehículo (placa de matricula: %s)",
+            "at_coords": "en el suelo",
+            "metadata": {
+                "crime_scene": "Lugar del delito",
+                "collection_time": "Hora de recopilación",
+                "additionalData": "Información",
+                "weapon_label": "Arma",
+                "serial_number": "Número de serie",
+                "firstname": "Nombre",
+                "lastname": "Apellido",
+                "birthdate": "Fecha de nacimiento"
+            },
+            "seats": {
+                "-1": "asiento delantero del conductor",
+                "0": "asiento delantero del pasajero",
+                "1": "asiento trasero del conductor",
+                "2": "asiento trasero del pasajero"
+            },
+            "doors": {
+                "0": "puerta delantera del conductor",
+                "1": "puerta delantera del pasajero",
+                "2": "puerta trasera del conductor",
+                "3": "puerta trasera del pasajero"
+            }
+        },
+        "notifications": {
+            "common": {
+                "placeholders": {
+                    "at_coords": "en el suelo",
+                    "at_player": "en este jugador",
+                    "at_vehicle_door": "en esta puerta del vehículo",
+                    "at_vehicle_seat": "en el asiento de su vehículo",
+                    "at_entity": "en esta entidad",
+                    "at_weapon": "en el arma"
+                },
+                "errors": {
+                    "invalid_item": {
+                        "title": "Pruebas",
+                        "description": "El objeto %s no existe"
+                    },
+                    "invalid_inventory": {
+                        "title": "Pruebas",
+                        "description": "El inventario %s no existe"
+                    },
+                    "not_enough_items": {
+                        "title": "Pruebas",
+                        "description": "Le faltan: %s"
+                    },
+                    "inventory_full": {
+                        "title": "Pruebas",
+                        "description": "Su inventario está lleno"
+                    }
+                }
+            },
+            "collect": {
+                "title": "Pruebas",
+                "description": "Las pruebas %s fueron recopiladas"
+            },
+            "destroy": {
+                "title": "Pruebas",
+                "description": "Las pruebas %s fueron destruidas"
+            }
+        }
+    },
+    "fingerprint_scanner": {
+        "target": "Coloque su dedo en el escáner",
+        "scanned_successful": {
+            "title": "Pruebas",
+            "description": "Huella digital escaneada"
+        },
+        "scan_failed": {
+            "title": "Pruebas",
+            "description": "No se pudo escanear la huella digital"
+        }
+    },
+    "laptop": {
+        "notifications": {
+            "error_laptop_creation": {
+                "title": "Pruebas",
+                "description": "Error al colocar la computadora portátil"
+            },
+            "error_laptop_pickup": {
+                "title": "Pruebas",
+                "description": "Error al recibir la computadora portátil"
+            },
+            "input_help": "Presione %s para colocar la computadora portátil.%sUse %s para cancelar esta acción"
+        },
+        "target": {
+            "interact": "Interactuar",
+            "pickup": "Recibir"
+        },
+        "screen_saver": {
+            "date_locales": "es"
+        },
+        "login_screen": {
+            "title": "Otro usuario",
+            "username_placeholder": "Nombre de usuario",
+            "password_placeholder": "Contraseña",
+            "welcome": "Bienvenido",
+            "missing_permission": "Nombre de usuario o contraseña incorrecto",
+            "ok_button": "Aceptar"
+        },
+        "desktop_screen": {
+            "common": {
+                "crime_scene_placeholder": "Lugar del delito",
+                "collection_time_placeholder": "Hora de recopilación",
+                "additional_data_placeholder": "Información adicional",
+                "firstname_placeholder": "Nombre",
+                "lastname_placeholder": "Apellido",
+                "birthdate_placeholder": "Fecha de nacimiento",
+                "save_button": "Guardar registro de base de datos",
+                "delete_button": "Eliminar",
+                "label_button": "Actualizar etiqueta del objeto",
+                "tooltip_label": "Aplique los cambios al lugar del delito, hora de recopilación e información adicional, así como la entrada mostrada de la base de datos a la etiqueta de la prueba."
+            },
+            "fingerprint_app": {
+                "name": "Huellas digitales",
+                "tooltip_save": "Si existe un registro en la base de datos para la huella digital en esta prueba, se muestra aquí y puede editarse; de lo contrario, se puede crear un nuevo registro.",
+                "no_fingerprint_selected": "Seleccione una prueba con huella digital de la lista.",
+                "no_items_with_fingerprints": "No hay objetos con huellas digitales en su inventario."
+            },
+            "dna_app": {
+                "name": "ADN",
+                "tooltip_save": "Si existe un registro en la base de datos para el ADN en esta prueba, se muestra aquí y puede editarse; de lo contrario, se puede crear un nuevo registro.",
+                "no_dna_selected": "Seleccione una prueba con ADN de la lista.",
+                "no_items_with_dna": "No hay objetos con ADN en su inventario."
+            },
+            "database_app": {
+                "name": "Base de datos",
+                "search_placeholder": "Buscar...",
+                "type": "Tipo",
+                "types": {
+                    "fingerprint": "Huella digital",
+                    "dna": "ADN"
+                },
+                "citizen": "Ciudadano",
+                "page": "Página %s de %s",
+                "search_result_error": "¡Ocurrió un error al cargar los datos!",
+                "search_result_empty": "¡No se encontraron entradas!",
+                "inspect_button": "Inspeccionar"
+            },
+            "wiretap_app": {
+                "name": "Escuchas",
+                "warning_popup": {
+                    "title": "Aviso importante",
+                    "warning": "Las comunicaciones telefónicas o por radio solo pueden ser interceptadas en conformidad con una orden judicial de escucha. Se pueden tomar medidas sin orden judicial en circunstancias de urgencia.",
+                    "accept_button": "Entendido"
+                },
+                "phone_calls": {
+                    "header": "Llamadas telefónicas",
+                    "no_calls_running": "No hay llamadas telefónicas en curso",
+                    "lacking_permissions": "Sin permisos para interceptar llamadas telefónicas",
+                    "notifications": {
+                        "popup_header": "Notificaciones de llamadas telefónicas",
+                        "status_loading": "Cargando...",
+                        "status_subscribed": "Recibirá notificaciones cuando %s participe en una llamada telefónica. Puede dejar de recibir notificaciones o cambiar su objetivo aquí:",
+                        "status_unsubscribed": "Ingrese el %s de un ciudadano para ser notificado cuando participe en una llamada telefónica:",
+                        "placeholder_full_name": "nombre completo",
+                        "placeholder_phone_number": "número de teléfono",
+                        "subscribe_button": "Suscribirse",
+                        "unsubscribe_button": "Cancelar suscripción",
+                        "notification": {
+                            "title": "Interceptación de llamada telefónica",
+                            "description": "%s está participando en una llamada telefónica que puede ser interceptada"
+                        }
+                    }
+                },
+                "spy_microphones": {
+                    "header": "Micrófonos espía",
+                    "no_spy_microphones_placed": "No hay micrófonos espía colocados",
+                    "lacking_permissions": "Sin permisos para escuchar micrófonos espía"
+                },
+                "radio": {
+                    "header": "Radio",
+                    "lacking_permissions": "Sin permisos para interceptar canales de radio"
+                },
+                "latest_actions": {
+                    "header": "Últimas acciones",
+                    "no_actions_available": "No hay acciones protocolizadas",
+                    "loading": "Cargando...",
+                    "end_reached": "Se llegó al final de la lista",
+                    "action_duration": "%s de %s a %s",
+                    "actions": {
+                        "ObservableCall": "%s interceptó una llamada telefónica entre %s",
+                        "ObservableRadioFreq": "%s interceptó el canal de radio en %s MHz",
+                        "ObservableSpyMicrophone": "%s escuchó al micrófono espía %s"
+                    }
+                },
+                "running_observation_popup": {
+                    "ObservableCall": "Interceptación en curso de la llamada telefónica #%s",
+                    "ObservableRadioFreq": "Interceptación en curso del canal de radio en %s MHz",
+                    "ObservableSpyMicrophone": "Escuchando al micrófono espía %s"
+                },
+                "protocol_popup": {
+                    "header": {
+                        "ObservableCall": "Protocolo de interceptación de llamada telefónica #%s",
+                        "ObservableRadioFreq": "Protocolo de interceptación de canal de radio #%s",
+                        "ObservableSpyMicrophone": "Protocolo de observación de micrófono espía #%s"
+                    },
+                    "observation_started": "La observación comenzó.",
+                    "observation_ended": "La observación terminó."
+                }
+            }
+        }
+    },
+    "spy_microphone": {
+        "input_help": "Presione %s para colocar el micrófono espía.%sUse %s para cancelar esta acción",
+        "error_spy_microphone_creation": {
+            "title": "Pruebas",
+            "description": "Ya existe un micrófono espía con esta etiqueta"
+        },
+        "spy_microphone_label_dialog": {
+            "title": "Etiquetar micrófono espía",
+            "label_textfield_title": "Etiqueta",
+            "label_textfield_details": "Elije un nombre único para identificar este micrófono espía en la aplicación de escuchas en la computadora portátil de pruebas"
+        },
+        "target_destroy": "Destruir micrófono espía",
+        "target_collect": "Recopilar micrófono espía"
+    }
+}

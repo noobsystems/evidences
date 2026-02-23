@@ -1,4 +1,5 @@
 local config <const> = require "config"
+local logger <const> = require "server.logger"
 
 for _, item in pairs({"evidence_laptop", "evidence_box", "forensic_kit", "collected_blood", "collected_saliva", "collected_magazine", "collected_fingerprint", "hydrogen_peroxide", "fingerprint_scanner"}) do
     if not exports.ox_inventory:Items(item) then
@@ -51,9 +52,13 @@ RegisterNetEvent("evidences:renameEvidenceBox", function(slot, input)
 
     if item and item.name == "evidence_box" then
         local metadata <const> = item.metadata or {}
+        local oldName = metadata.label or 'Inexistant'
+        local oldDescription = metadata.description or 'Inexistant'
         metadata.label = input[1] or nil
         metadata.description = input[2] or nil
         exports.ox_inventory:SetMetadata(playerId, slot, metadata)
+
+        logger.log(playerId, "Evidence box renamed from "..oldName.." to "..input[1] .. " and description from "..oldDescription.." to "..input[2], "evidence_box", "info", "Evidence box renamed")
     end
 end)
 

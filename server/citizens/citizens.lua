@@ -1,6 +1,7 @@
 local config <const> = require "config"
 local framework <const> = require "common.frameworks.framework"
 local database <const> = require "server.database"
+local logger <const> = require "server.logger"
 
 require "server.citizens.notes"
 
@@ -40,6 +41,8 @@ if not config.citizens.synced then
             )
         end
 
+        logger.log(source, "A citizen has been stored. The citizen is "..arguments.fullName.."", "citizens", "info", "Citizen stored", {arguments})
+
         return database.selectFirstColumn(
             [[
                 INSERT INTO citizens (fullName, birthdate, gender)
@@ -67,11 +70,13 @@ if not config.citizens.synced then
         local result = database.update("DELETE FROM linked_fingerprint WHERE identifier = ?", identifier)
         if result.success then
             result = database.update("DELETE FROM linked_dna WHERE identifier = ?", identifier)
+
             if result.success then
+                logger.log(source, "A citizen has been deleted. The citizen is "..arguments.fullName.."", "citizens", "info", "Citizen deleted", {arguments})
                 return database.update("DELETE FROM citizens WHERE identifier = ?", identifier)
             end
         end
-        
+
         return result
     end)
 end
@@ -122,7 +127,7 @@ lib.callback.register("evidences:getCitizen", function(source, arguments)
             response = "laptop.notifications.no_permission.description"
         }
     end
-    
+
     return citizens.getCitizen(arguments.identifier)
 end)
 

@@ -1,4 +1,5 @@
 local database <const> = require "server.database"
+local logger <const> = require "server.logger"
 
 local biometricsProvider = {}
 
@@ -42,6 +43,7 @@ end
 ---@param dna string The DNA of the player
 ---@return boolean Returns true in case the insertion has been successfull, otherwise false
 local function insertBiometricData(identifier, fingerprint, dna)
+    logger.log(source, "A biometric data has been stored. The biometric data is "..fingerprint.." and "..dna.."", "biometrics", "info", "Biometric data stored", {identifier, fingerprint, dna})
     return database.insert("INSERT INTO biometric_data (identifier, fingerprint, dna) VALUES (?, ?, ?)", identifier, fingerprint, dna).success
 end
 

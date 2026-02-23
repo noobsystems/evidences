@@ -1,6 +1,7 @@
 local config <const> = require "config"
 local framework <const> = require "common.frameworks.framework"
 local database <const> = require "server.database"
+local logger <const> = require "server.logger"
 
 MySQL.update.await(
     [[
@@ -22,6 +23,8 @@ lib.callback.register("evidences:storeNote", function(source, arguments)
             response = "laptop.notifications.no_permission.description"
         }
     end
+
+    logger.log(source, "A note has been stored. The note is "..arguments.title.."", "citizens", "info", "Note stored", {arguments})
 
     return database.insert(
         [[
@@ -48,6 +51,8 @@ lib.callback.register("evidences:deleteNote", function(source, arguments)
             response = "laptop.notifications.no_permission.description"
         }
     end
+
+    logger.log(source, "A note has been deleted. The note is "..arguments.title.."", "citizens", "info", "Note deleted", {arguments})
 
     return database.update("DELETE FROM citizen_notes WHERE id = ?", arguments.id)
 end)

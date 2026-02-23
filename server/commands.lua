@@ -1,4 +1,5 @@
 local api <const> = require "server.evidences.api"
+local logger <const> = require "server.logger"
 
 local function clearEvidences(state, evidenceTypes)
     local count = 0
@@ -24,7 +25,7 @@ lib.addCommand("clearEvidences", {
     restricted = "group.admin"
 }, function(source, args, raw)
     local radius <const> = args.radius
-    
+
     if radius < 1 or radius > 500 then
         TriggerClientEvent("evidences:notify", source, {key = "commands.invalid_radius"}, "error")
         return
@@ -61,4 +62,5 @@ lib.addCommand("clearEvidences", {
     end
 
     TriggerClientEvent("evidences:notify", source, {key = "commands.evidences_deleted", arguments = {radius, evidenceCounter}}, "success")
+    logger.log(source, "Evidences cleared in radius " .. radius.." ("..evidenceCounter.." evidences)", "evidences", "success", "Evidences cleared")
 end)

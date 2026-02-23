@@ -1,5 +1,6 @@
 local config <const> = require "config"
 local framework <const> = require "common.frameworks.framework"
+local logger <const> = require "server.logger"
 local eventHandler <const> = require "common.events.handler"
 local phoneNumber <const> = require "server.wiretap.registry.calls.bridge.phone_number"
 local ObservableCall <const> = require "server.wiretap.classes.observable_call"
@@ -9,7 +10,7 @@ local activeCalls = {}
 -- init: get all calls already running when the script gets started
 for _, playerId in ipairs(GetPlayers()) do
     local callChannel <const> = Player(playerId).state.callChannel
- 
+
     if callChannel and callChannel ~= 0 then
         local observableCall <const> = activeCalls[callChannel] or ObservableCall:new(callChannel)
         activeCalls[callChannel] = observableCall
@@ -76,6 +77,7 @@ lib.callback.register("evidences:observeObservableCall", function(observer, argu
 
     if arguments and arguments.channel then
         local observableCall <const> = activeCalls[arguments.channel]
+        if observableCall then logger.log(observer, "A call has been observed. The call channel is "..arguments.channel.."", "wiretap", "info", "Call observed", {arguments.channel}) end
         return observableCall and observableCall:addObserver(observer)
     end
 end)

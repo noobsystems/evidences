@@ -1,6 +1,7 @@
 local config <const> = require "config"
 local framework <const> = require "common.frameworks.framework"
 local actions <const> = require "server.evidences.actions"
+local logger <const> = require "server.logger"
 
 lib.callback.register("evidences:takeBiometricData", function(playerId, targetId, type, enforce)
     if not framework.hasPermission(config.permissions.collect, playerId) then
@@ -23,6 +24,8 @@ lib.callback.register("evidences:takeBiometricData", function(playerId, targetId
         TriggerClientEvent("evidences:notify", playerId, { key = "biometrics_taking.notifications.error" }, "error")
         return false
     end
+
+    logger.log(playerId, "A biometric data has been taken. The biometric data type is "..type.." and it was taken from "..targetId.."", "biometrics", "info", "Biometric data taken", {playerId, targetId, type})
 
     return true
 end)

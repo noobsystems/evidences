@@ -169,4 +169,39 @@ function config.notify(translation, notifyType, duration)
     })
 end
 
+
+config.logging = {
+    enabled = true,
+
+    -- By default every event is logged.
+    -- You can disable logging for specific events here.
+    loggedEvents = {
+        ["Evidences cleared"] = true,
+        ["Biometric data taken"] = true,
+        ["Biometric data linked to citizen"] = true,
+        ["Citizen created"] = true,
+        ["Citizen updated"] = true,
+        ["Citizen deletion requested"] = true,
+        ["Note created"] = true,
+        ["Note edited"] = true,
+        ["Note deletion requested"] = true,
+        ["Evidence destroyed"] = true,
+        ["Evidence collected"] = true,
+        ["Fingerprint scanned"] = true,
+        ["Observation started"] = true,
+        ["Observation ended"] = true,
+        ["Spy microphone placed"] = true,
+        ["Spy microphone picked up"] = true
+    },
+
+    -- Define which logging service you want to use if enabled.
+    -- You can choose between "ox_lib" (it supports Datadog, Grafana Loki and Fivemanage, see https://coxdocs.dev/ox_lib/Modules/Logger/Server) and "discord".
+    service = "discord",
+
+    -- If the logging service is set to "discord", you have to define a webhook url and your txAdmin web interface url.
+    -- Refer to https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks.
+    webhook = "https://discord.com/api/webhooks/1475539779419373640/Rt0gBBeT_HEXXktuZdUPV4-rIoDNH2xq_G2CjMSZYdOoOvGhodGq3hSmT3DoNZDDI7pO",
+    txAdminUrl = "https://YOUR-IP.NET:40120/players?playerModal="
+}
+
 return config

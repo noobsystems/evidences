@@ -117,7 +117,7 @@ export default function RunningWiretap(props: RunningWiretapProps) {
                 endedAt: Date.now(),
                 observer: appContext.playerName || "",
                 target: target.toString(),
-                protocol: currentProtocol.current
+                protocol: currentProtocol.current || "-/-"
             });
         };
     }, []);

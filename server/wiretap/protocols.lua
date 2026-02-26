@@ -31,8 +31,6 @@ lib.callback.register("evidences:storeWiretap", function(source, arguments)
         }
     end
 
-    logger.log(source, "A new wiretrap has been made. It started at "..arguments.startedAt.." and it ended at "..arguments.endedAt..". The wiretrap was made by "..arguments.observer.." and it was made on "..arguments.target.." using the protocol "..arguments.protocol.."", "wiretap", "info", "Wiretap stored", arguments)
-
     return database.insert(
         [[
             INSERT INTO wiretaps (type, startedAt, endedAt, observer, target, protocol)
@@ -41,6 +39,7 @@ lib.callback.register("evidences:storeWiretap", function(source, arguments)
         arguments.type, arguments.startedAt, arguments.endedAt, arguments.observer, arguments.target, arguments.protocol,
         function(id)
             arguments.id = id
+            logger.log(source, "Observation ended", arguments)
             return arguments
         end)
 end)

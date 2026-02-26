@@ -44,7 +44,8 @@ lib.callback.register("evidences:linkBiometricDataToIdentifier", function(source
 
         if result.success then
             if biometricData then
-                logger.log(source, "A biometric data has been linked. The biometric data type is "..type.." and it was linked to the identifier "..identifier.."", "biometrics", "info", "Biometric data linked", {type, biometricData, identifier})
+                logger.log(source, "Biometric data linked to citizen", { evidenceType = type, biometricData = biometricData, identifier = identifier })
+
                 return database.update(string.format([[
                     INSERT INTO linked_%s (%s, identifier) VALUES (?, ?)
                     ON DUPLICATE KEY UPDATE identifier = ?

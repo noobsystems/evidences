@@ -32,7 +32,6 @@ lib.callback.register("evidences:observeObservableRadioFreq", function(observer,
         local observableRadioFreq <const> = knownRadioFrequencies[arguments.channel] or ObservableRadioFreq:new(arguments.channel)
         knownRadioFrequencies[arguments.channel] = observableRadioFreq
         observableRadioFreq:addObserver(observer)
-        logger.log(observer, "A radio frequency has been observed. The radio channel is "..arguments.channel.."", "wiretap", "info", "Radio frequency observed", {arguments.channel})
     end
 
 end)

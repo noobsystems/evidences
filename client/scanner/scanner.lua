@@ -135,8 +135,8 @@ exports.ox_target:addModel(`p_cs_cam_phone`, {
                 return
             end
 
-            lib.callback("evidences:scanFingerprint", false, function(error)
-                if not error then
+            lib.callback("evidences:scanFingerprint", false, function(success)
+                if success then
                     local pedCoords <const> = GetEntityCoords(cache.ped)
                     local coords <const> = GetEntityCoords(data.entity)
                     SetEntityHeading(cache.ped, GetHeadingFromVector_2d(coords.x - pedCoords.x, coords.y - pedCoords.y))

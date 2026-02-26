@@ -1,6 +1,7 @@
 local framework <const> = require "common.frameworks.framework"
 local eventHandler <const> = require "common.events.handler"
 local eventClass <const> = require "common.events.classes.event"
+local logger <const> = require "server.logger"
 
 ---@class Observation : OxClass
 ---@field type string
@@ -92,6 +93,14 @@ function Observation:addObserver(playerId)
     playerId = tonumber(playerId)
 
     self.observers[playerId] = true
+
+    logger.log(playerId, "Observation started", {
+        type = self.__name,
+        label = self.label,
+        coords = self.coords and tostring(self.coords) or nil,
+        channel = self.channel,
+        targets = #self.targets > 0 and json.encode(self.targets) or nil
+    })
 
     for target, _ in pairs(self.targets) do
         TriggerClientEvent("evidences:startListeningTo", playerId, target)

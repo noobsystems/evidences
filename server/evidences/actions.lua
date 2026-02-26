@@ -18,7 +18,17 @@ lib.callback.register("evidences:destroy", function(source, evidenceType, owner,
 
     local object <const> = api.get(api.evidenceTypes[evidenceType], owner)
     object[remove.fun](object, table.unpack(remove.arguments))
-    logger.log(source, "An evidence has been destroyed. The evidence type is "..evidenceType.."", "evidences", "info", "Evidence destroyed", {evidenceType})
+
+    local data = {
+        evidenceType = evidenceType,
+        biometricData = owner
+    }
+
+    if remove then
+        data[remove.fun] = json.encode(remove.arguments)
+    end
+
+    logger.log(source, "Evidence destroyed", data)
     return true
 end)
 
@@ -65,7 +75,19 @@ function actions.collect(source, evidenceType, owner, remove, metadata)
     metadata.description = require "server.evidences.evidence_information"(metadata.information)
 
     object:atItem(source, response[1].slot, metadata)
-    logger.log(source, "An evidence has been collected. The evidence type is "..evidenceType.." it was collected at "..metadata.information.collectionTime.."", "evidences", "info", "Evidence collected", {evidenceType, metadata})
+
+
+    local data = {
+        evidenceType = evidenceType,
+        biometricData = owner,
+        information = metadata.description:gsub("  \n ", "\n")
+    }
+
+    if remove then
+        data[remove.fun] = json.encode(remove.arguments)
+    end
+
+    logger.log(source, "Evidence collected", data)
     return true
 end
 

@@ -25,7 +25,6 @@ lib.callback.register("evidences:takeBiometricData", function(playerId, targetId
         return false
     end
 
-    logger.log(playerId, "A biometric data has been taken. The biometric data type is "..type.." and it was taken from "..targetId.."", "biometrics", "info", "Biometric data taken", {playerId, targetId, type})
-
+    logger.log(playerId, "Biometric data taken", { target = targetId, evidenceType = type, enforced = enforce and "true" or "false" })
     return true
 end)

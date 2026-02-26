@@ -77,7 +77,6 @@ lib.callback.register("evidences:observeObservableCall", function(observer, argu
 
     if arguments and arguments.channel then
         local observableCall <const> = activeCalls[arguments.channel]
-        if observableCall then logger.log(observer, "A call has been observed. The call channel is "..arguments.channel.."", "wiretap", "info", "Call observed", {arguments.channel}) end
         return observableCall and observableCall:addObserver(observer)
     end
 end)

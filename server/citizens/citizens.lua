@@ -37,11 +37,12 @@ if not config.citizens.synced then
                     WHERE identifier = ?
                 ]],
                 arguments.fullName, arguments.birthdate, arguments.gender, arguments.identifier,
-                function() return arguments end
+                function()
+                    logger.log(source, "Citizen updated", arguments)
+                    return arguments
+                end
             )
         end
-
-        logger.log(source, "A citizen has been stored. The citizen is "..arguments.fullName.."", "citizens", "info", "Citizen stored", {arguments})
 
         return database.selectFirstColumn(
             [[
@@ -52,6 +53,7 @@ if not config.citizens.synced then
             arguments.fullName, arguments.birthdate, arguments.gender,
             function(identifier)
                 arguments.identifier = identifier
+                logger.log(source, "Citizen created", arguments)
                 return arguments
             end
         )
@@ -72,7 +74,7 @@ if not config.citizens.synced then
             result = database.update("DELETE FROM linked_dna WHERE identifier = ?", identifier)
 
             if result.success then
-                logger.log(source, "A citizen has been deleted. The citizen is "..arguments.fullName.."", "citizens", "info", "Citizen deleted", {arguments})
+                logger.log(source, "Citizen deletion requested", arguments)
                 return database.update("DELETE FROM citizens WHERE identifier = ?", identifier)
             end
         end

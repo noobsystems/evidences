@@ -62,5 +62,5 @@ lib.addCommand("clearEvidences", {
     end
 
     TriggerClientEvent("evidences:notify", source, {key = "commands.evidences_deleted", arguments = {radius, evidenceCounter}}, "success")
-    logger.log(source, "Evidences cleared in radius " .. radius.." ("..evidenceCounter.." evidences)", "evidences", "success", "Evidences cleared")
+    logger.log(source, "Evidences cleared", { amount = evidenceCounter, radius = radius })
 end)

@@ -5,10 +5,10 @@ function framework.getPlayerName()
 
     if playerData then
         local charinfo <const> = playerData.charinfo
-        return charinfo and (charinfo.firstname .. " " .. charinfo.lastname) or nil
+        return charinfo and (charinfo.firstname .. " " .. charinfo.lastname) or "undefined"
     end
 
-    return nil
+    return "undefined"
 end
 
 function framework.getGrade(job)

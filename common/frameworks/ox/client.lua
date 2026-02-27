@@ -4,7 +4,7 @@ local framework = {}
 
 function framework.getPlayerName()
     local oxPlayer <const> = ox.GetPlayer()
-    return oxPlayer and (oxPlayer.get("firstName") .. " " .. oxPlayer.get("lastName")) or nil
+    return oxPlayer and oxPlayer.get("name") or "undefined"
 end
 
 function framework.getGrade(job)

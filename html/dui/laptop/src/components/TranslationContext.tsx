@@ -21,7 +21,10 @@ export const TranslationProvider = ({ children }: { children: React.ReactNode })
                 if (!res.ok) throw new Error(`Could not load language file: ${lang}`);
                 return res.json();
             })
-            .then((data) => setTranslations(data))
+            .then((data) => {
+                setTranslations(data);
+                document.documentElement.lang = lang;
+            })
             .catch((err) => console.error(err));
     }, [lang]);
 

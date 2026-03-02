@@ -256,6 +256,7 @@
                 "no_items_with_dna": "Ve vašem inventáři nejsou žádné předměty s DNA."
             },
             "evidence_analysis": {
+                "start_analyzation": "Spustit analýzu",
                 "matching_biometric_data": "Porovnávání %s s databází...",
                 "database_match": {
                     "header": "Shoda v databázi!",

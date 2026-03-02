@@ -8,6 +8,11 @@
         box-sizing: border-box;
     }
 
+    [lang="ja"] {
+        word-break: keep-all;
+        overflow-wrap: break-word;
+    }
+
     input::placeholder {
         opacity: 0.5;
         color: inherit;

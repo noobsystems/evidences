@@ -1,0 +1,355 @@
+{
+    "commands": {
+        "invalid_radius": {
+            "title": "証拠品",
+            "description": "証拠品の削除に失敗しました。指定された半径が無効です。(1-500の整数である必要があります)"
+        },
+        "no_evidences": {
+            "title": "証拠品",
+            "description": "証拠品の削除に失敗しました。指定された半径内に証拠品が見つかりません。"
+        },
+        "evidences_deleted": {
+            "title": "証拠品",
+            "description": "半径 %s 内のすべての証拠品が削除されました。(個数: %s)"
+        }
+    },
+    "evidences": {
+        "evidence_box_label_dialog": {
+            "title": "ラベルボックス",
+            "name_textfield_title": "名称",
+            "name_textfield_details": "インベントリに表示される名前",
+            "description_textfield_title": "説明",
+            "description_textfield_details": "インベントリ内のアイテム名の下に表示される短い説明"
+        },
+        "fingerprint": {
+            "collecting_label": "指紋を採取する",
+            "destroying_label": "指紋を抹消する"
+        },
+        "blood": {
+            "collecting_label": "血痕を採取する",
+            "destroying_label": "血痕を抹消する"
+        },
+        "saliva": {
+            "collecting_label": "唾液を採取する",
+            "destroying_label": "唾液を抹消する"
+        },
+        "magazine": {
+            "collecting_label": "マガジンを回収する",
+            "destroying_label": "マガジンを破棄する"
+        },
+        "information": {
+            "in_vehicle": "%s 内 (ナンバープレート: %s)",
+            "at_vehicle": "車両上 (ナンバープレート: %s)",
+            "at_coords": "地上",
+            "metadata": {
+                "crime_scene": "事件現場",
+                "collection_time": "採取時刻",
+                "additionalData": "情報",
+                "weapon_label": "武器",
+                "serial_number": "シリアル番号"
+            },
+            "seats": {
+                "-1": "運転席",
+                "0": "助手席",
+                "1": "後部座席（左）",
+                "2": "後部座席（右）"
+            },
+            "doors": {
+                "0": "運転席ドア",
+                "1": "助手席ドア",
+                "2": "後部左ドア",
+                "3": "後部右ドア"
+            }
+        },
+        "notifications": {
+            "common": {
+                "placeholders": {
+                    "at_coords": "地面の上",
+                    "at_player": "このプレイヤー",
+                    "at_vehicle_door": "この車両のドア",
+                    "at_vehicle_seat": "車両のシート上",
+                    "at_entity": "このエンティティ上",
+                    "at_weapon": "武器の上"
+                },
+                "errors": {
+                    "collect": {
+                        "title": "証拠品",
+                        "description": "証拠品の採取中にエラーが発生しました"
+                    },
+                    "destroy": {
+                        "title": "証拠品",
+                        "description": "証拠品の抹消中にエラーが発生しました"
+                    }
+                }
+            },
+            "collect": {
+                "title": "証拠品",
+                "description": "証拠品 %s が採取されました"
+            },
+            "destroy": {
+                "title": "証拠品",
+                "description": "証拠品 %s が抹消されました"
+            }
+        }
+    },
+    "fingerprint_scanner": {
+        "target": "スキャナーに指を置いてください",
+        "input_help": "%s を押すとキャンセルします",
+        "scan_match": {
+            "title": "指紋スキャン完了",
+            "description": "データベース一致: %s (%s • %s)"
+        },
+        "scan_no_match": {
+            "title": "指紋スキャン完了",
+            "description": "データベースに一致するデータがありません"
+        },
+        "scan_gloves": {
+            "title": "スキャン失敗",
+            "description": "手袋を着用しています"
+        },
+        "scan_error": {
+            "title": "スキャン失敗",
+            "description": "指紋をスキャンできませんでした"
+        }
+    },
+    "biometrics_taking": {
+        "description": "警察官 %s があなたの %s の採取を求めています。同意しますか？",
+        "deny": "拒否",
+        "accept": "同意",
+        "target": {
+            "take_fingerprint": "指紋を採取する",
+            "take_dna": "DNAを採取する",
+            "force_take_fingerprint": "強制的に指紋を採取する",
+            "force_take_dna": "強制的にDNAを採取する"
+        },
+        "notifications": {
+            "request_sent": {
+                "title": "証拠品",
+                "description": "リクエストを送信しました"
+            },
+            "error": {
+                "title": "証拠品",
+                "description": "失敗しました"
+            },
+            "no_consent": {
+                "title": "証拠品",
+                "description": "プレイヤーが拒否しました"
+            },
+            "consent": {
+                "title": "証拠品",
+                "description": "プレイヤーが同意しました"
+            },
+            "no_permission": {
+                "title": "証拠品",
+                "description": "権限がありません"
+            }
+        }
+    },
+    "laptop": {
+        "notifications": {
+            "error_laptop_creation": {
+                "title": "証拠品",
+                "description": "ノートPCの設置中にエラーが発生しました"
+            },
+            "error_laptop_pickup": {
+                "title": "証拠品",
+                "description": "ノートPCの回収中にエラーが発生しました"
+            },
+            "input_help": "%s を押してノートPCを設置。%s %s を押してキャンセル",
+            "no_permission": {
+                "title": "証拠品",
+                "description": "権限がありません"
+            }
+        },
+        "target": {
+            "interact": "操作する",
+            "pickup": "回収する"
+        },
+        "login_screen": {
+            "title": "他ユーザー",
+            "username_placeholder": "ユーザー名",
+            "password_placeholder": "パスワード",
+            "welcome": "ようこそ",
+            "missing_permission": "ユーザー名またはパスワードが違います"
+        },
+        "desktop_screen": {
+            "common": {
+                "date_locales": "ja-JP",
+                "evidence_placeholder": "証拠品",
+                "crime_scene_placeholder": "事件現場",
+                "collection_time_placeholder": "採取時刻",
+                "additional_data_placeholder": "追加情報",
+                "name_placeholder": "名前",
+                "firstname_placeholder": "名",
+                "lastname_placeholder": "姓",
+                "fullname_placeholder": "姓名",
+                "birthdate_placeholder": "生年月日",
+                "gender_placeholder": "性別",
+                "from": "送信元:",
+                "by": "担当者:",
+                "fingerprint": "指紋",
+                "dna": "DNA",
+                "statuses": {
+                    "search": "検索...",
+                    "loading": "読み込み中...",
+                    "error": "エラー",
+                    "no_data": "データなし",
+                    "delete": "削除",
+                    "save": "保存",
+                    "cancel": "キャンセル",
+                    "unknown": "不明",
+                    "analysed": "分析済み",
+                    "no_selection": "選択されていません...",
+                    "select_evidence": "証拠品を選択してください。",
+                    "select_citizen": "市民を選択してください。",
+                    "fill_all_fields": "すべての項目を入力してください！"
+                }
+            },
+            "citizens_app": {
+                "name": "市民データベース",
+                "create_citizen": "市民データ作成",
+                "personal_data": "個人データ",
+                "biometric_data": "生体認証データ",
+                "notes": {
+                    "header": "メモ",
+                    "create": "新規メモ作成",
+                    "edit": "メモを編集",
+                    "title": "タイトル",
+                    "text": "内容"
+                },
+                "registered_weapons": "登録済みの武器",
+                "statuses": {
+                    "no_citizens_found": "市民が見つかりません",
+                    "no_notes_found": "メモが見つかりません",
+                    "no_registered_firearms": "登録された銃器はありません",
+                    "coming_soon": "この機能は近日公開予定です！",
+                    "select_evidence": "証拠品を選択"
+                },
+                "status_messages": {
+                    "citizen_creation_success": "市民データを作成しました！",
+                    "citizen_creation_error": "作成に失敗しました！",
+                    "citizen_update_success": "市民データを更新しました！",
+                    "citizen_update_error": "保存できませんでした！",
+                    "citizen_deletion_success": "市民データを削除しました！",
+                    "citizen_deletion_error": "削除できませんでした！",
+                    "note_save_success": "メモを保存しました！",
+                    "note_save_error": "メモを保存できませんでした！",
+                    "note_deletion_success": "メモを削除しました！",
+                    "note_deletion_error": "メモを削除できませんでした！",
+                    "biometric_data_link_success": "%s を選択した市民にリンクしました！",
+                    "biometric_data_unlink_success": "%s のリンクを解除しました！",
+                    "biometric_data_link_error": "%s を市民にリンクできませんでした！"
+                },
+                "gender": {
+                    "header": "性別を選択",
+                    "male": "男性",
+                    "female": "女性",
+                    "non_binary": "ノンバイナリー"
+                }
+            },
+            "fingerprint_app": {
+                "name": "指紋分析",
+                "no_items_with_fingerprints": "インベントリ内に指紋が付着したアイテムはありません。"
+            },
+            "dna_app": {
+                "name": "DNA分析",
+                "no_items_with_dna": "インベントリ内にDNAが付着したアイテムはありません。"
+            },
+            "evidence_analysis": {
+                "start_analyzation": "解析を開始",
+                "matching_biometric_data": "%s をデータベースと照合中...",
+                "database_match": {
+                    "header": "データベース一致！",
+                    "description": "証拠品に付着していた %s は以下の人物のものです:",
+                    "open_citizens_app": "市民アプリで開く"
+                },
+                "no_database_match": {
+                    "header": "一致するデータなし！",
+                    "description": "この証拠品に付着していた %s の主は依然として不明です。対象の人物を知っている場合は、市民アプリからこの証拠品の %s をその人物に割り当てることができます。"
+                }
+            },
+            "wiretap_app": {
+                "name": "通信傍受",
+                "warning_popup": {
+                    "title": "重要なお知らせ",
+                    "warning": "電話または無線通信の傍受は、通信傍受令状に基づいてのみ行われます。緊急事態においては、裁判所の命令なしに措置が講じられる場合があります。",
+                    "accept_button": "了解"
+                },
+                "phone_calls": {
+                    "header": "電話通話",
+                    "no_calls_running": "実行中の通話はありません",
+                    "lacking_permissions": "電話通話を傍受する権限がありません",
+                    "notifications": {
+                        "popup_header": "通話通知設定",
+                        "status_loading": "読み込み中...",
+                        "status_subscribed": "%s が通話を開始した際に通知を受け取ります。通知の停止や対象の変更はここで行えます:",
+                        "status_unsubscribed": "市民の %s を入力して、通話開始時の通知を有効にします:",
+                        "placeholder_full_name": "氏名",
+                        "placeholder_phone_number": "電話番号",
+                        "subscribe_button": "登録",
+                        "unsubscribe_button": "解除",
+                        "status_messages": {
+                            "subscribed": "正常に登録されました",
+                            "unsubscribed": "正常に解除されました"
+                        },
+                        "notification": {
+                            "title": "通話傍受",
+                            "description": "%s が傍受可能な通話に参加しています"
+                        }
+                    }
+                },
+                "spy_microphones": {
+                    "header": "スパイマイク",
+                    "no_spy_microphones_placed": "設置済みのスパイマイクはありません",
+                    "lacking_permissions": "スパイマイクを聴取する権限がありません"
+                },
+                "radio": {
+                    "header": "無線",
+                    "lacking_permissions": "無線チャンネルを傍受する権限がありません"
+                },
+                "latest_actions": {
+                    "header": "最近のアクション",
+                    "no_actions_available": "記録されたアクションはありません",
+                    "end_reached": "リストの終わりに到達しました",
+                    "action_duration": "%s (%s から %s)",
+                    "actions": {
+                        "ObservableCall": "%s が %s 間の通話を傍受しました",
+                        "ObservableRadioFreq": "%s が %s MHz の無線チャンネルを傍受しました",
+                        "ObservableSpyMicrophone": "%s がスパイマイク %s を聴取しました"
+                    }
+                },
+                "running_observation_popup" : {
+                    "ObservableCall": "通話 #%s を傍受中",
+                    "ObservableRadioFreq": "無線チャンネル %s MHz を傍受中",
+                    "ObservableSpyMicrophone": "スパイマイク %s を聴取中",
+                    "status_messages": {
+                        "protocol_save_success": "傍受プロトコルを保存しました！",
+                        "protocol_save_error": "傍受プロトコルを保存できませんでした！"
+                    }
+                },
+                "protocol_popup": {
+                    "header": {
+                        "ObservableCall": "通話傍受プロトコル #%s",
+                        "ObservableRadioFreq": "無線傍受プロトコル #%s",
+                        "ObservableSpyMicrophone": "スパイマイク監視プロトコル #%s"
+                    },
+                    "observation_started": "監視開始。",
+                    "observation_ended": "監視終了。"
+                }
+            }
+        }
+    },
+    "spy_microphone": {
+        "input_help": "%s を押してスパイマイクを設置。%s %s を押してキャンセル",
+        "error_spy_microphone_creation": {
+            "title": "証拠品",
+            "description": "このラベルのスパイマイクは既に存在します"
+        },
+        "spy_microphone_label_dialog": {
+            "title": "スパイマイクのラベル設定",
+            "label_textfield_title": "ラベル",
+            "label_textfield_details": "ノートPCの通信傍受アプリで識別するための固有の名前を入力してください"
+        },
+        "target_collect": "スパイマイクを回収する"
+    }
+}

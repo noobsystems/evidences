@@ -256,6 +256,7 @@
                 "no_items_with_dna": "Aucun objet avec ADN dans votre inventaire."
             },
             "evidence_analysis": {
+                "start_analyzation": "Lancer l'analyse",
                 "matching_biometric_data": "Comparaison de %s avec la base de données...",
                 "database_match": {
                     "header": "Correspondance trouvée !",

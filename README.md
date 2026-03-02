@@ -44,7 +44,7 @@ This item-based script provides law enforcement authorities with all the informa
     <sub>We recommand using our <a href="https://github.com/noobsystems/ox_target">ox_target fork</a></b> that improves targetting of vehicle doors.</sub>\
     <sub>This script uses the [locale module of ox_lib](https://coxdocs.dev/ox_lib/Modules/Locale/Shared) for language selection. You can change the selected language by setting the convar `setr ox:locale`. You can also add more languages or edit messages in an existing language file at <code>evidences/locales/</code>. Feel free to open a PR.</sub>
 
-2. Create the required items by adding the file content from [🇬🇧](.github/setup/en_items.lua), [🇩🇪](.github/setup/de_items.lua), [🇪🇸](.github/setup/es_items.lua), [🇨🇿](.github/setup/cs_items.lua), [🇹🇷](.github/setup/tr_items.lua) or [🇫🇷](.github/setup/fr_items.lua) to `ox_inventory/data/items.lua`.
+2. Create the required items by adding the file content from [🇬🇧](.github/setup/en_items.lua), [🇩🇪](.github/setup/de_items.lua), [🇪🇸](.github/setup/es_items.lua), [🇨🇿](.github/setup/cs_items.lua), [🇹🇷](.github/setup/tr_items.lua), [🇫🇷](.github/setup/fr_items.lua) or [🇯🇵](.github/setup/ja_items.lua) to `ox_inventory/data/items.lua`.
 3. Make the [`evidence_box`](https://github.com/noobsystems/evidences/wiki/Evidence-Boxes) a container item if your ox_inventory's version is < 2.44.4 by pasting this code to `ox_inventory/modules/items/containers.lua`:
     ```lua
     setContainerProperties('evidence_box', {

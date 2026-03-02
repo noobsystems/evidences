@@ -247,7 +247,7 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
                 </div>
             default:
                 return !props.evidence.analysed && <div className="w-full h-full flex justify-center items-center">
-                    <button className="flex justify-center gap-2 px-4 py-2 border-none rounded-10 bg-button duration-400 transition-all text-30 leading-none hoverable hover:-translate-y-0.5 hover:shadow-button" onClick={startAnalysis}>Start analyzation</button>
+                    <button className="flex justify-center gap-2 px-4 py-2 border-none rounded-10 bg-button duration-400 transition-all text-30 leading-none hoverable hover:-translate-y-0.5 hover:shadow-button" onClick={startAnalysis}>{t("laptop.desktop_screen.evidence_analysis.start_analyzation")}</button>
                 </div>
         }
     };

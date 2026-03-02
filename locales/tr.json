@@ -256,6 +256,7 @@
                 "no_items_with_dna": "Envanterinizde DNA içeren öğe yok."
             },
             "evidence_analysis": {
+                "start_analyzation": "Analizi başlat",
                 "matching_biometric_data": "%s veritabanı ile eşleştiriliyor...",
                 "database_match": {
                     "header": "Veritabanı eşleşmesi!",

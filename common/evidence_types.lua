@@ -9,6 +9,8 @@ local function createMetadata(evidenceType, data, coords, holder)
         additionalData = locale("evidences.information.in_vehicle", door or seat, data.plate)
     elseif (data.plate and (not (door or seat))) then
         additionalData = locale("evidences.information.at_vehicle", data.plate)
+    elseif (holder and holder.player) then
+        additionalData = locale("evidences.information.at_player")
     end
 
     return {

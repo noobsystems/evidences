@@ -41,6 +41,7 @@
             "in_vehicle": "sur %s (plaque : %s)",
             "at_vehicle": "sur le véhicule (plaque : %s)",
             "at_coords": "au sol",
+            "at_player": "d'un joueur",
             "metadata": {
                 "crime_scene": "Scène de crime",
                 "collection_time": "Heure de collecte",

@@ -41,6 +41,7 @@
             "in_vehicle": "auf %s (Kfz-Kennzeichen: %s)",
             "at_vehicle": "auf Kfz (Kennzeichen: %s)",
             "at_coords": "auf dem Boden",
+            "at_player": "von einem Spieler",
             "metadata": {
                 "crime_scene": "Tatort",
                 "collection_time": "Sammelzeit",

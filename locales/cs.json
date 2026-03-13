@@ -41,6 +41,7 @@
             "in_vehicle": "ve vozidle %s (SPZ: %s)",
             "at_vehicle": "na vozidle (SPZ: %s)",
             "at_coords": "na zemi",
+            "at_player": "od hráče",
             "metadata": {
                 "crime_scene": "Místo činu",
                 "collection_time": "Čas sběru",

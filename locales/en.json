@@ -41,6 +41,7 @@
             "in_vehicle": "on %s (license plate: %s)",
             "at_vehicle": "on vehicle (license plate: %s)",
             "at_coords": "on ground",
+            "at_player": "from a player",
             "metadata": {
                 "crime_scene": "Crime scene",
                 "collection_time": "Time of collection",

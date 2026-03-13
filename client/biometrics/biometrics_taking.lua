@@ -1,4 +1,5 @@
 local config <const> = require "config"
+local evidenceTypes <const> = require "common.evidence_types"
 local pendingRequests = {}
 
 lib.callback.register("evidences:requestConsent", function(requester, type)
@@ -31,13 +32,15 @@ local function takeBiometric(targetEntity, type, enforce)
 
     pendingRequests[targetEntity] = true
 
+    local options <const> = evidenceTypes.saliva
+    local metadata <const> = options.target.collect.createMetadata and options.target.collect.createMetadata("saliva", {}, GetEntityCoords(cache.ped), { player = true }) or nil
     lib.callback("evidences:takeBiometricData", false, function(success)
         pendingRequests[targetEntity] = nil
 
         if success then
             lib.playAnim(cache.ped, "mp_arresting", "a_uncuff", 8.0, 8.0, 4000, 16)
         end
-    end, targetId, type, enforce)
+    end, targetId, type, enforce, metadata)
 end
 
 exports.ox_target:addGlobalPlayer({

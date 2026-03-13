@@ -41,6 +41,7 @@
             "in_vehicle": "en %s (matricula: %s)",
             "at_vehicle": "en el vehículo (matricula: %s)",
             "at_coords": "en el suelo",
+            "at_player": "de un jugador",
             "metadata": {
                 "crime_scene": "Lugar del delito",
                 "collection_time": "Hora de recopilación",

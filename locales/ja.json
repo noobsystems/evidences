@@ -41,6 +41,7 @@
             "in_vehicle": "%s 内 (ナンバープレート: %s)",
             "at_vehicle": "車両上 (ナンバープレート: %s)",
             "at_coords": "地上",
+            "at_player": "プレイヤーから",
             "metadata": {
                 "crime_scene": "事件現場",
                 "collection_time": "採取時刻",

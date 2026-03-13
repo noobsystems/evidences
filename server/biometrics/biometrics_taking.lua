@@ -3,7 +3,7 @@ local framework <const> = require "common.frameworks.framework"
 local actions <const> = require "server.evidences.actions"
 local logger <const> = require "server.logger"
 
-lib.callback.register("evidences:takeBiometricData", function(playerId, targetId, type, enforce)
+lib.callback.register("evidences:takeBiometricData", function(playerId, targetId, type, enforce, metadata)
     if not framework.hasPermission(config.permissions.collect, playerId) then
         TriggerClientEvent("evidences:notify", playerId, { key = "biometrics_taking.notifications.no_permission" }, "error")
         return false
@@ -20,7 +20,7 @@ lib.callback.register("evidences:takeBiometricData", function(playerId, targetId
         TriggerClientEvent("evidences:notify", playerId, { key = "biometrics_taking.notifications.consent" }, "success")
     end
 
-    if not actions.collect(playerId, type == "dna" and "saliva" or "fingerprint", targetId) then
+    if not actions.collect(playerId, type == "dna" and "saliva" or "fingerprint", targetId, nil, metadata) then
         TriggerClientEvent("evidences:notify", playerId, { key = "biometrics_taking.notifications.error" }, "error")
         return false
     end

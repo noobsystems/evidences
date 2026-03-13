@@ -41,6 +41,7 @@
             "in_vehicle": "%s üzerinde (plaka: %s)",
             "at_vehicle": "araç üzerinde (plaka: %s)",
             "at_coords": "yerde",
+            "at_player": "bir oyuncudan",
             "metadata": {
                 "crime_scene": "Suç mahali",
                 "collection_time": "Toplama zamanı",

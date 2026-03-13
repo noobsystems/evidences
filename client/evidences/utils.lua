@@ -92,4 +92,31 @@ function utils.getStreetName(location)
    return streetName
 end
 
+local datePromise
+
+if lib.context == "client" then
+    RegisterNUICallback("dateTimeCallback", function(data, cb)
+        datePromise.resolved = true
+        datePromise:resolve(data.date)
+        cb({})
+    end)
+end
+
+function utils.getFormatedDateTime()
+    datePromise = promise.new()
+
+    SendNUIMessage({
+        action = "getDateTime",
+        dateLocales = locale("laptop.desktop_screen.common.date_locales")
+    })
+
+    SetTimeout(5000, function()
+        if not datePromise.resolved then
+            datePromise:resolve(nil)
+        end
+    end)
+
+    return Citizen.Await(datePromise)
+end
+
 return utils

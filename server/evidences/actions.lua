@@ -70,9 +70,7 @@ function actions.collect(source, evidenceType, owner, remove, metadata)
     end
 
     metadata = metadata or {}
-    metadata.information = metadata.information or {}
-    metadata.information.collectionTime = os.date("%d.%m.%Y, %H:%M")
-    metadata.description = require "server.evidences.evidence_information"(metadata.information)
+    metadata.description = require "server.evidences.evidence_information"(metadata.information or {})
 
     object:atItem(source, response[1].slot, metadata)
 

@@ -15,6 +15,7 @@ local function createMetadata(evidenceType, data, coords, holder)
 
     return {
         information = {
+            collectionTime = utils.getFormatedDateTime(),
             crimeScene = utils.getStreetName(coords),
             additionalData = additionalData,
             weaponLabel = data.weaponLabel,

@@ -14,7 +14,7 @@ MySQL.update.await(
             observer TEXT NOT NULL,
             target TEXT NOT NULL,
             protocol TEXT NULL
-        )
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]]
 )
 

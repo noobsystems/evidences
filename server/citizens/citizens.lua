@@ -15,7 +15,7 @@ if not config.citizens.synced then
                 fullName TEXT NOT NULL,
                 birthdate TEXT NOT NULL,
                 gender ENUM('male', 'female', 'non_binary') NOT NULL
-            )
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         ]]
     )
 

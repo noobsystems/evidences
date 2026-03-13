@@ -9,7 +9,7 @@ MySQL.update.await(
             y VARCHAR(50) NOT NULL,
             z VARCHAR(50) NOT NULL,
             w VARCHAR(50) NOT NULL
-        )
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]]
 )
 

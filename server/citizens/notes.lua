@@ -12,7 +12,7 @@ MySQL.update.await(
             modifiedBy TEXT NOT NULL,
             title TEXT NULL,
             text TEXT NULL
-        )
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]]
 )
 

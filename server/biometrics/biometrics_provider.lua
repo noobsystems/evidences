@@ -12,7 +12,7 @@ MySQL.update.await(
             identifier VARCHAR(500) PRIMARY KEY NOT NULL,
             fingerprint VARCHAR(16) UNIQUE NOT NULL,
             dna VARCHAR(16) UNIQUE NOT NULL
-        )
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]]
 )
 

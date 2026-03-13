@@ -13,7 +13,7 @@ MySQL.update.await(
             fingerprint VARCHAR(16) PRIMARY KEY NOT NULL,
             identifier VARCHAR(500) NOT NULL UNIQUE,
             FOREIGN KEY (fingerprint) REFERENCES biometric_data(fingerprint)
-        )
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]]
 )
 
@@ -23,7 +23,7 @@ MySQL.update.await(
             dna VARCHAR(16) PRIMARY KEY NOT NULL,
             identifier VARCHAR(500) NOT NULL UNIQUE,
             FOREIGN KEY (dna) REFERENCES biometric_data(dna)
-        )
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ]]
 )
 

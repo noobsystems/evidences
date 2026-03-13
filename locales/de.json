@@ -75,11 +75,11 @@
                 "errors": {
                     "collect": {
                         "title": "Evidences",
-                        "description": "Fehler beim Sicherstellen des Bewisstücks"
+                        "description": "Fehler beim Sicherstellen des Beweisstücks"
                     },
                     "destroy": {
                         "title": "Evidences",
-                        "description": "Fehler beim Zerstören des Bewisstücks"
+                        "description": "Fehler beim Zerstören des Beweisstücks"
                     }
                 }
             },

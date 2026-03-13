@@ -1,6 +1,6 @@
 local config <const> = require "config"
 local eventHandler <const> = require "common.events.handler"
-local evidenceTypes = require "common.evidence_types"
+local evidenceTypes <const> = require "common.evidence_types"
 
 EvidencesAtCoords = {}
 

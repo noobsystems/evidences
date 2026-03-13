@@ -200,7 +200,7 @@ config.logging = {
 
     -- If the logging service is set to "discord", you have to define a webhook url and your txAdmin web interface url.
     -- Refer to https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks.
-    webhook = "https://discord.com/api/webhooks/1475539779419373640/Rt0gBBeT_HEXXktuZdUPV4-rIoDNH2xq_G2CjMSZYdOoOvGhodGq3hSmT3DoNZDDI7pO",
+    webhook = "https://discord.com/api/webhooks/YOUR-WEBHOOK-ID/YOUR-WEBHOOK-TOKEN",
     txAdminUrl = "https://YOUR-IP.NET:40120/players?playerModal="
 }
 

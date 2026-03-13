@@ -58,6 +58,8 @@ export default function CitizenNotePopup(props: CitizenNotePopupProps) {
     const deleteNote = () => {
         if (props.note) {
             triggerNoteDelete({ id: props.note.id });
+        } else {
+            appContext.close();
         }
     };
 

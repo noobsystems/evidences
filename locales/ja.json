@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "証拠品",
                 "description": "証拠品 %s が抹消されました"
+            },
+            "pasted": {
+                "title": "証拠品",
+                "description": "生体認証データがクリップボードにコピーされました"
+            },
+            "not_analysed": {
+                "title": "証拠",
+                "description": "証拠品はまだ分析されていません"
             }
         }
     },

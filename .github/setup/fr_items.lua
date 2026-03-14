@@ -55,12 +55,24 @@
 ['collected_blood'] = {
     label = 'Sang collecté',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Copie d\'ADN',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_saliva'] = {
     label = 'Salive collectée',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Copie d\'ADN',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_magazine'] = {
     label = 'Chargeur collecté',
@@ -70,7 +82,13 @@
 ['collected_fingerprint'] = {
     label = 'Empreinte collectée',
     weight = 5,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Copie d\'empreinte',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "fingerprint")
+        end
+    }}
 },
 ['spy_microphone'] = {
     label = 'Micro-espion',

@@ -55,12 +55,24 @@
 ['collected_blood'] = {
     label = 'Gesichertes Blut',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'DNS kopieren',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_saliva'] = {
     label = 'Gesicherter Speichel',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'DNS kopieren',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_magazine'] = {
     label = 'Gesichertes Magazin',
@@ -70,7 +82,13 @@
 ['collected_fingerprint'] = {
     label = 'Gesicherter Fingerabdruck',
     weight = 5,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Fingerabdruck kopieren',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "fingerprint")
+        end
+    }}
 },
 ['spy_microphone'] = {
     label = 'Abhörwanze',

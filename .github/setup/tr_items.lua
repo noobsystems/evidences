@@ -55,12 +55,24 @@
 ['collected_blood'] = {
 	label = 'Kan delili',
 	weight = 200,
-	stack = false
+	stack = false,
+    buttons = {{
+        label = 'DNA Kopyası',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_saliva'] = {
     label = 'Tükürük delili',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'DNA Kopyası',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_magazine'] = {
 	label = 'Şarjör Delili',
@@ -70,7 +82,13 @@
 ['collected_fingerprint'] = {
 	label = 'Delil Parmak İzi',
 	weight = 5,
-	stack = false
+	stack = false,
+    buttons = {{
+        label = 'Parmak İzi Kopyası',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "fingerprint")
+        end
+    }}
 },
 ['spy_microphone'] = {
     label = 'Casus Mikrofon',

@@ -1,3 +1,5 @@
+local config <const> = require "config"
+
 exports("evidence_box", function(slot)
     local evidenceBoxItem
 
@@ -35,6 +37,36 @@ exports("evidence_box", function(slot)
 
         if input then
             TriggerServerEvent("evidences:renameEvidenceBox", slot, input)
+        end
+    end
+end)
+
+exports("copyEvidenceOwner", function(slot, type)
+    local evidenceItem
+
+    for _, item in pairs(exports.ox_inventory:GetPlayerItems()) do
+        if item and item.slot == slot then
+            evidenceItem = item
+            break
+        end
+    end
+
+    if evidenceItem then
+        local metadata <const> = evidenceItem.metadata or {}
+
+        if not metadata[type].analysed then
+            config.notify({ key = "evidences.notifications.not_analysed" }, "error")
+            return
+        end
+
+        local biometricData <const> = metadata[type].owner
+        if biometricData then
+            SendNUIMessage({
+                action = "copyToClipboard",
+                value = biometricData
+            })
+
+            config.notify({ key = "evidences.notifications.pasted" }, "success")
         end
     end
 end)

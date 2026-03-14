@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "Evidences",
                 "description": "Beweisstücke %s wurden beseitigt"
+            },
+            "pasted": {
+                "title": "Evidences",
+                "description": "Biometrische Daten wurden in die Zwischenablage kopiert"
+            },
+            "not_analysed": {
+                "title": "Evidences",
+                "description": "Das Beweisstück wurde noch nicht analysiert"
             }
         }
     },

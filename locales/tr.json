@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "Deliller",
                 "description": "%s delilleri yok edildi"
+            },
+            "pasted": {
+                "title": "Kanıtlar",
+                "description": "Biyometrik veriler panoya kopyalandı"
+            },
+            "not_analysed": {
+                "title": "Kanıtlar",
+                "description": "Delil henüz analiz edilmedi"
             }
         }
     },

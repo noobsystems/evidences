@@ -191,6 +191,11 @@ lib.callback.register("evidences:setAnalysed", function(source, arguments)
     if item then
         if item.metadata[arguments.type] then
             item.metadata[arguments.type].analysed = true
+
+            item.metadata.information = item.metadata.information or {}
+            item.metadata.information[arguments.type] = item.metadata[arguments.type].owner
+            item.metadata.description = require "server.evidences.evidence_information"(item.metadata.information)
+
             exports.ox_inventory:SetMetadata(arguments.inventory, arguments.slot, item.metadata)
 
             TriggerEvent("evidences:evidenceItemAnalysed", source, item)

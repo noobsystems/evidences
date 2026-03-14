@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "Pruebas",
                 "description": "Las pruebas %s fueron destruidas"
+            },
+            "pasted": {
+                "title": "Evidencias",
+                "description": "Los datos biométricos se han copiado al portapapeles"
+            },
+            "not_analysed": {
+                "title": "Evidencias",
+                "description": "La pieza de prueba aún no ha sido analizada"
             }
         }
     },

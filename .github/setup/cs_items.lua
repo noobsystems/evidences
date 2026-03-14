@@ -55,12 +55,24 @@
 ['collected_blood'] = {
     label = 'Odebraná krev',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Kopie DNA',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_saliva'] = {
     label = 'Odebraná slina',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Kopie DNA',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_magazine'] = {
     label = 'Odebraný zásobník',
@@ -70,7 +82,13 @@
 ['collected_fingerprint'] = {
     label = 'Odebraný otisk prstu',
     weight = 5,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Kopie otisku prstu',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "fingerprint")
+        end
+    }}
 },
 ['spy_microphone'] = {
     label = 'Špionážní mikrofon',

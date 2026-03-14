@@ -1,17 +1,19 @@
-local api <const> = require "server.evidences.api"
-
 local translations <const> = {
     -- all evidences
     additionalData = locale("evidences.information.metadata.additionalData"),
     crimeScene = locale("evidences.information.metadata.crime_scene"),
     collectionTime = locale("evidences.information.metadata.collection_time"),
 
+    -- biometrics
+    dna = locale("laptop.desktop_screen.common.dna"),
+    fingerprint = locale("laptop.desktop_screen.common.fingerprint"),
+
     -- magazines
     weaponLabel = locale("evidences.information.metadata.weapon_label"),
     serialNumber = locale("evidences.information.metadata.serial_number"),
 }
 
-local order <const> = {"additionalData", "crimeScene", "collectionTime", "weaponLabel", "serialNumber"}
+local order <const> = {"additionalData", "crimeScene", "dna", "fingerprint", "collectionTime", "weaponLabel", "serialNumber"}
 
 function createInformation(evidenceInformation)
     local information = ""

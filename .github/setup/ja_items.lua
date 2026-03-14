@@ -55,12 +55,24 @@
 ['collected_blood'] = {
     label = '採取された血液',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'DNAのコピ',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_saliva'] = {
     label = '採取された唾液',
     weight = 200,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'DNAのコピ',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "dna")
+        end
+    }}
 },
 ['collected_magazine'] = {
     label = '採取されたマガジン',
@@ -70,7 +82,13 @@
 ['collected_fingerprint'] = {
     label = '採取された指紋',
     weight = 5,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = '指紋のコピ',
+        action = function(slot)
+            exports.evidences:copyEvidenceOwner(slot, "fingerprint")
+        end
+    }}
 },
 ['spy_microphone'] = {
     label = 'スパイマイク',

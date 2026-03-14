@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "Evidences",
                 "description": "Evidences %s were destroyed"
+            },
+            "pasted": {
+                "title": "Evidence",
+                "description": "Biometric data has been copied to the clipboard"
+            },
+            "not_analysed": {
+                "title": "Evidences",
+                "description": "The evidence has not yet been analysed"
             }
         }
     },

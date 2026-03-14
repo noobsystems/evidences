@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "Důkazy",
                 "description": "Důkazy %s byly zničeny"
+            },
+            "pasted": {
+                "title": "Důkazy",
+                "description": "Biometrické údaje byly zkopírovány do schránky"
+            },
+            "not_analysed": {
+                "title": "Důkazy",
+                "description": "Důkazní materiál nebyl dosud analyzován"
             }
         }
     },

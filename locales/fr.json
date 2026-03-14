@@ -90,6 +90,14 @@
             "destroy": {
                 "title": "Preuves",
                 "description": "Les preuves %s ont été détruites"
+            },
+            "pasted": {
+                "title": "Preuves",
+                "description": "Les données biométriques ont été copiées dans le presse-papiers"
+            },
+            "not_analysed": {
+                "title": "Preuves",
+                "description": "La pièce à conviction n'a pas encore été analysée"
             }
         }
     },

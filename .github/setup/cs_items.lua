@@ -50,7 +50,7 @@
     consume = 0,
     client = {
         export = 'evidences.fingerprint_scanner',
-    },
+    }
 },
 ['collected_blood'] = {
     label = 'Odebraná krev',
@@ -74,11 +74,6 @@
         end
     }}
 },
-['collected_magazine'] = {
-    label = 'Odebraný zásobník',
-    weight = 200,
-    stack = false
-},
 ['collected_fingerprint'] = {
     label = 'Odebraný otisk prstu',
     weight = 5,
@@ -89,6 +84,35 @@
             exports.evidences:copyEvidenceOwner(slot, "fingerprint")
         end
     }}
+},
+['collected_magazine'] = {
+    label = 'Odebraný zásobník',
+    weight = 200,
+    stack = false
+},
+['collected_casing'] = {
+    label = 'Sebraná nábojnice',
+    weight = 10,
+    stack = false
+},
+['collected_bullet'] = {
+    label = 'Sebraný náboj',
+    weight = 10,
+    stack = false
+},
+['collected_gunshot_residue'] = {
+    label = 'Zajištěné povýstřelové zplodiny',
+    weight = 5,
+    stack = false
+},
+['steel_file'] = {
+    label = 'Ocelový pilník',
+    weight = 150,
+    stack = false,
+    decay = true,
+    client = {
+        export = 'evidences.steel_file'
+    }
 },
 ['spy_microphone'] = {
     label = 'Špionážní mikrofon',

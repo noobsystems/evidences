@@ -71,6 +71,16 @@ function focus.start(laptop)
         DisplayRadar(false)
         SetNuiFocus(true, false)
     
+        local disabledApps = {}
+
+        if not (GetResourceState("pma-voice"):find("start") and config.wiretap.enabled) then
+            table.insert(disabledApps, "wiretap")
+        end
+
+        if not config.firearmsRegistry.enabled then
+            table.insert(disabledApps, "firearms_registry")
+        end
+
         dui:sendMessage({
             action = "focus",
             language = GetConvar("ox:locale", "en"),
@@ -78,11 +88,11 @@ function focus.start(laptop)
             canAccess = framework.hasPermission(config.permissions.access),
             options = {
                 areCitizensSynced = config.citizens.synced,
-                isWiretapAppEnabled = GetResourceState("pma-voice"):find("start") and config.wiretap.enabled or false,
                 displayPhoneNumbers = config.wiretap.calls.displayPhoneNumbers or false,
                 mayInterceptCalls = framework.hasPermission(config.wiretap.calls.permissions),
                 mayInterceptRadio = framework.hasPermission(config.wiretap.radio.permissions),
-                mayListenToSpyMicrophones = framework.hasPermission(config.wiretap.spyMicrophones.permissions)
+                mayListenToSpyMicrophones = framework.hasPermission(config.wiretap.spyMicrophones.permissions),
+                disabledApps = disabledApps
             }
         })
 

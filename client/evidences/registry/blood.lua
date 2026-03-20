@@ -38,14 +38,12 @@ AddEventHandler("gameEventTriggered", function(name, args)
                 end
                 
                 -- vehicle blood
-                if cache.vehicle then
-                    if not IsPedOnAnyBike(ped) then
-                        TriggerServerEvent("evidences:syncEvidence", "blood", cache.serverId,
-                            "atVehicleSeat", NetworkGetNetworkIdFromEntity(cache.vehicle), cache.seat, {
-                                plate = GetVehicleNumberPlateText(cache.vehicle)
-                            })
-                        return
-                    end
+                if cache.vehicle and cache.seat and not IsPedOnAnyBike(ped) then
+                    TriggerServerEvent("evidences:syncEvidence", "blood", cache.serverId,
+                        "atVehicleSeat", NetworkGetNetworkIdFromEntity(cache.vehicle), cache.seat, {
+                            plate = GetVehicleNumberPlateText(cache.vehicle)
+                        })
+                    return
                 end
 
                 -- ground blood

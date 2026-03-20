@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Evidence, EvidenceDetails } from "@/types/evidence.type";
+import { EvidenceAnalysisState, type BiometricEvidence, type Evidence, type EvidenceDetails } from "@/types/evidence.type";
 import useLuaCallback from "@/hooks/useLuaCallback";
 import { useTranslation } from "@/components/TranslationContext";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -9,16 +9,10 @@ import female from "@/assets/images/female.png";
 import male from "@/assets/images/male.png";
 import { useAppContext } from "@/hooks/useAppContext";
 
-enum State {
-    Loading,
-    DatabaseMatch,
-    NoDatabaseMatch,
-}
-
 interface EvidenceAnalysisProps {
     selectedEvidence: Evidence | null;
     evidenceDetails: EvidenceDetails | null;
-    type: "fingerprint" | "dna";
+    type: BiometricEvidence;
 }
 
 export default function EvidenceAnalysis(props: EvidenceAnalysisProps) {
@@ -36,7 +30,7 @@ const NoEvidenceSelected = () => {
 }
 
 interface DisplayEvidenceProps {
-    type: "fingerprint" | "dna";
+    type: BiometricEvidence;
     evidence: Evidence;
     evidenceDetails: EvidenceDetails;
 }
@@ -45,12 +39,12 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
     const { t } = useTranslation();
     const appContext = useAppContext();
 
-    const [state, setState] = useState<State | null>(null);
+    const [state, setState] = useState<EvidenceAnalysisState | null>(null);
     const [progress, setProgress] = useState<number>(0);
     const [additionalData, setAdditionalData] = useState<string>(props.evidenceDetails?.additionalData || "");
     const debouncedAdditionalData = useDebounce(additionalData);
 
-    const { trigger: setAnalysed } = useLuaCallback<{ inventory: number | string, slot: number, type: "fingerprint" | "dna" }, void>({
+    const { trigger: setAnalysed } = useLuaCallback<{ inventory: number | string, slot: number, type: BiometricEvidence }, void>({
         name: "evidences:setAnalysed",
         onSuccess: (_, args) => {
             const event = new CustomEvent<EvidenceAnalysedEvent>("evidences:analysed", {
@@ -90,7 +84,7 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
     }, []);
 
 
-    const { trigger: getCitizenLinkedToBiometricData, data: citizen, setData: setCitizen } = useLuaCallback<{ type: "fingerprint" | "dna", biometricData: string }, Citizen | null>({
+    const { trigger: getCitizenLinkedToBiometricData, data: citizen, setData: setCitizen } = useLuaCallback<{ type: BiometricEvidence, biometricData: string }, Citizen | null>({
         name: "evidences:getCitizenLinkedToBiometricData",
         onSuccess: (data) => {
             setProgress(100);
@@ -98,15 +92,15 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
             const delay = !props.evidence.analysed ? 3500 : 0;
             timeoutRef.current = window.setTimeout(() => {
                 if (data || citizenRef.current) {
-                    setState(State.DatabaseMatch);
+                    setState(EvidenceAnalysisState.DatabaseMatch);
                 } else {
-                    setState(State.NoDatabaseMatch);
+                    setState(EvidenceAnalysisState.NoDatabaseMatch);
                 }
 
                 updateAnalysedState();
             }, delay);
         },
-        onError: () => setState(State.NoDatabaseMatch)
+        onError: () => setState(EvidenceAnalysisState.NoDatabaseMatch)
     });
 
     const citizenRef = useRef(citizen);
@@ -122,7 +116,7 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
             return;
         }
 
-        setState(State.Loading);
+        setState(EvidenceAnalysisState.Loading);
         setProgress(0);
 
         getCitizenLinkedToBiometricData({
@@ -160,10 +154,10 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
 
             if (identifier && identifier === props.evidence.identifier) {
                 setCitizen(citizen);
-                if (stateRef.current !== null && stateRef.current !== State.Loading) setState(State.DatabaseMatch);
+                if (stateRef.current !== null && stateRef.current !== EvidenceAnalysisState.Loading) setState(EvidenceAnalysisState.DatabaseMatch);
             } else {
                 setCitizen(null);
-                if (stateRef.current !== null  && stateRef.current !== State.Loading) setState(State.NoDatabaseMatch);
+                if (stateRef.current !== null  && stateRef.current !== EvidenceAnalysisState.Loading) setState(EvidenceAnalysisState.NoDatabaseMatch);
             }
         };
 
@@ -192,7 +186,7 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
 
     const renderState = () => {
         switch (state) {
-            case State.Loading:
+            case EvidenceAnalysisState.Loading:
                 return <div className="h-full flex flex-col justify-center items-center gap-4">
                     <div className="h-8 w-[80%] bg-black/10 rounded-16">
                         <div className={`h-full rounded-16 duration-3000 transition-[width] ease-in-out bg-[linear-gradient(180deg,#6f8fb3_0%,#4f6f92_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_0_6px_rgba(90,120,160,0.6)]`} style={{ width: `${progress}%` }}></div>
@@ -201,9 +195,9 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
                         {t("laptop.desktop_screen.evidence_analysis.matching_biometric_data", t(`laptop.desktop_screen.common.${props.type}`))}
                     </p>
                 </div>
-            case State.DatabaseMatch:
+            case EvidenceAnalysisState.DatabaseMatch:
                 if (!citizen) {
-                    setState(State.NoDatabaseMatch);
+                    setState(EvidenceAnalysisState.NoDatabaseMatch);
                     return
                 }
                 
@@ -235,7 +229,7 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
                         </div>
                     </button>
                 </div>
-            case State.NoDatabaseMatch:
+            case EvidenceAnalysisState.NoDatabaseMatch:
                 return <div className="w-full h-full flex justify-center items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="rgb(233,21,45)" viewBox="0 -960 960 960"><path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"/></svg>
                     <div className="w-3/4">

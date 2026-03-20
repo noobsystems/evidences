@@ -110,6 +110,18 @@ config.citizens = {
     synced = true
 }
 
+config.firearmsRegistry = {
+    enabled = true
+}
+
+config.gunshotResidues = {
+    -- Cron expression defining when gunshot residues on players shall be removed.
+    -- See https://overextended.dev/docs/ox_lib/Cron/Server#cron-expression to learn more about the syntax of cron expressions.
+    -- This adds some intended randomness, e.g. when the cron job runs every 15 minutes, it could happen that the gunshot residues are already
+    -- removed after 1 minute or as late as 15 minutes depending on the time the cron job started.
+    decayCron = "*/15 * * * *" -- default: run every 15 minutes
+}
+
 
 -- Here you can customize key hints and help texts.
 -- This is currently only used when placing the evidence laptop.

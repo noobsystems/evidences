@@ -22,20 +22,32 @@
             "description_textfield_details": "Descripción corta que verá en el inventario debajo del objeto"
         },
         "fingerprint": {
-            "collecting_label": "Recopilar huella digital",
-            "destroying_label": "Destruir huella digital"
+            "collecting_label": "Asegurar huella dactilar",
+            "destroying_label": "Eliminar huella dactilar"
         },
         "blood": {
-            "collecting_label": "Recopilar rastro de sangre",
-            "destroying_label": "Destruir rastro de sangre"
+            "collecting_label": "Asegurar rastro de sangre",
+            "destroying_label": "Eliminar rastro de sangre"
         },
         "saliva": {
-            "collecting_label": "Recolectar saliva",
+            "collecting_label": "Asegurar saliva",
             "destroying_label": "Eliminar saliva"
         },
         "magazine": {
-            "collecting_label": "Recopilar cargador",
-            "destroying_label": "Destruir cargador"
+            "collecting_label": "Asegurar cargador",
+            "destroying_label": "Eliminar cargador"
+        },
+        "casing": {
+            "collecting_label": "Recoger casquillo",
+            "destroying_label": "Eliminar casquillo"
+        },
+        "bullet": {
+            "collecting_label": "Recoger bala",
+            "destroying_label": "Eliminar bala"
+        },
+        "gunshot_residue": {
+            "collecting_label": "Recoger residuos de disparo",
+            "destroying_label": "Eliminar residuos de disparo"
         },
         "information": {
             "in_vehicle": "en %s (matricula: %s)",
@@ -46,8 +58,8 @@
                 "crime_scene": "Lugar del delito",
                 "collection_time": "Hora de recopilación",
                 "additionalData": "Información",
-                "weapon_label": "Arma",
-                "serial_number": "Número de serie"
+                "weapon_type": "Tipo de arma",
+                "serial": "Número de serie"
             },
             "seats": {
                 "-1": "asiento delantero del conductor",
@@ -91,9 +103,17 @@
                 "title": "Pruebas",
                 "description": "Las pruebas %s fueron destruidas"
             },
-            "pasted": {
+            "biometrics_pasted": {
                 "title": "Evidencias",
                 "description": "Los datos biométricos se han copiado al portapapeles"
+            },
+            "serial_pasted": {
+                "title": "Evidencias",
+                "description": "El número de serie se ha copiado al portapapeles"
+            },
+            "missing_serial": {
+                "title": "Evidencias",
+                "description": "El elemento de evidencia no contiene un número de serie"
             },
             "not_analysed": {
                 "title": "Evidencias",
@@ -119,6 +139,12 @@
         "scan_error": {
             "title": "Error de escaneo",
             "description": "No se pudo escanear la huella"
+        }
+    },
+    "steel_file": {
+        "serial_removed": {
+            "title": "Número de serie borrado",
+            "description": "El número de serie se ha eliminado con éxito del arma"
         }
     },
     "biometrics_taking": {
@@ -211,7 +237,12 @@
                     "no_selection": "Nada que seleccionar...",
                     "select_evidence": "Por favor, seleccione una prueba.",
                     "select_citizen": "Por favor, seleccione un ciudadano.",
+                    "select_firearm": "Por favor, seleccione un arma.",
                     "fill_all_fields": "¡Por favor, complete todos los campos!"
+                },
+                "dropdowns": {
+                    "select_citizen": "Seleccionar ciudadano",
+                    "select_firearm": "Seleccionar arma"
                 }
             },
             "citizens_app": {
@@ -226,12 +257,11 @@
                     "title": "Título",
                     "text": "Texto"
                 },
-                "registered_weapons": "Armas Registradas",
+                "registered_firearms": "Armas Registradas",
                 "statuses": {
                     "no_citizens_found": "No se encontraron ciudadanos",
                     "no_notes_found": "No se encontraron notas",
                     "no_registered_firearms": "No hay armas de fuego registradas",
-                    "coming_soon": "¡Esta función estará disponible pronto!",
                     "select_evidence": "Seleccionar prueba"
                 },
                 "status_messages": {
@@ -277,6 +307,73 @@
                     "description": "El rastro de %s en la prueba pertenece a una persona desconocida. Si conoce a la persona, puede asignarle el rastro de esta prueba en la aplicación de ciudadanos."
                 }
             },
+            "firearms_registry_app": {
+                "name": "Registro de armas",
+                "firearm_information": "Información",
+                "firearm_type": "Tipo",
+                "firearm_serial": "Número de serie",
+                "firearm_owner": "Propietario",
+                "registered_by": "Registrado por",
+                "registered_at": "Registrado el",
+                "firearm_registration": "Registro",
+                "firearm_status": "Estado",
+                "registration_reason": "Motivo de registro",
+                "no_firearms_found": "No se encontraron armas de fuego",
+                "registration_popup": {
+                    "header": "Registrar arma de fuego",
+                    "citizen": "Ciudadano",
+                    "firearm": "Arma",
+                    "reason": "Motivo de registro",
+                    "status": "Estado del arma"
+                },
+                "status": {
+                    "header": "Seleccionar estado",
+                    "unknown": "Desconocido",
+                    "registered": "Registrada",
+                    "lost": "Perdida",
+                    "stolen": "Robada",
+                    "confiscated": "Confiscada",
+                    "destroyed": "Destruida",
+                    "suspended": "Suspendida"
+                },
+                "status_messages": {
+                    "firearm_registration_success": "¡Arma registrada!",
+                    "firearm_registration_error": "¡Error al registrar el arma!",
+                    "firearm_already_registered": "¡El arma ya está registrada!",
+                    "firearm_update_success": "¡Arma actualizada!",
+                    "firearm_update_error": "¡No se pudo guardar el arma!",
+                    "firearm_deletion_success": "¡Arma eliminada!",
+                    "firearm_deletion_error": "¡No se pudo eliminar el arma!"
+                }
+            },
+            "ballistics_app": {
+                "name": "Análisis balístico",
+                "no_ballistics_evidence_items": "No tienes objetos con pruebas balísticas en tu inventario.",
+                "start_analyzation": "Iniciar análisis",
+                "matching_serial": "Analizando pruebas balísticas...",
+                "registry_match": {
+                    "header": "¡Coincidencia en el registro de armas de fuego!",
+                    "description": "La prueba balística pertenece a la siguiente arma de fuego:",
+                    "open_firearms_registry": "Abrir en el registro de armas de fuego"
+                },
+                "no_registry_match": {
+                    "header": "¡Sin coincidencias en el registro de armas de fuego!",
+                    "casing_description": "Este casquillo no tiene un número de serie que coincida con ningún arma del registro de armas de fuego. Sin embargo, los casquillos aún pueden identificarse por las marcas de herramientas microscópicas únicas que dejan las imperfecciones dentro de un arma. Al seleccionar un arma de tu inventario, puedes comprobar si la evidencia del casquillo proviene del arma seleccionada (o, al menos, de un arma del mismo tipo).",
+                    "bullet_description": "Balas disparadas pueden ser identificadas por las marcas microscópicas únicas que dejan las imperfecciones dentro del cañón de un arma de fuego. Al seleccionar un arma de tu inventario, puedes comprobar si la evidencia de la bala proviene del arma seleccionada (o, al menos, de un arma del mismo tipo).",
+                    "inventory_match": {
+                        "microstamp": "La prueba balística proviene exactamente del arma seleccionada, ya que el número de serie quedó micrograbado en la pieza de evidencia.",
+                        "imperfections": "La evidencia balística proviene exactamente de la herramienta seleccionada, ya que comparten las mismas imperfecciones únicas.",
+                        "type": "La evidencia balística proviene de un arma del mismo tipo que la seleccionada.",
+                        "none": "La evidencia balística no coincide con el arma seleccionada."
+                    }
+                },
+                "show_type": {
+                    "header": "Análisis exitoso",
+                    "magazine_description": "Cargadores pueden ser claramente asociados con un tipo de arma. Sin embargo, no es posible asignarlos a un arma específica. Este cargador pertenece a un arma de este tipo:",
+                    "gunshot_residue_description": "Los residuos de disparo permiten extraer conclusiones sobre el tipo de arma utilizada. Según su concentración, es posible calcular cuándo fue disparada el arma. El análisis de los residuos de disparo seleccionados ha arrojado lo siguiente:",
+                    "fired_at": "Disparado a las"
+                }
+            },
             "wiretap_app": {
                 "name": "Escuchas",
                 "warning_popup": {
@@ -290,7 +387,6 @@
                     "lacking_permissions": "Sin permisos para interceptar llamadas telefónicas",
                     "notifications": {
                         "popup_header": "Notificaciones de llamadas telefónicas",
-                        "status_loading": "Cargando...",
                         "status_subscribed": "Recibirá notificaciones cuando %s participe en una llamada telefónica. Puede dejar de recibir notificaciones o cambiar su objetivo aquí:",
                         "status_unsubscribed": "Ingrese el %s de un ciudadano para ser notificado cuando participe en una llamada telefónica:",
                         "placeholder_full_name": "nombre completo",

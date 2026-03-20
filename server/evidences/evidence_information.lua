@@ -8,12 +8,12 @@ local translations <const> = {
     dna = locale("laptop.desktop_screen.common.dna"),
     fingerprint = locale("laptop.desktop_screen.common.fingerprint"),
 
-    -- magazines
-    weaponLabel = locale("evidences.information.metadata.weapon_label"),
-    serialNumber = locale("evidences.information.metadata.serial_number"),
+    -- ballistics
+    weaponType = locale("evidences.information.metadata.weapon_type"),
+    serial = locale("evidences.information.metadata.serial")
 }
 
-local order <const> = {"additionalData", "crimeScene", "dna", "fingerprint", "collectionTime", "weaponLabel", "serialNumber"}
+local order <const> = {"additionalData", "crimeScene", "dna", "fingerprint",  "collectionTime", "weaponType", "serial"}
 
 function createInformation(evidenceInformation)
     local information = ""

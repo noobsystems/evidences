@@ -4,7 +4,6 @@ import type { OpenApp } from "../screens/DesktopScreen";
 import { AppsList, type App } from "@/data/apps";
 import { useRef } from "react";
 import type { Options } from "../App";
-import { useTranslation } from "../TranslationContext";
 import type { AppArgs } from "@/types/appargs.type";
 
 
@@ -23,17 +22,10 @@ interface DesktopContentProps {
 
 // Renders the content of the desktop.
 export default function DesktopContent(props: DesktopContentProps) {
-    const { t } = useTranslation();
     const lastFocusedAppPosition = useRef({ x: 0, y: 0 });
     const defaultPosition = { ...lastFocusedAppPosition.current };
     const appList = AppsList();
-    const filteredAppsList = appList.filter((app) => {
-        if (app.name == t("laptop.desktop_screen.wiretap_app.name")) {
-            return props.options?.isWiretapAppEnabled || false;
-        }
-
-        return true;
-    });
+    const filteredAppsList = appList.filter((app) => !props.options?.disabledApps.includes(app.id));
 
 
     const handleAppOpen = (appId: string, args?: AppArgs) => {
@@ -43,7 +35,7 @@ export default function DesktopContent(props: DesktopContentProps) {
     }
 
 
-    return <div className="w-full h-full relative">
+    return <div className="w-full h-[95%] relative">
         <AppIcons apps={filteredAppsList} openApp={props.openApp} />
         {props.openApps.map((app) => {
             const width = app.isPopUp ? 1000 : 1400;

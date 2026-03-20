@@ -33,16 +33,14 @@ local function getItemsMatchingFilter(source, filter)
         local slot <const> = item.slot
         local metadata <const> = item.metadata or {}
 
-        local matchesFilter, data = filter(item)
+        local matchesFilter <const>, details <const> = filter(item)
 
         if matchesFilter then
             filteredItems[#filteredItems + 1] = {
                 imagePath = getItemImage(item),
                 label = metadata.label or item.label,
                 slot = slot,
-
-                details = data.details or {},
-                additionalData = data.additionalData or {}
+                details = details or {}
             }
         end
 
@@ -61,9 +59,7 @@ local function getItemsMatchingFilter(source, filter)
                         imagePath = getItemImage(containerItem),
                         label = containerItemMetadata.label or containerItem.label,
                         slot = containerItem.slot,
-                        
-                        details = data.details or {},
-                        additionalData = data.additionalData or {}
+                        details = details or {}
                     }
                 end
             end
@@ -99,13 +95,14 @@ lib.callback.register("evidences:getPlayersFirearms", function(source, arguments
     end
 
     return getItemsMatchingFilter(source, function(item)
-        local metadata <const> = item.metadata
-        local serialNumber <const> = metadata and metadata.serial
+        local metadata <const> = item.metadata or {}
+        local serial <const> = metadata.serial
+        local imperfections <const> = metadata.imperfections
 
-        if serialNumber then
+        if serial or imperfections then
             return true, {
-                details = { serialNumber = serialNumber },
-                additionalData = {}
+                serial = serial,
+                imperfections = imperfections
             }
         end
 
@@ -113,7 +110,7 @@ lib.callback.register("evidences:getPlayersFirearms", function(source, arguments
     end)
 end)
 
-lib.callback.register("evidences:getPlayersItemsWithBiometricData", function(source, arguments)
+lib.callback.register("evidences:getPlayersItemsWithEvidence", function(source, arguments)
     if not framework.hasPermission(config.permissions.access, source) then
         return {
             success = false,
@@ -128,18 +125,24 @@ lib.callback.register("evidences:getPlayersItemsWithBiometricData", function(sou
         local metadata <const> = item.metadata or {}
 
         if metadata[type] and metadata[type].owner then
+            local information <const> = metadata.information or {}
+
             return true, {
-                details = metadata.information and {
-                    crimeScene = metadata.information.crimeScene or "",
-                    collectionTime = metadata.information.collectionTime or "",
-                    additionalData = metadata.information.additionalData or ""
-                } or {},
-                additionalData = {
-                    identifier = metadata[type].owner,
-                    analysed = metadata[type].analysed or false
-                }
+                createdAt = metadata.createdAt,
+                crimeScene = information.crimeScene or "",
+                collectionTime = information.collectionTime or "",
+                additionalData = information.additionalData or "",
+                weaponType = metadata[type].weaponType,
+                weaponImage = metadata[type].weaponImage,
+                serial = metadata[type].serial,
+                imperfections = metadata[type].imperfections,
+                type = metadata[type].type,
+                identifier = metadata[type].owner,
+                analysed = metadata[type].analysed or false
             }
         end
+
+        return false
     end)
 end)
 
@@ -192,8 +195,15 @@ lib.callback.register("evidences:setAnalysed", function(source, arguments)
         if item.metadata[arguments.type] then
             item.metadata[arguments.type].analysed = true
 
+            -- Update the description of the evidence item
             item.metadata.information = item.metadata.information or {}
-            item.metadata.information[arguments.type] = item.metadata[arguments.type].owner
+            item.metadata.information[arguments.type] = item.metadata[arguments.type].owner -- for biometric evidences (dna, fingerprint)
+
+            local information <const> = arguments.information
+            for key, value in pairs(information) do
+                item.metadata.information[key] = value
+            end
+
             item.metadata.description = require "server.evidences.evidence_information"(item.metadata.information)
 
             exports.ox_inventory:SetMetadata(arguments.inventory, arguments.slot, item.metadata)

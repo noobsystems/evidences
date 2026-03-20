@@ -1,11 +1,12 @@
 import type Citizen from "./citizen.type";
+import type { EvidenceType, BiometricEvidence } from "./evidence.type";
 import type { Interception } from "./wiretap.type";
 
 
 export interface EvidenceAnalysedEvent {
     inventory: number | string;
     slot: number;
-    type: "fingerprint" | "dna";
+    type: EvidenceType;
 }
 
 export interface InterceptionStoredEvent {
@@ -13,7 +14,7 @@ export interface InterceptionStoredEvent {
 }
 
 export interface BiometricDataLinkedEvent {
-    type: "fingerprint" | "dna";
+    type: BiometricEvidence;
     identifier?: string;
     citizen: Citizen;
 }

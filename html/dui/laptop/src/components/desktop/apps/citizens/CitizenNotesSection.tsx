@@ -1,11 +1,11 @@
 import { useTranslation } from "@/components/TranslationContext";
 import { useAppContext } from "@/hooks/useAppContext";
-import useLuaCallback from "@/hooks/useLuaCallback";
 import type Citizen from "@/types/citizen.type";
 import type Note from "@/types/note.type";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import CitizenNotePopup from "./CitizenNotePopup";
 import { Sidebar, SidebarItem } from "@/components/atoms/sidebar/Sidebar";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 interface CitizenNotesSectionProps {
     citizen: Citizen
@@ -14,66 +14,11 @@ interface CitizenNotesSectionProps {
 export default function CitizenNotesSection(props: CitizenNotesSectionProps) {
     const appContext = useAppContext();
     const { t } = useTranslation();
-    const [notes, setNotes] = useState<Note[]>([]);
-    const reloadRef = useRef(null);
-    const scrollRef = useRef(null);
-    const offset = useRef<number>(0);
-    const [isFullyLoaded, setFullyLoaded] = useState<boolean>(false);
-
-    const { trigger, loading } = useLuaCallback<{ identifier: string, offset: number }, Note[]>({
-        name: "evidences:getNotes",
-        onSuccess: (data) => {
-            if (!data) return;
-            const length = data.length;
-            offset.current += length;
-
-            setNotes(prev => [...prev, ...data]);
-            if (length < 10) setFullyLoaded(true);
-        }
-    });
-
-    const fetchNotes = useCallback((forceReload: boolean = false) => {
-        if (!forceReload && isFullyLoaded) return;
-        if (loading) return;
-
-        if (forceReload) {
-            offset.current = 0;
-            setNotes([]);
-            setFullyLoaded(false);
-        }
-
-        trigger({
-            identifier: props.citizen.identifier,
-            offset: offset.current
-        });
-    }, [loading, isFullyLoaded]);
-
-    const handleScroll = useCallback(() => {
-        if (!scrollRef.current || loading) return;
-
-        const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        const isBottom = Math.abs(scrollHeight - (scrollTop + clientHeight)) <= 1;
-
-        if (isBottom) {
-            fetchNotes();
-        }
-    }, [loading]);
-
-    const handleReload = () => {
-        if (reloadRef.current) {
-            const reloadButton = reloadRef.current as HTMLDivElement;
-
-            if (reloadButton.ariaDisabled == "true") return;
-            fetchNotes(true);
-
-            reloadButton.ariaDisabled = "true";
-            setTimeout(() => reloadButton.ariaDisabled = "false", 1000 * 5);
-        }
-    };
+    const { data: notes, setData: setNotes, fetchData: fetchNotes, loading, reloadRef, scrollRef, handleScroll, handleReload, adjustOffset } = useInfiniteScroll<Note, { identifier: string }>("evidences:getNotes", { identifier: props.citizen.identifier });
 
     const openNotePopup = (note: Note | undefined = undefined) => {
         appContext.openPopUp(t(`laptop.desktop_screen.citizens_app.notes.${note ? "edit" : "create"}`), <CitizenNotePopup citizen={props.citizen} note={note} onClose={(note, deletion) => {
-            if (deletion) offset.current -= 1;
+            if (deletion) adjustOffset(-1);
             
             setNotes((prev) => {
                 if (prev.find((n) => n.id == note.id)) {
@@ -81,7 +26,7 @@ export default function CitizenNotesSection(props: CitizenNotesSectionProps) {
                         ? prev.filter((n) => n.id != note.id)
                         : prev.map((n) => n.id == note.id ? note : n);
                 } else {
-                    offset.current += 1;
+                    adjustOffset(1);
                     return [note, ...prev];
                 }
             });

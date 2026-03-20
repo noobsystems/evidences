@@ -70,7 +70,50 @@ exports("copyEvidenceOwner", function(slot, type)
                 value = biometricData
             })
 
-            config.notify({ key = "evidences.notifications.pasted" }, "success")
+            config.notify({ key = "evidences.notifications.biometrics_pasted" }, "success")
         end
     end
+end)
+
+exports("copySerialNumber", function(slot)
+    local evidenceItem
+
+    for _, item in pairs(exports.ox_inventory:GetPlayerItems()) do
+        if item and item.slot == slot then
+            evidenceItem = item
+            break
+        end
+    end
+
+    if evidenceItem then
+        local metadata <const> = evidenceItem.metadata or {}
+
+        if not metadata.ballistics then
+            return        
+        end
+
+        if not metadata.ballistics.analysed then
+            config.notify({ key = "evidences.notifications.not_analysed" }, "error")
+            return
+        end
+
+        local serial <const> = metadata.ballistics.serial
+        if serial then
+            SendNUIMessage({
+                action = "copyToClipboard",
+                value = serial
+            })
+
+            config.notify({ key = "evidences.notifications.serial_pasted" }, "success")
+            return
+        end
+
+        config.notify({ key = "evidences.notifications.missing_serial" }, "success")
+    end
+end)
+
+exports("steel_file", function(data, slot)
+    exports.ox_inventory:useItem(data, function(data)
+        TriggerServerEvent("evidences:removeSerialNumber")
+    end)
 end)

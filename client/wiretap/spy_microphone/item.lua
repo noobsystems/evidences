@@ -37,7 +37,7 @@ exports("spy_microphone", function(data, slot)
 
             local hit <const>, _, endCoords <const>, _, _ = lib.raycast.fromCamera(339, 2, 10)
             if hit and endCoords ~= vector3(0, 0, 0) then
-                SetEntityCoords(tempObject, endCoords.x, endCoords.y, endCoords.z + 0.0375)
+                SetEntityCoords(tempObject, endCoords.x, endCoords.y, endCoords.z --[[+ 0.0375]])
 
                 local camCoords <const> = GetGameplayCamCoord()
                 local heading <const> = math.deg(math.atan2(camCoords.y - endCoords.y, camCoords.x - endCoords.x))

@@ -13,18 +13,29 @@ local function createMetadata(evidenceType, data, coords, holder)
         additionalData = locale("evidences.information.at_player")
     end
 
-    return {
+    local metadata = {
+        createdAt = data.createdAt,
         information = {
             collectionTime = utils.getFormatedDateTime(),
             crimeScene = utils.getStreetName(coords),
-            additionalData = additionalData,
-            weaponLabel = data.weaponLabel,
-            serialNumber = data.serialNumber
+            additionalData = additionalData
         }
     }
+
+    -- Details for ballistics evidences
+    metadata["ballistics"] = {
+        weaponType = data.weaponType,
+        weaponImage = data.weaponImage,
+        serial = data.serial,
+        imperfections = data.imperfections,
+        type = data.type
+    }
+
+    return metadata
 end
 
 return {
+    -- biometric evidences
     fingerprint = {
         target = {
             collect = {
@@ -100,6 +111,7 @@ return {
         },
         visualize = {}
     },
+    -- ballistics evidences
     magazine = {
         target = {
             collect = {
@@ -113,7 +125,7 @@ return {
                 label = locale("evidences.magazine.destroying_label"),
                 icon = "fa-solid fa-gun",
                 requiredItem = nil
-            },
+            }
         },
         visualize = {
             show = function(point, data)
@@ -148,5 +160,109 @@ return {
                 end
             end
         }
+    },
+    casing = {
+        target = {
+            collect = {
+                label = locale("evidences.casing.collecting_label"),
+                icon = "fa-solid fa-gun",
+                requiredItem = "forensic_kit",
+                collectedItem = "collected_casing",
+                createMetadata = createMetadata
+            },
+            destroy = {
+                label = locale("evidences.casing.destroying_label"),
+                icon = "fa-solid fa-gun",
+                requiredItem = nil
+            }
+        },
+        visualize = {
+            show = function(point, data)
+                local model <const> = `prop_sgun_casing`
+                lib.requestModel(model)
+
+                point.entity = CreateObject(model, point.coords.x, point.coords.y, point.coords.z, false, false, false)
+                SetEntityCoords(point.entity, point.coords.x, point.coords.y, point.coords.z)
+                SetEntityRotation(point.entity, 0.0, 0.0, math.random() * 360.0)
+                SetEntityCollision(point.entity, false, false)
+                SetModelAsNoLongerNeeded(model)
+            end,
+            hide = function(point)
+                if point.entity then
+                    DeleteObject(point.entity)
+                end
+            end
+        }
+    },
+    bullet = {
+        target = {
+            collect = {
+                label = locale("evidences.bullet.collecting_label"),
+                icon = "fa-solid fa-gun",
+                requiredItem = "forensic_kit",
+                collectedItem = "collected_bullet",
+                createMetadata = createMetadata
+            },
+            destroy = {
+                label = locale("evidences.bullet.destroying_label"),
+                icon = "fa-solid fa-gun",
+                requiredItem = nil
+            }
+        },
+        visualize = {
+            show = function(point, data, no_thread)
+                local shooterCoords <const> = data.shooterCoords
+                local bulletCoords <const> = point.coords
+
+                if not shooterCoords or not bulletCoords then
+                    return
+                end
+
+                local dx, dy, dz = shooterCoords.x - bulletCoords.x, shooterCoords.y - bulletCoords.y, shooterCoords.z - bulletCoords.z
+                local l = #(vector3(dx, dy, dz))
+
+                if no_thread then
+                    if exports.ox_inventory:Search("count", "forensic_kit") > 0 then
+                        DrawLine(bulletCoords.x, bulletCoords.y, bulletCoords.z, bulletCoords.x + dx / l, bulletCoords.y + dy / l, bulletCoords.z + dz / l, 255, 0, 0, 255)
+                    end
+                else
+                    point.isThreadRunning = true
+
+                    CreateThread(function()
+                        while point.isThreadRunning do
+                            if exports.ox_inventory:Search("count", "forensic_kit") > 0 then
+                                if exports.ox_target:isActive() then
+                                    DrawLine(bulletCoords.x, bulletCoords.y, bulletCoords.z, bulletCoords.x + dx / l, bulletCoords.y + dy / l, bulletCoords.z + dz / l, 255, 0, 0, 255)
+                                end
+                            end
+
+                            Wait(1)
+                        end
+                    end)
+                end
+            end,
+            hide = function(point)
+                if not no_thread then
+                    point.isThreadRunning = false 
+                end
+            end
+        }
+    },
+    gunshot_residue = {
+        target = {
+            collect = {
+                label = locale("evidences.gunshot_residue.collecting_label"),
+                icon = "fa-solid fa-gun",
+                requiredItem = "forensic_kit",
+                collectedItem = "collected_gunshot_residue",
+                createMetadata = createMetadata
+            },
+            destroy = {
+                label = locale("evidences.gunshot_residue.destroying_label"),
+                icon = "fa-solid fa-gun",
+                requiredItem = nil
+            }
+        },
+        visualize = {}
     }
 }

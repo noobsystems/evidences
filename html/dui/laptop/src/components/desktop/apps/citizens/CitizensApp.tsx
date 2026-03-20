@@ -1,5 +1,5 @@
 import { useTranslation } from "@/components/TranslationContext";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar, SidebarItem } from "@/components/atoms/sidebar/Sidebar";
 import { useDebounce } from "@/hooks/useDebounce";
 import female from "@/assets/images/female.png";
@@ -12,7 +12,8 @@ import CitizenNotesSection from "./CitizenNotesSection";
 import { Dropdown, DropdownItem, DropdownSelection, DropdownUnfolded } from "@/components/atoms/dropdown/Dropdown";
 import { genders, type Gender } from "@/types/citizen.type";
 import CitizenBiomericDataSection from "./CitizenBiometricDataSection";
-import CitizenWeaponsSection from "./CitizensWeaponsSection";
+import CitizenFirearmsSection from "./CitizenFirearmsSection";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 
 interface CitizensAppProps {
@@ -34,75 +35,20 @@ export default function CitizensApp({citizen}: CitizensAppProps) {
     const [searchText, setSearchText] = useState<string>("");
     const debouncedSearchText = useDebounce<string>(searchText, 750);
 
-    const [citizens, setCitizens] = useState<Citizen[]>([]);
-    const reloadRef = useRef(null);
-    const scrollRef = useRef(null);
-    const offset = useRef<number>(0);
-    const [isFullyLoaded, setFullyLoaded] = useState<boolean>(false);
-
-    const { trigger, loading } = useLuaCallback<{ searchText: string, offset: number }, Citizen[]>({
-        name: "evidences:getCitizens",
-        onSuccess: (data) => {
-            if (!data) return;
-            const length = data.length;
-            offset.current += length;
-
-            setCitizens(prev => [...prev, ...data]);
-            if (length < 10) setFullyLoaded(true);
-        }
-    });
-
-    const fetchCitizens = useCallback((forceReload: boolean = false) => {
-        if (!forceReload && isFullyLoaded) return;
-        if (loading) return;
-
-        if (forceReload) {
-            offset.current = 0;
-            setCitizens([]);
-            setFullyLoaded(false);
-        }
-
-        trigger({
-            searchText: searchText,
-            offset: offset.current
-        });
-    }, [loading, isFullyLoaded, debouncedSearchText]);
+    const { data: citizens, setData: setCitizens, fetchData: fetchCitizens, loading, reloadRef, scrollRef, handleScroll, handleReload, adjustOffset } = useInfiniteScroll<Citizen, { searchText: string }>("evidences:getCitizens", { searchText: debouncedSearchText });
 
     useEffect(() => fetchCitizens(true), [debouncedSearchText]);
-
-    const handleScroll = useCallback(() => {
-        if (!scrollRef.current || loading) return;
-
-        const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        const isBottom = Math.abs(scrollHeight - (scrollTop + clientHeight)) <= 1;
-
-        if (isBottom) {
-            fetchCitizens();
-        }
-    }, [loading]);
 
     const handleCitizensRegistration = () => {
         appContext.openPopUp(t("laptop.desktop_screen.citizens_app.create_citizen"), <CreateCitizenPopUp onUpdateCitizen={onUpdateCitizen} onClose={() =>
             appContext.displayNotification({ type: "Success", message: t("laptop.desktop_screen.citizens_app.status_messages.citizen_creation_success") })
         } />);
-    }
-
-    const handleReload = () => {
-        if (reloadRef.current) {
-            const reloadButton = reloadRef.current as HTMLDivElement;
-
-            if (reloadButton.ariaDisabled == "true") return;
-            fetchCitizens(true);
-
-            reloadButton.ariaDisabled = "true";
-            setTimeout(() => reloadButton.ariaDisabled = "false", 1000 * 5);
-        }
     };
 
     const onUpdateCitizen = (citizen: Citizen, deletion: boolean) => {
         if (deletion) {
             setSelectedCitizen(undefined);
-            offset.current -= 1;
+            adjustOffset(-1);
         }
 
         setCitizens((prev) => {
@@ -111,7 +57,7 @@ export default function CitizensApp({citizen}: CitizensAppProps) {
                     ? prev.filter((c) => c.identifier != citizen.identifier)
                     : prev.map((c) => c.identifier == citizen.identifier ? citizen : c);
             } else {
-                offset.current += 1;
+                adjustOffset(1);
                 return [citizen, ...prev];
             }
         });
@@ -330,7 +276,7 @@ const DisplayCitizen = (props: DisplayCitizenProps) => {
         <CitizenBiomericDataSection citizen={props.citizen} />
         <div className="w-full flex flex-1 min-h-0 gap-4">
             <CitizenNotesSection citizen={props.citizen} />
-            <CitizenWeaponsSection />
+            <CitizenFirearmsSection citizen={props.citizen} />
         </div>
     </div>
 }

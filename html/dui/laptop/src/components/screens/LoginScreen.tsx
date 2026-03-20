@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import backgroundImage from "@/assets/background.png";
+import startup from "@/assets/startup.mp3";
 import type { ScreenType } from "../App";
 import { useTranslation } from "../TranslationContext";
 import Spinner from "../atoms/Spinner";
@@ -24,6 +25,12 @@ export default function LoginScreen(props: LoginScreenProps) {
     useEffect(() => {
         if (password === fullPassword) {
             if (props.canAccess) {
+                setTimeout(() => {
+                    const audio = new Audio(startup);
+                    audio.volume = 0.75;
+                    audio.play();
+                }, 500);
+
                 setTimeout(() => {
                     props.switchScreen("desktop");
                 }, 2000);

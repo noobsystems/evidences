@@ -37,6 +37,18 @@
             "collecting_label": "Magazin sichern",
             "destroying_label": "Magazin beseitigen"
         },
+        "casing": {
+            "collecting_label": "Patronenhülse einsammeln",
+            "destroying_label": "Patronenhülse beseitigen"
+        },
+        "bullet": {
+            "collecting_label": "Kugel einsammeln",
+            "destroying_label": "Kugel beseitigen"
+        },
+        "gunshot_residue": {
+            "collecting_label": "Schmauchspuren einsammeln",
+            "destroying_label": "Schmauchspuren beseitigen"
+        },
         "information": {
             "in_vehicle": "auf %s (Kfz-Kennzeichen: %s)",
             "at_vehicle": "auf Kfz (Kennzeichen: %s)",
@@ -46,8 +58,8 @@
                 "crime_scene": "Tatort",
                 "collection_time": "Sammelzeit",
                 "additionalData": "Informationen",
-                "weapon_label": "Waffe",
-                "serial_number": "Seriennummer"
+                "weapon_type": "Waffentyp",
+                "serial": "Seriennummer"
             },
             "seats": {
                 "-1": "vorderem Fahrersitz",
@@ -91,9 +103,17 @@
                 "title": "Evidences",
                 "description": "Beweisstücke %s wurden beseitigt"
             },
-            "pasted": {
+            "biometrics_pasted": {
                 "title": "Evidences",
                 "description": "Biometrische Daten wurden in die Zwischenablage kopiert"
+            },
+            "serial_pasted": {
+                "title": "Evidences",
+                "description": "Seriennummer wurde in die Zwischenablage kopiert"
+            },
+            "missing_serial": {
+                "title": "Evidences",
+                "description": "Das Beweismittel enthält keine Seriennummer"
             },
             "not_analysed": {
                 "title": "Evidences",
@@ -119,6 +139,12 @@
         "scan_error": {
             "title": "Scan fehlgeschlagen",
             "description": "Fingerabdruck konnte nicht gescannt werden"
+        }
+    },
+    "steel_file": {
+        "serial_removed": {
+            "title": "Seriennummer abgekratzt",
+            "description": "Seriennummer erfolgreich von der Waffe entfernt"
         }
     },
     "biometrics_taking": {
@@ -211,7 +237,12 @@
                     "no_selection": "Nichts auszuwählen...",
                     "select_evidence": "Bitte wähle ein Beweismittel aus.",
                     "select_citizen": "Bitte wähle eine Person aus.",
+                    "select_firearm": "Bitte wähle eine Waffe aus.",
                     "fill_all_fields": "Bitte fülle alle Felder aus!"
+                },
+                "dropdowns": {
+                    "select_citizen": "Bürger auswählen",
+                    "select_firearm": "Waffe auswählen"
                 }
             },
             "citizens_app": {
@@ -219,7 +250,7 @@
                 "create_citizen": "Bürger erstellen",
                 "personal_data": "Persönliche Daten",
                 "biometric_data": "Biometrische Daten",
-                "registered_weapons": "Registrierte Waffen",
+                "registered_firearms": "Registrierte Waffen",
                 "notes": {
                     "header": "Notizen",
                     "create": "Neue Notiz erstellen",
@@ -231,7 +262,6 @@
                     "no_citizens_found": "Keine Bürger gefunden",
                     "no_notes_found": "Keine Notizen gefunden",
                     "no_registered_firearms": "Keine registrierten Waffen",
-                    "coming_soon": "Diese Funktion ist bald verfügbar!",
                     "select_evidence": "Beweismittel auswählen"
                 },
                 "status_messages": {
@@ -277,6 +307,73 @@
                     "description": "Die %s-Spur auf dem Beweismittel gehört zu einer noch unbekannten Person. Wenn du die zugehörige Person kennst, kannst du ihr die %s-Spur von diesem Beweismittel in der Bürger-App zuweisen."
                 }
             },
+            "firearms_registry_app": {
+                "name": "Waffenregister",
+                "firearm_information": "Informationen",
+                "firearm_type": "Typ",
+                "firearm_serial": "Seriennummer",
+                "firearm_owner": "Besitzer",
+                "registered_by": "Registriert von",
+                "registered_at": "Registriert am",
+                "firearm_registration": "Registrierung",
+                "firearm_status": "Status",
+                "registration_reason": "Registrierungsgrund",
+                "no_firearms_found": "Keine Waffen gefunden",
+                "registration_popup": {
+                    "header": "Waffe registrieren",
+                    "citizen": "Bürger",
+                    "firearm": "Waffe",
+                    "reason": "Registrierungsgrund",
+                    "status": "Waffenstatus"
+                },
+                "status": {
+                    "header": "Status auswählen",
+                    "unknown": "Unbekannt",
+                    "registered": "Registriert",
+                    "lost": "Verloren",
+                    "stolen": "Gestohlen",
+                    "confiscated": "Beschlagnahmt",
+                    "destroyed": "Zerstört",
+                    "suspended": "Gesperrt"
+                },
+                "status_messages": {
+                    "firearm_registration_success": "Waffe erfolgreich registriert!",
+                    "firearm_registration_error": "Waffenregistrierung fehlgeschlagen!",
+                    "firearm_already_registered": "Waffe ist bereits registriert!",
+                    "firearm_update_success": "Waffe aktualisiert!",
+                    "firearm_update_error": "Waffe konnte nicht gespeichert werden!",
+                    "firearm_deletion_success": "Waffe gelöscht!",
+                    "firearm_deletion_error": "Waffe konnte nicht gelöscht werden!"
+                }
+            },
+            "ballistics_app": {
+                "name": "Ballistische Analyse",
+                "no_ballistics_evidence_items": "Keine Gegenstände mit ballistischen Beweismitteln in deinem Inventar.",
+                "start_analyzation": "Analyse starten",
+                "matching_serial": "Ballistisches Beweismittel wird analysiert...",
+                "registry_match": {
+                    "header": "Treffer im Waffenregister!",
+                    "description": "Das ballistische Beweismittel gehört zu folgender Schusswaffe:",
+                    "open_firearms_registry": "Im Waffenregister öffnen"
+                },
+                "no_registry_match": {
+                    "header": "Kein Treffer im Waffenregister!",
+                    "casing_description": "Diese Patronenhülse trägt keine Seriennummer, die mit einer Waffe im Waffenregister übereinstimmt. Patronenhülsen können jedoch anhand der einzigartigen mikroskopischen Spuren identifiziert werden, die durch Unebenheiten im Inneren einer Waffe hinterlassen werden. Wenn du eine Waffe aus deinem Inventar auswählst, kannst du überprüfen, ob die Patronenhülse von der ausgewählten Waffe (oder zumindest von einer Waffe desselben Typs) stammt.",
+                    "bullet_description": "Abgefeuerte Projektile können anhand der einzigartigen mikroskopischen Spuren identifiziert werden, die durch Unvollkommenheiten im Lauf einer Schusswaffe hinterlassen werden. Indem du eine Waffe aus deinem Inventar auswählst, kannst du überprüfen, ob dieses Projektil als Beweismittel von der ausgewählten Waffe stammt (oder zumindest von einer Waffe desselben Typs).",
+                    "inventory_match": {
+                        "microstamp": "Der ballistische Beweis stammt exakt von der ausgewählten Waffe, da die Seriennummer als Mikrostempel auf dem Beweisstück hinterlassen wurde.",
+                        "imperfections": "Der ballistische Beweis stammt exakt von der ausgewählten Waffe, da sie die gleichen einzigartigen Prägungen teilen.",
+                        "type": "Der ballistische Beweis stammt von einer Waffe desselben Typs wie die ausgewählte Waffe.",
+                        "none": "Der ballistische Beweis stammt nicht mit der ausgewählten Waffe überein."
+                    }
+                },
+                "show_type": {
+                    "header": "Analyse erfolgreich",
+                    "magazine_description": "Magazine können eindeutig einem Waffentyp zugeordnet werden. Eine darüberhinausgehende Zuordnung zu einer konkreten Waffe ist hingegen nicht möglich. Dieses Magazin gehört zu einer Waffe dieses Typs:",
+                    "gunshot_residue_description": "Schmauchspuren lassen einen Rückschluss auf den Typ der abgefeuerten Waffe zu. Anhand ihrer Konzentration kann berechnet werden, wann die Waffe abgefeuert wurde. Die Analyse hat für die ausgewählt Schmauchspur folgendes ergeben:",
+                    "fired_at": "Gefeuert am"
+                }
+            },
             "wiretap_app": {
                 "name": "Abhören",
                 "warning_popup": {
@@ -318,7 +415,6 @@
                 "latest_actions": {
                     "header": "Letzte Aktionen",
                     "no_actions_available": "Keine protokollierten Aktionen vorhanden",
-                    "loading": "Lade...",
                     "end_reached": "Ende der Liste erreicht",
                     "action_duration": "%s von %s bis %s",
                     "actions": {

@@ -22,20 +22,32 @@
             "description_textfield_details": "Envanterde öğenin altında göreceğiniz kısa açıklama"
         },
         "fingerprint": {
-            "collecting_label": "Parmak izi topla",
+            "collecting_label": "Parmak izini güvenceye al",
             "destroying_label": "Parmak izini yok et"
         },
         "blood": {
-            "collecting_label": "Kan izi topla",
+            "collecting_label": "Kan izini güvenceye al",
             "destroying_label": "Kan izini yok et"
         },
         "saliva": {
-            "collecting_label": "Tükürük toplama",
-            "destroying_label": "Tükürük imha etme"
+            "collecting_label": "Tükürüğü güvenceye al",
+            "destroying_label": "Tükürüğü yok et"
         },
         "magazine": {
-            "collecting_label": "Şarjör topla",
+            "collecting_label": "Şarjörü güvenceye al",
             "destroying_label": "Şarjörü yok et"
+        },
+        "casing": {
+            "collecting_label": "Kovanı topla",
+            "destroying_label": "Kovanı yok et"
+        },
+        "bullet": {
+            "collecting_label": "Mermiyi topla",
+            "destroying_label": "Mermiyi yok et"
+        },
+        "gunshot_residue": {
+            "collecting_label": "Atış artıklarını topla",
+            "destroying_label": "Atış artıklarını yok et"
         },
         "information": {
             "in_vehicle": "%s üzerinde (plaka: %s)",
@@ -46,8 +58,8 @@
                 "crime_scene": "Suç mahali",
                 "collection_time": "Toplama zamanı",
                 "additionalData": "Bilgi",
-                "weapon_label": "Silah",
-                "serial_number": "Seri numarası"
+                "weapon_type": "Silah türü",
+                "serial": "Seri numarası"
             },
             "seats": {
                 "-1": "ön sürücü koltuğu",
@@ -91,9 +103,17 @@
                 "title": "Deliller",
                 "description": "%s delilleri yok edildi"
             },
-            "pasted": {
+            "biometrics_pasted": {
                 "title": "Kanıtlar",
                 "description": "Biyometrik veriler panoya kopyalandı"
+            },
+            "serial_pasted": {
+                "title": "Kanıtlar",
+                "description": "Seri numarası panoya kopyalandı"
+            },
+            "missing_serial": {
+                "title": "Kanıtlar",
+                "description": "L'élément de preuve ne contient pas de numéro de série"
             },
             "not_analysed": {
                 "title": "Kanıtlar",
@@ -119,6 +139,12 @@
         "scan_error": {
             "title": "Tarama başarısız",
             "description": "Parmak izi taranamadı"
+        }
+    },
+    "steel_file": {
+        "serial_removed": {
+            "title": "Seri numarası kazındı",
+            "description": "Seri numarası silahtan başarıyla kaldırıldı"
         }
     },
     "biometrics_taking": {
@@ -211,7 +237,12 @@
                     "no_selection": "Seçilecek bir şey yok...",
                     "select_evidence": "Lütfen bir kanıt seçin.",
                     "select_citizen": "Lütfen bir vatandaş seçin.",
+                    "select_firearm": "Lütfen bir silah seçin.",
                     "fill_all_fields": "Lütfen her alanı doldurun!"
+                },
+                "dropdowns": {
+                    "select_citizen": "Vatandaş seçin",
+                    "select_firearm": "Silah seçin"
                 }
             },
             "citizens_app": {
@@ -226,12 +257,11 @@
                     "title": "Başlık",
                     "text": "Metin"
                 },
-                "registered_weapons": "Kayıtlı Silahlar",
+                "registered_firearms": "Kayıtlı Silahlar",
                 "statuses": {
                     "no_citizens_found": "Vatandaş bulunamadı",
                     "no_notes_found": "Not bulunamadı",
                     "no_registered_firearms": "Kayıtlı ateşli silah yok",
-                    "coming_soon": "Bu özellik yakında kullanıma sunulacak!",
                     "select_evidence": "Kanıt seç"
                 },
                 "status_messages": {
@@ -277,6 +307,73 @@
                     "description": "Bu kanıt parçasındaki %s izi henüz bilinmeyen bir kişiye aittir. Söz konusu kişiyi tanıyorsanız, bu kanıt parçasındaki %s izini vatandaş uygulamasında ona atayabilirsiniz."
                 }
             },
+            "firearms_registry_app": {
+                "name": "Silah Kayıt Sistemi",
+                "firearm_information": "Bilgiler",
+                "firearm_type": "Tür",
+                "firearm_serial": "Seri Numarası",
+                "firearm_owner": "Sahibi",
+                "registered_by": "Kaydeden",
+                "registered_at": "Kayıt Tarihi",
+                "firearm_registration": "Kayıt",
+                "firearm_status": "Durum",
+                "registration_reason": "Kayıt Nedeni",
+                "no_firearms_found": "Ateşli silah bulunamadı",
+                "registration_popup": {
+                    "header": "Silah Kaydet",
+                    "citizen": "Vatandaş",
+                    "firearm": "Silah",
+                    "reason": "Kayıt Nedeni",
+                    "status": "Silah Durumu"
+                },
+                "status": {
+                    "header": "Durum seçin",
+                    "unknown": "Bilinmiyor",
+                    "registered": "Kayıtlı",
+                    "lost": "Kayıp",
+                    "stolen": "Çalıntı",
+                    "confiscated": "El Konuldu",
+                    "destroyed": "İmha Edildi",
+                    "suspended": "Askıya Alındı"
+                },
+                "status_messages": {
+                    "firearm_registration_success": "Silah başarıyla kaydedildi!",
+                    "firearm_registration_error": "Silah kaydı başarısız oldu!",
+                    "firearm_already_registered": "Bu silah zaten kayıtlı!",
+                    "firearm_update_success": "Silah güncellendi!",
+                    "firearm_update_error": "Silah kaydedilemedi!",
+                    "firearm_deletion_success": "Silah silindi!",
+                    "firearm_deletion_error": "Silah silinemedi!"
+                }
+            },
+            "ballistics_app": {
+                "name": "Balistik Analizi",
+                "no_ballistics_evidence_items": "Envanterinizde balistik kanıt içeren herhangi bir eşya yok.",
+                "start_analyzation": "Analizi Başlat",
+                "matching_serial": "Balistik kanıtlar analiz ediliyor...",
+                "registry_match": {
+                    "header": "Ateşli silah kaydında eşleşme bulundu!",
+                    "description": "Balistik kanıt aşağıdaki ateşli silaha ait:",
+                    "open_firearms_registry": "Ateşli Silah Kaydında Aç"
+                },
+                "no_registry_match": {
+                    "header": "Ateşli silah kaydında eşleşme bulunamadı!",
+                    "casing_description": "Bu kovan, ateşli silahlar sicilindeki bir silahla eşleşen bir seri numarası taşımıyor. Ancak kovanlar, bir silahın içindeki kusurların bıraktığı benzersiz mikroskobik alet izleri sayesinde yine de tanımlanabilir. Envanterinizden bir silah seçerek, kovan kanıtının seçilen silahtan (veya en azından aynı türden bir silahtan) gelip gelmediğini kontrol edebilirsiniz.",
+                    "bullet_description": "Ateşlenmiş mermiler, bir ateşli silahın namlusunun içindeki kusurların bıraktığı benzersiz mikroskobik izler sayesinde tanımlanabilir. Envanterinizden bir silah seçerek, mermi kanıtının seçilen silahtan (veya en azından aynı türden bir silahtan) gelip gelmediğini kontrol edebilirsiniz.",
+                    "inventory_match": {
+                        "microstamp": "Seri numarası delil parçası üzerine mikro baskı ile işlendiği için, balistik delil kesin olarak seçilen silahtan kaynaklanmaktadır.",
+                        "imperfections": "Balistik kanıt tam olarak seçilen silahtan kaynaklanmaktadır, çünkü aynı benzersiz kusurları paylaşmaktadırlar.",
+                        "type": "Balistik delil, seçilen silahla aynı tipte bir silaha ait.",
+                        "none": "Balistik delil, seçilen silahla uyuşmuyor."
+                    }
+                },
+                "show_type": {
+                    "header": "Analiz başarılı",
+                    "magazine_description": "Şarjörler net bir şekilde bir silah türüyle ilişkilendirilebilir. Ancak bunları belirli bir kişisel silaha atamak mümkün değildir. Bu şarjör şu türde bir silaha aittir:",
+                    "gunshot_residue_description": "Barut artığı, ateşlenen silahın türü hakkında çıkarımlar yapılmasını sağlar. Yoğunluğuna bağlı olarak silahın ne zaman ateşlendiğini hesaplamak mümkündür. Seçilen barut artığı analizi şu sonuçları vermiştir:",
+                    "fired_at": "Ateşlenme zamanı"
+                }
+            },
             "wiretap_app": {
                 "name": "Gizli Dinleme",
                 "warning_popup": {
@@ -290,7 +387,6 @@
                     "lacking_permissions": "Telefon görüşmelerini dinleme izni yok",
                     "notifications": {
                         "popup_header": "Telefon Görüşmesi Bildirimleri",
-                        "status_loading": "Yükleniyor...",
                         "status_subscribed": "%s bir telefon görüşmesine katıldığında bildirim alacaksınız. Bildirimleri durdurabilir veya hedefi buradan değiştirebilirsiniz:",
                         "status_unsubscribed": "Bir vatandaşın %s bilgisini girin, telefon görüşmesine katıldığında bildirim alın:",
                         "placeholder_full_name": "ad soyad",

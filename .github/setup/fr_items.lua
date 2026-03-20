@@ -50,7 +50,7 @@
     consume = 0,
     client = {
         export = 'evidences.fingerprint_scanner',
-    },
+    }
 },
 ['collected_blood'] = {
     label = 'Sang collecté',
@@ -74,11 +74,6 @@
         end
     }}
 },
-['collected_magazine'] = {
-    label = 'Chargeur collecté',
-    weight = 200,
-    stack = false
-},
 ['collected_fingerprint'] = {
     label = 'Empreinte collectée',
     weight = 5,
@@ -89,6 +84,35 @@
             exports.evidences:copyEvidenceOwner(slot, "fingerprint")
         end
     }}
+},
+['collected_magazine'] = {
+    label = 'Chargeur collecté',
+    weight = 200,
+    stack = false
+},
+['collected_casing'] = {
+    label = 'Douille collectée',
+    weight = 10,
+    stack = false
+},
+['collected_bullet'] = {
+    label = 'Balle collectée',
+    weight = 10,
+    stack = false
+},
+['collected_gunshot_residue'] = {
+    label = 'Résidus de tir prélevés',
+    weight = 5,
+    stack = false
+},
+['steel_file'] = {
+    label = 'Lime en acier',
+    weight = 150,
+    stack = false,
+    decay = true,
+    client = {
+        export = 'evidences.steel_file'
+    }
 },
 ['spy_microphone'] = {
     label = 'Micro-espion',

@@ -1,7 +1,7 @@
 local config <const> = require "config"
 local logger <const> = require "server.logger"
 
-for _, item in pairs({"evidence_laptop", "evidence_box", "forensic_kit", "collected_blood", "collected_saliva", "collected_magazine", "collected_fingerprint", "hydrogen_peroxide", "fingerprint_scanner"}) do
+for _, item in pairs({"evidence_laptop", "evidence_box", "forensic_kit", "hydrogen_peroxide", "fingerprint_scanner", "collected_blood", "collected_saliva", "collected_fingerprint", "collected_magazine", "collected_casing", "collected_bullet", "collected_gunshot_residue"}) do
     if not exports.ox_inventory:Items(item) then
         lib.print.error("Setup step missing: The script requires you to create the " .. item .. " item")
         return false
@@ -59,16 +59,34 @@ RegisterNetEvent("evidences:renameEvidenceBox", function(slot, input)
 end)
 
 
--- Set durability = 100 for newly created forensic_kit items
+-- Set durability = 100 for newly created forensic_kit and steel_file items
 exports.ox_inventory:registerHook("createItem", function(payload)
     local metadata <const> = payload.metadata
     metadata.durability = 100
     return metadata
 end, {
     itemFilter = {
-        forensic_kit = true
+        forensic_kit = true,
+        steel_file = true
     }
 })
 
+
+RegisterNetEvent("evidences:removeSerialNumber", function()
+    local playerId <const> = source
+    local weapon <const> = exports.ox_inventory:GetCurrentWeapon(playerId)
+
+    if weapon and weapon.slot and weapon.metadata then
+        if weapon.metadata.serial then
+            -- remove serial from weapon
+            local metadata <const> = weapon.metadata
+            metadata.imperfections = metadata.serial
+            metadata.serial = nil
+            exports.ox_inventory:SetMetadata(playerId, weapon.slot, metadata)
+        end
+    end
+
+    TriggerClientEvent("evidences:notify", source, {key = "steel_file.serial_removed"}, "success")
+end)
 
 return true

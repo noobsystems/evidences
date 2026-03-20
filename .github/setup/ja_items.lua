@@ -50,7 +50,7 @@
     consume = 0,
     client = {
         export = 'evidences.fingerprint_scanner',
-    },
+    }
 },
 ['collected_blood'] = {
     label = '採取された血液',
@@ -74,11 +74,6 @@
         end
     }}
 },
-['collected_magazine'] = {
-    label = '採取されたマガジン',
-    weight = 200,
-    stack = false
-},
 ['collected_fingerprint'] = {
     label = '採取された指紋',
     weight = 5,
@@ -89,6 +84,35 @@
             exports.evidences:copyEvidenceOwner(slot, "fingerprint")
         end
     }}
+},
+['collected_magazine'] = {
+    label = '採取されたマガジン',
+    weight = 200,
+    stack = false
+},
+['collected_casing'] = {
+    label = '回収された薬莢',
+    weight = 10,
+    stack = false
+},
+['collected_bullet'] = {
+    label = '回収された銃弾',
+    weight = 10,
+    stack = false
+},
+['collected_gunshot_residue'] = {
+    label = '採取された射撃残渣',
+    weight = 5,
+    stack = false
+},
+['steel_file'] = {
+    label = '鉄工用ヤスリ',
+    weight = 150,
+    stack = false,
+    decay = true,
+    client = {
+        export = 'evidences.steel_file'
+    }
 },
 ['spy_microphone'] = {
     label = 'スパイマイク',

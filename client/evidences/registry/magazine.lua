@@ -39,7 +39,9 @@ AddEventHandler("ox_inventory:currentWeapon", function(weapon)
         return
     end
 
-    if not (weapon.metadata and weapon.metadata.ammo and weapon.metadata.serial) then
+    -- If the serial number has been scratched off the weapon, it is stored in imperfections
+    local serial <const> = weapon.metadata.serial or weapon.metadata.imperfections
+    if not (weapon.metadata and weapon.metadata.ammo and serial) then
         return
     end
 
@@ -48,7 +50,7 @@ AddEventHandler("ox_inventory:currentWeapon", function(weapon)
 
         local magazineModel <const> = getMagazineModel(weapon)
         if magazineModel then
-                
+ 
             local naturallySpawnedMagazine <const> = getNaturallySpawnedMagazine(magazineModel)
             if naturallySpawnedMagazine then
 
@@ -56,11 +58,12 @@ AddEventHandler("ox_inventory:currentWeapon", function(weapon)
                     SetEntityAsMissionEntity(naturallySpawnedMagazine)
                     DeleteObject(naturallySpawnedMagazine)
 
-                    TriggerServerEvent("evidences:syncEvidence", "magazine", weapon.metadata.serial, 
+                    TriggerServerEvent("evidences:syncEvidence", "magazine", serial, 
                         "atVehicleSeat", NetworkGetNetworkIdFromEntity(cache.vehicle), cache.seat, {
                             plate = GetVehicleNumberPlateText(cache.vehicle),
-                            weaponLabel = weapon.label or "unknown",
-                            serialNumber = weapon.metadata.serial
+                            weaponType = weapon.label,
+                            weaponImage = GetConvar("inventory:imagepath", "nui://ox_inventory/web/images") .. string.format("/%s.png", weapon.name),
+                            type = "magazine"
                         })
 
                 else -- ground magazine
@@ -85,10 +88,11 @@ AddEventHandler("ox_inventory:currentWeapon", function(weapon)
                     end, "No magazine evidence was created because no native GTA-created magazine was lying on the ground within four seconds of reloading", 4000)
 
                     if result then
-                        TriggerServerEvent("evidences:syncEvidence", "magazine", weapon.metadata.serial,
+                        TriggerServerEvent("evidences:syncEvidence", "magazine", serial,
                             "atCoords", result.coords, {
-                                weaponLabel = weapon.label or "unknown",
-                                serialNumber = weapon.metadata.serial,
+                                weaponType = weapon.label,
+                                weaponImage = GetConvar("inventory:imagepath", "nui://ox_inventory/web/images") .. string.format("/%s.png", weapon.name),
+                                type = "magazine",
                                 magazineModel = magazineModel,
                                 magazineRotation = result.rotation
                             })

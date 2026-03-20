@@ -50,7 +50,7 @@
 	consume = 0,
 	client = {
 		export = 'evidences.fingerprint_scanner',
-	},
+	}
 },
 ['collected_blood'] = {
 	label = 'Kan delili',
@@ -74,11 +74,6 @@
         end
     }}
 },
-['collected_magazine'] = {
-	label = 'Şarjör Delili',
-	weight = 200,
-	stack = false
-},
 ['collected_fingerprint'] = {
 	label = 'Delil Parmak İzi',
 	weight = 5,
@@ -89,6 +84,35 @@
             exports.evidences:copyEvidenceOwner(slot, "fingerprint")
         end
     }}
+},
+['collected_magazine'] = {
+	label = 'Şarjör Delili',
+	weight = 200,
+	stack = false
+},
+['collected_casing'] = {
+    label = 'Toplanan mermi kovanı',
+    weight = 10,
+    stack = false
+},
+['collected_bullet'] = {
+    label = 'Toplanan mermi',
+    weight = 10,
+    stack = false
+},
+['collected_gunshot_residue'] = {
+    label = 'Toplanmış barut artığı',
+    weight = 5,
+    stack = false
+},
+['steel_file'] = {
+    label = 'Çelik eğe',
+    weight = 150,
+    stack = false,
+    decay = true,
+    client = {
+        export = 'evidences.steel_file'
+    }
 },
 ['spy_microphone'] = {
     label = 'Casus Mikrofon',

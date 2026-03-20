@@ -1,17 +1,14 @@
-import type { EvidenceDetails } from "./evidence.type";
-
-export interface InventoryItem<AdditionalData> {
+export interface InventoryItem<Details> {
     imagePath: string;
     label: string;
     slot: number;
-    details: EvidenceDetails
-    additionalData: AdditionalData;
+    details: Details
 }
 
-export interface Inventory<AdditionalData> {
+export interface Inventory<Details> {
     inventory: number | string;
     label: string;
-    items: InventoryItem<AdditionalData>[];
+    items: InventoryItem<Details>[];
 }
 
-export type InventoriesType<AdditionalData> = Inventory<AdditionalData>[];
+export type InventoriesType<Details> = Inventory<Details>[];

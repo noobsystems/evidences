@@ -49,6 +49,7 @@ exports.ox_target:addGlobalPlayer({
     distance = 3,
     groups = config.permissions.collect or false,
     items = "forensic_kit",
+    menuName = "evidences",
     canInteract = function(entity)
         if not config.isPedDead(cache.ped) then
             if not config.isPedCuffed(cache.ped) then
@@ -69,6 +70,7 @@ exports.ox_target:addGlobalPlayer({
     distance = 3,
     groups = config.permissions.collect or false,
     items = "forensic_kit",
+    menuName = "evidences",
     canInteract = function(entity)
         if not config.isPedDead(cache.ped) then
             if not config.isPedCuffed(cache.ped) then
@@ -89,6 +91,7 @@ exports.ox_target:addGlobalPlayer({
     distance = 3,
     groups = config.permissions.collect or false,
     items = "forensic_kit",
+    menuName = "evidences",
     canInteract = function(entity)
         if not config.isPedDead(cache.ped) then
             if not config.isPedCuffed(cache.ped) then
@@ -109,6 +112,7 @@ exports.ox_target:addGlobalPlayer({
     distance = 3,
     groups = config.permissions.collect or false,
     items = "forensic_kit",
+    menuName = "evidences",
     canInteract = function(entity)
         if not config.isPedDead(cache.ped) then
             if not config.isPedCuffed(cache.ped) then

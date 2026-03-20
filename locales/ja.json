@@ -23,19 +23,31 @@
         },
         "fingerprint": {
             "collecting_label": "指紋を採取する",
-            "destroying_label": "指紋を抹消する"
+            "destroying_label": "指紋を消去する"
         },
         "blood": {
             "collecting_label": "血痕を採取する",
-            "destroying_label": "血痕を抹消する"
+            "destroying_label": "血痕を除去する"
         },
         "saliva": {
             "collecting_label": "唾液を採取する",
-            "destroying_label": "唾液を抹消する"
+            "destroying_label": "唾液を除去する"
         },
         "magazine": {
             "collecting_label": "マガジンを回収する",
             "destroying_label": "マガジンを破棄する"
+        },
+        "casing": {
+            "collecting_label": "薬莢を回収する",
+            "destroying_label": "薬莢を破棄する"
+        },
+        "bullet": {
+            "collecting_label": "弾丸を回収する",
+            "destroying_label": "弾丸を破棄する"
+        },
+        "gunshot_residue": {
+            "collecting_label": "発射残渣を採取する",
+            "destroying_label": "発射残渣を除去する"
         },
         "information": {
             "in_vehicle": "%s 内 (ナンバープレート: %s)",
@@ -46,8 +58,8 @@
                 "crime_scene": "事件現場",
                 "collection_time": "採取時刻",
                 "additionalData": "情報",
-                "weapon_label": "武器",
-                "serial_number": "シリアル番号"
+                "weapon_type": "武器の種類",
+                "serial": "シリアル番号"
             },
             "seats": {
                 "-1": "運転席",
@@ -91,9 +103,17 @@
                 "title": "証拠品",
                 "description": "証拠品 %s が抹消されました"
             },
-            "pasted": {
+            "biometrics_pasted": {
                 "title": "証拠品",
                 "description": "生体認証データがクリップボードにコピーされました"
+            },
+            "serial_pasted": {
+                "title": "証拠品",
+                "description": "シリアル番号をクリップボードにコピーしました"
+            },
+            "missing_serial": {
+                "title": "証拠品",
+                "description": "エビデンス項目にシリアル番号が含まれていません"
             },
             "not_analysed": {
                 "title": "証拠",
@@ -119,6 +139,12 @@
         "scan_error": {
             "title": "スキャン失敗",
             "description": "指紋をスキャンできませんでした"
+        }
+    },
+    "steel_file": {
+        "serial_removed": {
+            "title": "削り取られたシリアル番号",
+            "description": "武器からシリアル番号が正常に除去されました"
         }
     },
     "biometrics_taking": {
@@ -211,7 +237,12 @@
                     "no_selection": "選択されていません...",
                     "select_evidence": "証拠品を選択してください。",
                     "select_citizen": "市民を選択してください。",
+                    "select_firearm": "武器を選択してください。",
                     "fill_all_fields": "すべての項目を入力してください！"
+                },
+                "dropdowns": {
+                    "select_citizen": "市民を選択してください",
+                    "select_firearm": "武器を選択してください"
                 }
             },
             "citizens_app": {
@@ -226,12 +257,11 @@
                     "title": "タイトル",
                     "text": "内容"
                 },
-                "registered_weapons": "登録済みの武器",
+                "registered_firearms": "登録済みの武器",
                 "statuses": {
                     "no_citizens_found": "市民が見つかりません",
                     "no_notes_found": "メモが見つかりません",
                     "no_registered_firearms": "登録された銃器はありません",
-                    "coming_soon": "この機能は近日公開予定です！",
                     "select_evidence": "証拠品を選択"
                 },
                 "status_messages": {
@@ -277,6 +307,73 @@
                     "description": "この証拠品に付着していた %s の主は依然として不明です。対象の人物を知っている場合は、市民アプリからこの証拠品の %s をその人物に割り当てることができます。"
                 }
             },
+            "firearms_registry_app": {
+                "name": "銃器登録システム",
+                "firearm_information": "情報",
+                "firearm_type": "種別",
+                "firearm_serial": "シリアル番号",
+                "firearm_owner": "所有者",
+                "registered_by": "登録者",
+                "registered_at": "登録日時",
+                "firearm_registration": "登録",
+                "firearm_status": "ステータス",
+                "registration_reason": "登録理由",
+                "no_firearms_found": "銃器が見つかりませんでした",
+                "registration_popup": {
+                    "header": "銃器を登録",
+                    "citizen": "市民",
+                    "firearm": "武器",
+                    "reason": "登録理由",
+                    "status": "武器のステータス"
+                },
+                "status": {
+                    "header": "ステータスを選択してください",
+                    "unknown": "不明",
+                    "registered": "登録済み",
+                    "lost": "紛失",
+                    "stolen": "盗難",
+                    "confiscated": "押収",
+                    "destroyed": "破棄",
+                    "suspended": "一時停止"
+                },
+                "status_messages": {
+                    "firearm_registration_success": "武器が登録されました！",
+                    "firearm_registration_error": "武器の登録に失敗しました！",
+                    "firearm_already_registered": "この武器は既に登録されています！",
+                    "firearm_update_success": "武器情報が更新されました！",
+                    "firearm_update_error": "武器情報を保存できませんでした！",
+                    "firearm_deletion_success": "武器を削除しました！",
+                    "firearm_deletion_error": "武器を削除できませんでした！"
+                }
+            },
+            "ballistics_app": {
+                "name": "弾道解析",
+                "no_ballistics_evidence_items": "インベントリに弾道証拠となるアイテムがありません。",
+                "start_analyzation": "解析を開始",
+                "matching_serial": "弾道証拠を分析中...",
+                "registry_match": {
+                    "header": "銃器登録に一致！",
+                    "description": "この弾道証拠は以下の銃器に該当します：",
+                    "open_firearms_registry": "銃器登録を開く"
+                },
+                "no_registry_match": {
+                    "header": "銃器登録に一致なし！",
+                    "casing_description": "この薬莢には、銃器登録簿にある武器と一致するシリアル番号はありません。しかし、薬莢は銃の内部に生じる欠陥によって残される、固有の微細なツールマーク（痕跡）によって識別することが可能です。インベントリから武器を選択することで、その薬莢の証拠が選択した武器（あるいは、少なくとも同タイプの武器）から排出されたものかどうかを確認できます。",
+                    "bullet_description": "発射された弾丸は、銃身内部の欠陥によって残される固有の微細な痕跡から識別することができます。インベントリから武器を選択することで、その弾丸の証拠が選択した武器（あるいは、少なくとも同タイプの武器）から発射されたものかどうかを確認できます。",
+                    "inventory_match": {
+                        "microstamp": "証拠物件にシリアル番号がマイクロスタンプ（微細刻印）されていたため、その弾道証拠は間違いなく選択された銃器から発砲されたものです。",
+                        "imperfections": "それらの弾道証拠は、全く同じ固有の傷（痕跡）を共有していることから、まさにその選ばれた銃器から生じたものであることが分かります。",
+                        "type": "弾道証拠は、選択された武器と同じタイプの武器のものです。",
+                        "none": "弾道証拠は、選択された武器とは一致しません。"
+                    }
+                },
+                "show_type": {
+                    "header": "分析成功",
+                    "magazine_description": "弾倉（マガジン）は武器のタイプと明確に関連付けることができますが、特定の個別の武器に割り当てることはできません。この弾倉は、以下のタイプの武器に属しています：",
+                    "gunshot_residue_description": "射撃残渣（発射ガスや火薬の残りカス）から、使用された武器のタイプを推測することができます。また、その濃度に基づいて、武器がいつ発射されたかを算出することが可能です。選択された射撃残渣の分析結果は以下の通りです：",
+                    "fired_at": "発射日時"
+                }
+            },
             "wiretap_app": {
                 "name": "通信傍受",
                 "warning_popup": {
@@ -290,7 +387,6 @@
                     "lacking_permissions": "電話通話を傍受する権限がありません",
                     "notifications": {
                         "popup_header": "通話通知設定",
-                        "status_loading": "読み込み中...",
                         "status_subscribed": "%s が通話を開始した際に通知を受け取ります。通知の停止や対象の変更はここで行えます:",
                         "status_unsubscribed": "市民の %s を入力して、通話開始時の通知を有効にします:",
                         "placeholder_full_name": "氏名",

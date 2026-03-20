@@ -12,7 +12,11 @@ interface AppIconsProps {
 
 // Renders all the icons on the desktop.
 export default function AppIcons(props: AppIconsProps) {
-    return <div className="grid grid-flow-col grid-cols-[repeat(5,1fr)] grid-rows-[repeat(5,1fr)] w-120 h-120">
-        {props.apps.map(app => <AppIcon app={app} width="95px" height="95px" onClick={(app, args) => props.openApp(app, args)} />)}
+    return <div className="grid grid-flow-col grid-cols-[repeat(6,1fr)] grid-rows-[repeat(6,1fr)] w-120 h-full">
+        {props.apps.map(app =>
+            <div key={app.id} style={{ gridColumn: app.position.col, gridRow: app.position.row }}>
+                <AppIcon app={app} width="95px" height="95px" onClick={(app, args) => props.openApp(app, args)} />
+            </div>
+        )}
     </div>
 }

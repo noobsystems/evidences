@@ -25,6 +25,8 @@ if require "server.items" then
     require "server.citizens.citizens"
     require "server.citizens.notes"
 
+    require "server.firearms.firearms"
+
     require "server.biometrics.linked_biometrics"
     require "server.biometrics.biometrics_taking"
 

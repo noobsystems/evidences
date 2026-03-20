@@ -23,19 +23,31 @@
         },
         "fingerprint": {
             "collecting_label": "Collect fingerprint",
-            "destroying_label": "Destroy fingerprint"
+            "destroying_label": "Remove fingerprint"
         },
         "blood": {
             "collecting_label": "Collect blood trace",
-            "destroying_label": "Destroy blood trace"
+            "destroying_label": "Remove blood trace"
         },
         "saliva": {
             "collecting_label": "Collect saliva",
-            "destroying_label": "Destroy saliva"
+            "destroying_label": "Remove saliva"
         },
         "magazine": {
             "collecting_label": "Collect magazine",
-            "destroying_label": "Destroy magazine"
+            "destroying_label": "Remove magazine"
+        },
+        "casing": {
+            "collecting_label": "Collect bullet casing",
+            "destroying_label": "Remove bullet casing"
+        },
+        "bullet": {
+            "collecting_label": "Collect bullet",
+            "destroying_label": "Remove bullet"
+        },
+        "gunshot_residue": {
+            "collecting_label": "Collect gunshot residue",
+            "destroying_label": "Remove gunshot residue"
         },
         "information": {
             "in_vehicle": "on %s (license plate: %s)",
@@ -46,8 +58,8 @@
                 "crime_scene": "Crime scene",
                 "collection_time": "Time of collection",
                 "additionalData": "Information",
-                "weapon_label": "Weapon",
-                "serial_number": "Serial number"
+                "weapon_type": "Weapon type",
+                "serial": "Serial number"
             },
             "seats": {
                 "-1": "front driver's seat",
@@ -91,9 +103,17 @@
                 "title": "Evidences",
                 "description": "Evidences %s were destroyed"
             },
-            "pasted": {
-                "title": "Evidence",
+            "biometrics_pasted": {
+                "title": "Evidences",
                 "description": "Biometric data has been copied to the clipboard"
+            },
+            "serial_pasted": {
+                "title": "Evidences",
+                "description": "Serial number has been copied to the clipboard"
+            },
+            "missing_serial": {
+                "title": "Evidences",
+                "description": "The evidence item doesn't hold a serial number"
             },
             "not_analysed": {
                 "title": "Evidences",
@@ -119,6 +139,12 @@
         "scan_error": {
             "title": "Scan failed",
             "description": "Fingerprint could not be scanned"
+        }
+    },
+    "steel_file": {
+        "serial_removed": {
+            "title": "Serial scratched off",
+            "description": "Serial successfully removed from the weapon"
         }
     },
     "biometrics_taking": {
@@ -211,7 +237,12 @@
                     "no_selection": "Nothing to select...",
                     "select_evidence": "Please select a piece of evidence.",
                     "select_citizen": "Please select a citizen.",
+                    "select_firearm": "Please select a firearm.",
                     "fill_all_fields": "Please fill out every field!"
+                },
+                "dropdowns": {
+                    "select_citizen": "Select citizen",
+                    "select_firearm": "Select firearm"
                 }
             },
             "citizens_app": {
@@ -226,12 +257,11 @@
                     "title": "Title",
                     "text": "Text"
                 },
-                "registered_weapons": "Registered Weapons",
+                "registered_firearms": "Registered Firearms",
                 "statuses": {
                     "no_citizens_found": "No citizens found",
                     "no_notes_found": "No notes found",
                     "no_registered_firearms": "No registered firearms",
-                    "coming_soon": "This feature is coming soon!",
                     "select_evidence": "Select evidence"
                 },
                 "status_messages": {
@@ -277,6 +307,73 @@
                     "description": "The %s trace on the piece of evidence belongs to a person who is still unknown. If you know the person in question, you can assign the %s trace from this piece of evidence to them in the citizen app."
                 }
             },
+            "firearms_registry_app": {
+                "name": "Firearms Registry",
+                "firearm_information": "Information",
+                "firearm_type": "Type",
+                "firearm_serial": "Serial number",
+                "firearm_owner": "Owner",
+                "registered_by": "Registered by",
+                "registered_at": "Registered at",
+                "firearm_registration": "Registration",
+                "firearm_status": "Status",
+                "registration_reason": "Registration reason",
+                "no_firearms_found": "No firearms found",
+                "registration_popup": {
+                    "header": "Register firearm",
+                    "citizen": "Citizen",
+                    "firearm": "Firearm",
+                    "reason": "Registration reason",
+                    "status": "Firearm status"
+                },
+                "status": {
+                    "header": "Select status",
+                    "unknown": "Unknown",
+                    "registered": "Registered",
+                    "lost": "Lost",
+                    "stolen": "Stolen",
+                    "confiscated": "Confiscated",
+                    "destroyed": "Destroyed",
+                    "suspended": "Suspended"
+                },
+                "status_messages": {
+                    "firearm_registration_success": "Firearm registered!",
+                    "firearm_registration_error": "Firearm registration failed!",
+                    "firearm_already_registered": "Firearm is already registered!",
+                    "firearm_update_success": "Firearm updated!",
+                    "firearm_update_error": "Could not save firearm!",
+                    "firearm_deletion_success": "Firearm deleted!",
+                    "firearm_deletion_error": "Could not delete firearm!"
+                }
+            },
+            "ballistics_app": {
+                "name": "Ballistics Analysis",
+                "no_ballistics_evidence_items": "No items holding ballistics evidences in your inventory.",
+                "start_analyzation": "Start analyzation",
+                "matching_serial": "Analysing ballistics evidence...",
+                "registry_match": {
+                    "header": "Match in firearms registry!",
+                    "description": "The ballistics evidence belongs to the following firearm:",
+                    "open_firearms_registry": "Open in Firearms Registry"
+                },
+                "no_registry_match": {
+                    "header": "No match in firearms registry!",
+                    "casing_description": "This bullet casing doesn't hold a serial number that matches with a weapon in the firearms registry. However, bullet cases can still be identified by the unique microscopic toolmarks left by imperfections inside a firearm. By selecting a weapon from your inventory, you can check whether the bullet case evidence originates from the selected weapon (or at least from a weapon of the same type).",
+                    "bullet_description": "Fired bullets can be identified by the unique microscopic markings left by imperfections inside a firearm's barrel. By selecting a weapon from your inventory, you can check wheter the bullet evidence originates from the selected weapon (or at least from a weapon of the same type).",
+                    "inventory_match": {
+                        "microstamp": "The ballistics evidence originates exactly from the selected weapon as the serial number was microstamped onto the piece of evidence.",
+                        "imperfections": "The ballistics evidence originates exactly from the selected weapon as they share the same unique imperfections.",
+                        "type": "The ballistics evidence originates from a weapon of the same type as the selected weapon.",
+                        "none": "The ballistics evidence doesn't match with the selected weapon."
+                    }
+                },
+                "show_type": {
+                    "header": "Analysis successful",
+                    "magazine_description": "Magazines can be clearly associated with a weapon type. However, assigning them to a specific individual weapon is not possible. This magazine belongs to a weapon of this type:",
+                    "gunshot_residue_description": "Gunshot residue allows conclusions to be drawn about the type of weapon fired. Based on its concentration, it is possible to calculate when the weapon was fired. The analysis for the selected gunshot residue has yielded the following:",
+                    "fired_at": "Fired at"
+                }
+            },
             "wiretap_app": {
                 "name": "Wiretap",
                 "warning_popup": {
@@ -290,7 +387,6 @@
                     "lacking_permissions": "Lacking permissions to intercept phone calls",
                     "notifications": {
                         "popup_header": "Phone Call Notifications",
-                        "status_loading": "Loading...",
                         "status_subscribed": "You're receving notifications when %s enters a phone call. You can stop receiving notifications or change your target here:",
                         "status_unsubscribed": "Enter a citizen's %s to get notified when they enter a phone call:",
                         "placeholder_full_name": "full name",

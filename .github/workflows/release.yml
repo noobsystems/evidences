@@ -14,9 +14,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v6
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -47,11 +45,11 @@ jobs:
           cp ./.github/setup/images/* ./temp/item_images
 
           cd ./temp
-          cd evidences && zip -r ../evidences.zip ./*
-          cd ../item_images && zip -r ../item_images.zip ./*
+          zip -r evidences.zip ./evidences
+          cd item_images && zip -r ../item_images.zip ./*
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           prerelease: false
           make_latest: true

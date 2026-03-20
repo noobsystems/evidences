@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import fingerprintIcon from "@/assets/app_icons/fingerprint.png";
 import dnaIcon from "@/assets/app_icons/dna.png";
 import EvidenceDropdown from "@/components/atoms/dropdown/EvidenceDropdown";
-import type { Evidence } from "@/types/evidence.type";
+import type { BiometricEvidence, Evidence } from "@/types/evidence.type";
 import { useAppContext } from "@/hooks/useAppContext";
 import { useTranslation } from "@/components/TranslationContext";
 import type { BiometricDataLinkedEvent } from "@/types/events.type";
@@ -31,7 +31,7 @@ export default function CitizenBiomericDataSection(props: CitizenBiomericDataSec
         }
     });
 
-    const { trigger: linkBiometricDataToIdentifier } = useLuaCallback<{ type: "fingerprint" | "dna", identifier: string, biometricData: string | undefined }, void>({
+    const { trigger: linkBiometricDataToIdentifier } = useLuaCallback<{ type: BiometricEvidence, identifier: string, biometricData: string | undefined }, void>({
         name: "evidences:linkBiometricDataToIdentifier",
         onSuccess: (_, args) => {
             appContext.displayNotification({
@@ -47,8 +47,7 @@ export default function CitizenBiomericDataSection(props: CitizenBiomericDataSec
             });
             window.dispatchEvent(event);
         },
-        onError: (message, args) => {
-            const translation = t(message);
+        onError: (_, args) => {
             appContext.displayNotification({
                 type: "Error",
                 message: t("laptop.desktop_screen.citizens_app.status_messages.biometric_data_link_error", t(`laptop.desktop_screen.common.${args.type}`))

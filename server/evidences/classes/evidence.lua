@@ -62,6 +62,43 @@ function evidence:removeFromEntity(entity)
 end
 
 
+-- Binds the evidence to a relative position of an entity. It can be destroyed or collected by targetting the location on the entity.
+-- While destroying the evidence triggers the removeFromRelativeEntityCoords() function, collecting the evidence also transfers it to an item created for that purpose.
+---@param entity number The netId of the entity the evidence should be bound to
+---@param coords vector3 The relative coords of the evidence on the entity
+---@param metadata? table
+function evidence:atRelativeEntityCoords(entity, coords, commonMetadata, specificMetadata)
+    if not DoesEntityExist(entity) then
+        entity = NetworkGetEntityFromNetworkId(entity)
+    end
+
+    local currentEvidencesOfThisType = Entity(entity).state[string.format("evidences:%s", self.__name)] or {}
+    metadata = metadata or {}
+    metadata.coords = (currentEvidencesOfThisType[self.owner] and currentEvidencesOfThisType[self.owner].coords) or {}
+    metadata.coords[coords] = specificMetadata or {}
+
+    atEntityInternal(self, entity, Entity(entity).state[string.format("evidences:%s", self.__name)] or {}, metadata)
+end
+
+-- Removes the evidence from the relative coords on the entity it is bound to.
+---@param entity number The nedId of the entity
+---@param coords vec3[]|vec3 The coords or a list of coords
+function evidence:removeFromRelativeEntityCoords(entity, coords)
+    if not DoesEntityExist(entity) then
+        entity = NetworkGetEntityFromNetworkId(entity)
+    end
+
+    local currentEvidencesOfThisType = Entity(entity).state[string.format("evidences:%s", self.__name)] or {}
+    local evidenceCoords = (currentEvidencesOfThisType[self.owner] and currentEvidencesOfThisType[self.owner].coords) or {}
+    for _, coord in pairs(type(coords) == "table" and coords or { coords }) do
+        evidenceCoords[coord] = nil
+    end
+    currentEvidencesOfThisType[self.owner].coords = evidenceCoords
+
+    Entity(entity).state[string.format("evidences:%s", self.__name)] = currentEvidencesOfThisType
+end
+
+
 -- Binds the evidence to a seat of a vehicle. Targetting the evidence requires the player to sit on this seat inside the vehicle.
 -- A maximum of one evidence is bound to the vehicle, whereby a separate key is stored in the data of the evidence at the entity for each individual seat:
 -- Entity(vehicle).state[evidences:self.__name][self.owner] = {
@@ -159,6 +196,9 @@ end
 ---@param playerId number The serverId of the player the evidence should be bound to
 ---@param metadata? table
 function evidence:atPlayer(playerId, metadata)
+    metadata = metadata or {}
+    metadata.createdAt = metadata.createdAt or os.time()
+
     local currentEvidencesOfThisType = Player(playerId).state[string.format("evidences:%s", self.__name)] or {}
     currentEvidencesOfThisType[self.owner] = metadata
 
@@ -235,14 +275,14 @@ function evidence:atItem(inventory, slot, data)
 
     if item or next(item) == nil then
         local metadata <const> = item.metadata or {}
-        metadata[self.superClassName] = {
-            owner = self.owner,
-            createdAt = os.time()
-        }
 
         for key, value in pairs(data or {}) do
             metadata[key] = value
         end
+
+        metadata[self.superClassName] = metadata[self.superClassName] or {}
+        metadata[self.superClassName].owner = self.owner
+        metadata[self.superClassName].createdAt = os.time()
 
         exports.ox_inventory:SetMetadata(inventory, slot, metadata)
     end

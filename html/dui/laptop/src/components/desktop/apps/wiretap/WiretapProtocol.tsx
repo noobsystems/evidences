@@ -1,4 +1,4 @@
-import type { Interception } from "./InterceptionChooser";
+import type { Interception } from "@/types/wiretap.type";
 import { useTranslation } from "@/components/TranslationContext";
 
 interface WiretapProtocolProps {

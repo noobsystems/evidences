@@ -8,7 +8,10 @@ api.evidenceTypes = {
     fingerprint = require "server.evidences.classes.fingerprint",
     blood = require "server.evidences.classes.dna.blood",
     saliva = require "server.evidences.classes.dna.saliva",
-    magazine = require "server.evidences.classes.magazine"
+    magazine = require "server.evidences.classes.ballistics.magazine",
+    casing = require "server.evidences.classes.ballistics.casing",
+    bullet = require "server.evidences.classes.ballistics.bullet",
+    gunshot_residue = require "server.evidences.classes.ballistics.gunshot_residue"
 }
 
 local cache = {}
@@ -50,6 +53,8 @@ local function syncEvidence(evidenceClass, owner, fun, ...)
         evidenceHolder[fun](evidenceHolder, ...)
     end
 end
+
+api.syncEvidence = syncEvidence
 
 RegisterNetEvent("evidences:syncEvidence", syncEvidence)
 exports("syncEvidence", syncEvidence)

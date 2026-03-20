@@ -3,6 +3,7 @@ import { Dropdown, DropdownItem, DropdownSelection, DropdownUnfolded } from "./D
 import type Citizen from "@/types/citizen.type";
 import useLuaCallback from "@/hooks/useLuaCallback";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useTranslation } from "@/components/TranslationContext";
 
 interface CitizenDropdownProps {
     className?: string;
@@ -11,6 +12,8 @@ interface CitizenDropdownProps {
 }
 
 export default function CitizenDropdown(props: CitizenDropdownProps) {
+    const { t } = useTranslation();
+
     const [citizens, setCitizens] = useState<Citizen[]>([]);
     const offset = useRef<number>(0);
     const [isFullyLoaded, setFullyLoaded] = useState<boolean>(false);
@@ -48,6 +51,11 @@ export default function CitizenDropdown(props: CitizenDropdownProps) {
         });
     }, [loading, isFullyLoaded, debouncedSearchText]);
 
+    const formatDate = (date: string | number): string => {
+        if (typeof date == "string") return date;
+        return new Date(date).toLocaleDateString(t("laptop.desktop_screen.common.date_locales"), { day: "numeric", month: "numeric", year: "numeric" });
+    }
+
 
     return (
         <Dropdown<Citizen>
@@ -62,7 +70,7 @@ export default function CitizenDropdown(props: CitizenDropdownProps) {
             onSearchTextChange={text => setSearchText(text)}
             className={props.className}
         >
-            <DropdownSelection<Citizen> placeholder="Select citizen" includeSearch={item => item.fullName}>
+            <DropdownSelection<Citizen> placeholder={t("laptop.desktop_screen.common.dropdowns.select_citizen")} includeSearch={item => item.fullName}>
                 {item => (
                     <p className="text-30 leading-none text-left truncate">{item.fullName}</p>
                 )}
@@ -76,7 +84,7 @@ export default function CitizenDropdown(props: CitizenDropdownProps) {
                         selected={selected}
                     >
                         <p className="text-30 leading-none text-left truncate">{item.fullName}</p>
-                        <p className="text-20 leading-none text-left truncate">{item.birthdate + " • " + item.gender}</p>
+                        <p className="text-20 leading-none text-left truncate">{formatDate(item.birthdate) + " • " + item.gender}</p>
                     </DropdownItem>
                 }
             </DropdownUnfolded>

@@ -34,6 +34,7 @@ export default function CreateCitizenPopUp(props: CreateCitizenPopUpProps) {
             appContext.displayNotification({ type: "Error", message: t("laptop.desktop_screen.common.statuses.fill_all_fields") });
             return;
         }
+
         trigger({
             fullName: fullName,
             birthdate: birthdate,

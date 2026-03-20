@@ -1,28 +1,28 @@
 import { useEffect } from "react";
 import useLuaCallback from "@/hooks/useLuaCallback";
 import { Sidebar, SidebarItem, SidebarSection } from "./Sidebar";
-import type { Evidence, EvidenceDetails } from "@/types/evidence.type";
+import type { EvidenceType, Evidence } from "@/types/evidence.type";
 import type { EvidenceAnalysedEvent } from "@/types/events.type";
 import { useTranslation } from "@/components/TranslationContext";
 import type { InventoriesType } from "@/types/inventory.type";
 
 
-interface EvidenceSidebarProps {
-    type: "fingerprint" | "dna";
+interface EvidenceSidebarProps<T> {
+    type: EvidenceType;
     evidence: Evidence | null;
     translations: {
         noItemsWithEvidences: string;
     };
-    onEvidenceSelection: (label: string, imagePath: string, inventory: number | string, slot: number, identifier: string, analysed: boolean, details: EvidenceDetails) => void;
+    onEvidenceSelection: (label: string, imagePath: string, inventory: number | string, slot: number, identifier: string, analysed: boolean, details: T) => void;
     onDataChange: (dataAvailable: boolean) => void;
 }
 
 
-export default function EvidenceSidebar(props: EvidenceSidebarProps) {
+export default function EvidenceSidebar<T>(props: EvidenceSidebarProps<T>) {
     const { t } = useTranslation();
 
-    const { trigger, data: inventories, setData: setInventories, loading } = useLuaCallback<{ type: "fingerprint" | "dna" }, InventoriesType<{ identifier: string, analysed: boolean }>>({
-        name: "evidences:getPlayersItemsWithBiometricData",
+    const { trigger, data: inventories, setData: setInventories, loading } = useLuaCallback<{ type: EvidenceType }, InventoriesType<T>>({
+        name: "evidences:getPlayersItemsWithEvidence",
         defaultData: [],
         onSuccess: (data) => props.onDataChange(data.length > 0)
     });
@@ -55,8 +55,8 @@ export default function EvidenceSidebar(props: EvidenceSidebarProps) {
 
                             return {
                                 ...item,
-                                additionalData: {
-                                    ...item.additionalData,
+                                details: {
+                                    ...item.details,
                                     analysed: true
                                 }
                             };
@@ -90,13 +90,13 @@ export default function EvidenceSidebar(props: EvidenceSidebarProps) {
                             const active = props.evidence
                                 && inventory.inventory == props.evidence.inventory
                                 && item.slot == props.evidence.slot
-                                && item.additionalData.identifier == props.evidence.identifier
+                                && item.details.identifier == props.evidence.identifier
 
                             return <SidebarItem
                                 active={!!active}
                                 imagePath={item.imagePath}
-                                description={item.additionalData.analysed ? t("laptop.desktop_screen.common.statuses.analysed") : undefined}
-                                onClick={() => props.onEvidenceSelection(item.label, item.imagePath, inventory.inventory, item.slot, item.additionalData.identifier, item.additionalData.analysed, item.details)}
+                                description={item.details.analysed ? t("laptop.desktop_screen.common.statuses.analysed") : undefined}
+                                onClick={() => props.onEvidenceSelection(item.label, item.imagePath, inventory.inventory, item.slot, item.details.identifier, item.details.analysed, item.details)}
                             >
                                 {item.label}
                             </SidebarItem>

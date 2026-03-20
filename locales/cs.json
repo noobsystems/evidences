@@ -22,20 +22,32 @@
             "description_textfield_details": "Krátký popis, který uvidíte v inventáři pod předmětem"
         },
         "fingerprint": {
-            "collecting_label": "Sebrat otisk prstu",
-            "destroying_label": "Zničit otisk prstu"
+            "collecting_label": "Zajistit otisk prstu",
+            "destroying_label": "Odstranit otisk prstu"
         },
         "blood": {
-            "collecting_label": "Sebrat krevní stopu",
-            "destroying_label": "Zničit krevní stopu"
+            "collecting_label": "Zajistit stopu krve",
+            "destroying_label": "Odstranit stopu krve"
         },
         "saliva": {
-            "collecting_label": "Odběr slin",
-            "destroying_label": "Likvidace slin"
+            "collecting_label": "Zajistit sliny",
+            "destroying_label": "Odstranit sliny"
         },
         "magazine": {
-            "collecting_label": "Sebrat zásobník",
-            "destroying_label": "Zničit zásobník"
+            "collecting_label": "Zajistit zásobník",
+            "destroying_label": "Odstranit zásobník"
+        },
+        "casing": {
+            "collecting_label": "Sebrat nábojnici",
+            "destroying_label": "Odstranit nábojnici"
+        },
+        "bullet": {
+            "collecting_label": "Sebrat kulku",
+            "destroying_label": "Odstranit kulku"
+        },
+        "gunshot_residue": {
+            "collecting_label": "Zajistit povýstřelové zplodiny",
+            "destroying_label": "Odstranit povýstřelové zplodiny"
         },
         "information": {
             "in_vehicle": "ve vozidle %s (SPZ: %s)",
@@ -46,8 +58,8 @@
                 "crime_scene": "Místo činu",
                 "collection_time": "Čas sběru",
                 "additionalData": "Informace",
-                "weapon_label": "Zbraň",
-                "serial_number": "Sériové číslo"
+                "weapon_type": "Typ zbraně",
+                "serial": "Sériové číslo"
             },
             "seats": {
                 "-1": "přední sedadlo řidiče",
@@ -91,9 +103,17 @@
                 "title": "Důkazy",
                 "description": "Důkazy %s byly zničeny"
             },
-            "pasted": {
+            "biometrics_pasted": {
                 "title": "Důkazy",
                 "description": "Biometrické údaje byly zkopírovány do schránky"
+            },
+            "serial_pasted": {
+                "title": "Evidence",
+                "description": "Sériové číslo bylo zkopírováno do schránky"
+            },
+            "missing_serial": {
+                "title": "Důkazy",
+                "description": "Tato položka důkazu neobsahuje sériové číslo"
             },
             "not_analysed": {
                 "title": "Důkazy",
@@ -119,6 +139,12 @@
         "scan_error": {
             "title": "Skenování selhalo",
             "description": "Otisk prstu se nepodařilo naskenovat"
+        }
+    },
+    "steel_file": {
+        "serial_removed": {
+            "title": "Sériové číslo seškrabáno",
+            "description": "Sériové číslo bylo úspěšně odstraněno ze zbraně"
         }
     },
     "biometrics_taking": {
@@ -211,7 +237,12 @@
                     "no_selection": "Není co vybrat...",
                     "select_evidence": "Vyberte prosím důkaz.",
                     "select_citizen": "Vyberte prosím občana.",
+                    "select_firearm": "Prosím, vyberte zbraň.",
                     "fill_all_fields": "Prosím vyplňte všechna pole!"
+                },
+                "dropdowns": {
+                    "select_citizen": "Vyberte občana",
+                    "select_firearm": "Vyberte zbraň"
                 }
             },
             "citizens_app": {
@@ -226,12 +257,11 @@
                     "title": "Název",
                     "text": "Text"
                 },
-                "registered_weapons": "Registrované zbraně",
+                "registered_firearms": "Registrované zbraně",
                 "statuses": {
                     "no_citizens_found": "Nenalezeni žádní občané",
                     "no_notes_found": "Nenalezeny žádné poznámky",
                     "no_registered_firearms": "Žádné registrované střelné zbraně",
-                    "coming_soon": "Tato funkce bude brzy k dispozici!",
                     "select_evidence": "Vybrat důkaz"
                 },
                 "status_messages": {
@@ -277,6 +307,73 @@
                     "description": "Stopa %s na důkazu patří osobě, která je zatím neznámá. Pokud dotyčnou osobu znáte, můžete k ní stopu %s z tohoto důkazu přiřadit v aplikaci občané."
                 }
             },
+            "firearms_registry_app": {
+                "name": "Registr zbraní",
+                "firearm_information": "Informace",
+                "firearm_type": "Typ",
+                "firearm_serial": "Sériové číslo",
+                "firearm_owner": "Majitel",
+                "registered_by": "Zaregistroval",
+                "registered_at": "Datum registrace",
+                "firearm_registration": "Registrace",
+                "firearm_status": "Stav",
+                "registration_reason": "Důvod registrace",
+                "no_firearms_found": "Nebyly nalezeny žádné zbraně",
+                "registration_popup": {
+                    "header": "Registrovat zbraň",
+                    "citizen": "Občan",
+                    "firearm": "Zbraň",
+                    "reason": "Důvod registrace",
+                    "status": "Stav zbraně"
+                },
+                "status": {
+                    "header": "Vyberte stav",
+                    "unknown": "Neznámý",
+                    "registered": "Registrovaná",
+                    "lost": "Ztracená",
+                    "stolen": "Ukradená",
+                    "confiscated": "Zabavená",
+                    "destroyed": "Zničená",
+                    "suspended": "Pozastavená"
+                },
+                "status_messages": {
+                    "firearm_registration_success": "Zbraň byla zaregistrována!",
+                    "firearm_registration_error": "Registrace zbraně selhala!",
+                    "firearm_already_registered": "Tato zbraň již je zaregistrována!",
+                    "firearm_update_success": "Zbraň byla aktualizována!",
+                    "firearm_update_error": "Nepodařilo se uložit zbraň!",
+                    "firearm_deletion_success": "Zbraň smazána!",
+                    "firearm_deletion_error": "Nepodařilo se smazat zbraň!"
+                }
+            },
+            "ballistics_app": {
+                "name": "Balistická analýza",
+                "no_ballistics_evidence_items": "Ve vašem inventáři nemáte žádné předměty s balistickými důkazy.",
+                "start_analyzation": "Zahájit analýzu",
+                "matching_serial": "Analýza balistických stop...",
+                "registry_match": {
+                    "header": "Shoda v registru zbraní!",
+                    "description": "Balistický důkaz patří k následující zbrani:",
+                    "open_firearms_registry": "Otevřít v registru zbraní"
+                },
+                "no_registry_match": {
+                    "header": "Žádná shoda v registru zbraní!",
+                    "casing_description": "Tato nábojnice na sobě nemá sériové číslo, které by odpovídalo zbrani v registru zbraní. Nábojnice však lze stále identifikovat podle jedinečných mikroskopických stop, které v nich zanechávají drobné nedokonalosti uvnitř zbraně. Výběrem zbraně ze svého inventáře můžete ověřit, zda tato nábojnice pochází z vybrané zbraně (nebo alespoň ze zbraně stejného typu).",
+                    "bullet_description": "Vystřelené kulky lze identifikovat podle jedinečných mikroskopických stop, které zanechávají nedokonalosti uvnitř hlavně zbraně. Výběrem zbraně ze svého inventáře můžete zkontrolovat, zda tato kulka jako důkaz pochází z vybrané zbraně (nebo alespoň ze zbraně stejného typu).",
+                    "inventory_match": {
+                        "microstamp": "Balistický důkaz pochází přesně ze zvolené zbraně, protože sériové číslo bylo na tento důkaz mikroorazítkováno.",
+                        "imperfections": "Balistický důkaz pochází přesně ze zvolené zbraně, protože sdílejí stejné jedinečné nedokonalosti.",
+                        "type": "Balistický důkaz pochází ze zbraně stejného typu, jako je vybraná zbraň.",
+                        "none": "Balistický důkaz se neshoduje s vybranou zbraní."
+                    }
+                },
+                "show_type": {
+                    "header": "Analýza úspěšná",
+                    "magazine_description": "Zásobníky lze jasně přiřadit k typu zbraně. Jejich přiřazení ke konkrétní zbrani však není možné. Tento zásobník patří ke zbrani tohoto typu:",
+                    "gunshot_residue_description": "Povýstřelové zplodiny umožňují vyvodit závěry o typu použité zbraně. Na základě jejich koncentrace je možné určit, kdy bylo ze zbraně vystřeleno. Analýza vybraných povýstřelových zplodin ukázala následující:",
+                    "fired_at": "Čas výstřelu"
+                }
+            },
             "wiretap_app": {
                 "name": "Odposlech",
                 "warning_popup": {
@@ -290,7 +387,6 @@
                     "lacking_permissions": "Chybí oprávnění k odposlechu telefonních hovorů",
                     "notifications": {
                         "popup_header": "Oznámení o telefonních hovorech",
-                        "status_loading": "Načítání...",
                         "status_subscribed": "Dostáváte oznámení, když %s zahájí telefonní hovor. Zde můžete odběr oznámení zrušit nebo změnit sledovaný cíl:",
                         "status_unsubscribed": "Zadejte %s občana, abyste dostali oznámení, když zahájí telefonní hovor:",
                         "placeholder_full_name": "celé jméno",

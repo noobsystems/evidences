@@ -50,7 +50,7 @@
     consume = 0,
     client = {
         export = 'evidences.fingerprint_scanner',
-    },
+    }
 },
 ['collected_blood'] = {
     label = 'Gesichertes Blut',
@@ -74,11 +74,6 @@
         end
     }}
 },
-['collected_magazine'] = {
-    label = 'Gesichertes Magazin',
-    weight = 200,
-    stack = false
-},
 ['collected_fingerprint'] = {
     label = 'Gesicherter Fingerabdruck',
     weight = 5,
@@ -89,6 +84,35 @@
             exports.evidences:copyEvidenceOwner(slot, "fingerprint")
         end
     }}
+},
+['collected_magazine'] = {
+    label = 'Gesichertes Magazin',
+    weight = 200,
+    stack = false
+},
+['collected_casing'] = {
+    label = 'Gesicherte Hülse',
+    weight = 10,
+    stack = false
+},
+['collected_bullet'] = {
+    label = 'Gesicherte Kugel',
+    weight = 10,
+    stack = false
+},
+['collected_gunshot_residue'] = {
+    label = 'Gesicherte Schmauchspuren',
+    weight = 5,
+    stack = false
+},
+['steel_file'] = {
+    label = 'Feile',
+    weight = 150,
+    stack = false,
+    decay = true,
+    client = {
+        export = 'evidences.steel_file'
+    }
 },
 ['spy_microphone'] = {
     label = 'Abhörwanze',

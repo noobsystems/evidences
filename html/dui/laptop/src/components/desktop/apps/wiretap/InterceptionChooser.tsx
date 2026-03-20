@@ -1,51 +1,21 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "@/hooks/useAppContext";
 import WiretapProtocol from "./WiretapProtocol";
 import { useTranslation } from "@/components/TranslationContext";
-import useLuaCallback from "@/hooks/useLuaCallback";
 import type { Interception } from "@/types/wiretap.type";
 import type { InterceptionStoredEvent } from "@/types/events.type";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 
 export default function InterceptionChooser() {
     const { t } = useTranslation();
     const appContext = useAppContext();
-    const [interceptions, setInterceptions] = useState<Interception[]>([]);
 
-    const reloadRef = useRef(null);
-    const scrollRef = useRef(null);
-
-    const offset = useRef<number>(0);
-    const [isFullyLoaded, setFullyLoaded] = useState<boolean>(false);
+    const { data: interceptions, setData: setInterceptions, fetchData: fetchInterceptions, loading, reloadRef, scrollRef, handleScroll, handleReload, adjustOffset, isFullyLoaded } = useInfiniteScroll<Interception>("evidences:getWiretaps");
 
     const openProtocol = (interception: Interception) => {
         appContext.openPopUp(t(`laptop.desktop_screen.wiretap_app.protocol_popup.header.${interception.type}`, interception.id), <WiretapProtocol interception={interception} />);
     };
-
-    const { trigger, loading } = useLuaCallback<{ offset: number }, Interception[]>({
-        name: "evidences:getWiretaps",
-        onSuccess: (data) => {
-            if (!data) return;
-            const length = data.length;
-            offset.current += length;
-
-            setInterceptions(prev => [...prev, ...data]);
-            if (length < 10) setFullyLoaded(true);
-        }
-    });
-
-    const fetchInterceptions = useCallback((forceReload: boolean = false) => {
-        if (!forceReload && isFullyLoaded) return;
-        if (loading) return;
-
-        if (forceReload) {
-            offset.current = 0;
-            setInterceptions([]);
-            setFullyLoaded(false);
-        }
-
-        trigger({ offset: offset.current });
-    }, [loading, isFullyLoaded]);
 
     useEffect(() => {
         fetchInterceptions(true);
@@ -54,7 +24,7 @@ export default function InterceptionChooser() {
             const event = e as CustomEvent<InterceptionStoredEvent>;
             const { interception } = event.detail;
 
-            offset.current += 1;
+            adjustOffset(1);
             setInterceptions(prev => [interception, ...prev]);
         };
 
@@ -62,29 +32,6 @@ export default function InterceptionChooser() {
 
         return () => window.removeEventListener("evidence:interceptionStored", handleInterceptionStore);
     }, []);
-
-    const handleScroll = useCallback(() => {
-        if (!scrollRef.current || loading) return;
-
-        const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        const isBottom = Math.abs(scrollHeight - (scrollTop + clientHeight)) <= 1;
-
-        if (isBottom) {
-            fetchInterceptions();
-        }
-    }, [loading]);
-
-    const handleReload = () => {
-        if (reloadRef.current) {
-            const reloadButton = reloadRef.current as HTMLDivElement;
-
-            if (reloadButton.ariaDisabled == "true") return;
-            fetchInterceptions(true);
-
-            reloadButton.ariaDisabled = "true";
-            setTimeout(() => reloadButton.ariaDisabled = "false", 1000 * 5);
-        }
-    };
 
     const formatTime = (dateMillis: number): string => {
         return new Date(dateMillis).toLocaleTimeString(t("laptop.desktop_screen.common.date_locales"), { hour: "2-digit", minute: "2-digit", hour12: false });
@@ -132,7 +79,7 @@ export default function InterceptionChooser() {
             </div>
 
             <div className="w-full text-center text-20">
-                {loading && t("laptop.desktop_screen.wiretap_app.latest_actions.loading")}
+                {loading && t("laptop.desktop_screen.common.statuses.loading")}
                 {interceptions.length > 0 && isFullyLoaded && t("laptop.desktop_screen.wiretap_app.latest_actions.end_reached")}
             </div>
         </div>

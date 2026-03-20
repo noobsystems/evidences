@@ -2,12 +2,12 @@ import useLuaCallback from "@/hooks/useLuaCallback";
 import { Dropdown, DropdownItem, DropdownSelection, DropdownUnfolded } from "./Dropdown";
 import { useEffect, useState } from "react";
 import type { InventoriesType } from "@/types/inventory.type";
-import type { Evidence } from "@/types/evidence.type";
+import type { BiometricEvidence, Evidence, EvidenceDetails } from "@/types/evidence.type";
 import { useTranslation } from "@/components/TranslationContext";
 
 
 interface EvidenceDropdownProps {
-    type: "fingerprint" | "dna";
+    type: BiometricEvidence;
     selectedEvidence: Evidence | undefined;
     setSelectedEvidence: (evidence: Evidence | undefined) => void; 
 }
@@ -17,8 +17,8 @@ export default function EvidenceDropdown(props: EvidenceDropdownProps) {
     const { t } = useTranslation();
     const [evidences, setEvidences] = useState<Evidence[]>([]);
 
-    const { trigger: getPlayersItemsWithBiometricData, loading } = useLuaCallback<{ type: "fingerprint" | "dna" }, InventoriesType<{ identifier: string, analysed: boolean }>>({
-        name: "evidences:getPlayersItemsWithBiometricData",
+    const { trigger: getPlayersItemsWithEvidence, loading } = useLuaCallback<{ type: BiometricEvidence }, InventoriesType<EvidenceDetails>>({
+        name: "evidences:getPlayersItemsWithEvidence",
         onSuccess: (inventories) => {
             const converted: Evidence[] = [];
             inventories.map(inventory => {
@@ -28,8 +28,8 @@ export default function EvidenceDropdown(props: EvidenceDropdownProps) {
                         imagePath: item.imagePath,
                         inventory: inventory.inventory,
                         slot: item.slot,
-                        identifier: item.additionalData.identifier,
-                        analysed: item.additionalData.analysed
+                        identifier: item.details.identifier,
+                        analysed: item.details.analysed
                     };
                     converted.push(evidence);
                 });
@@ -40,7 +40,7 @@ export default function EvidenceDropdown(props: EvidenceDropdownProps) {
     });
 
     useEffect(() => {
-        getPlayersItemsWithBiometricData({ type: props.type });
+        getPlayersItemsWithEvidence({ type: props.type });
     }, []);
 
     return <Dropdown<Evidence>

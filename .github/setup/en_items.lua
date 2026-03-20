@@ -50,7 +50,7 @@
     consume = 0,
     client = {
         export = 'evidences.fingerprint_scanner',
-    },
+    }
 },
 ['collected_blood'] = {
     label = 'Collected Blood',
@@ -74,11 +74,6 @@
         end
     }}
 },
-['collected_magazine'] = {
-    label = 'Collected Magazin',
-    weight = 200,
-    stack = false
-},
 ['collected_fingerprint'] = {
     label = 'Collected Fingerprint',
     weight = 5,
@@ -89,6 +84,42 @@
             exports.evidences:copyEvidenceOwner(slot, "fingerprint")
         end
     }}
+},
+['collected_magazine'] = {
+    label = 'Collected Magazine',
+    weight = 200,
+    stack = false
+},
+['collected_casing'] = {
+    label = 'Collected Casing',
+    weight = 10,
+    stack = false,
+    buttons = {{
+        label = 'Copy Serial Number',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
+},
+['collected_bullet'] = {
+    label = 'Collected Bullet',
+    weight = 10,
+    stack = false
+},
+['collected_gunshot_residue'] = {
+    label = 'Collected Gunshot Residue',
+    weight = 5,
+    stack = false
+},
+['steel_file'] = {
+    label = 'Steel File',
+    weight = 150,
+    stack = false,
+    decay = true,
+    consume = 0,
+    client = {
+        export = 'evidences.steel_file'
+    }
 },
 ['spy_microphone'] = {
     label = 'Spy Microphone',

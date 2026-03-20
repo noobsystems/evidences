@@ -87,7 +87,7 @@ export default function CitizenNotesSection(props: CitizenNotesSectionProps) {
             });
 
             if (deletion) {
-                appContext.displayNotification({ type: "Success", message: t("laptop.desktop_screen.citizens_app.status_messages.note_delete_success") })
+                appContext.displayNotification({ type: "Success", message: t("laptop.desktop_screen.citizens_app.status_messages.note_deletion_success") })
             } else {
                 appContext.displayNotification({ type: "Success", message: t("laptop.desktop_screen.citizens_app.status_messages.note_save_success") })
             }

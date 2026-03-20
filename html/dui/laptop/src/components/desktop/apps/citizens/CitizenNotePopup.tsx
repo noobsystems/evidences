@@ -35,7 +35,7 @@ export default function CitizenNotePopup(props: CitizenNotePopupProps) {
             }
             appContext.close();
         },
-        onError: () => appContext.displayNotification({ type: "Error", message: t("laptop.desktop_screen.citizens_app.status_messages.note_delete_error") })
+        onError: () => appContext.displayNotification({ type: "Error", message: t("laptop.desktop_screen.citizens_app.status_messages.note_deletion_error") })
     });
 
     const storeNote = () => {

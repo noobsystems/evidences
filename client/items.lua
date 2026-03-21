@@ -54,6 +54,10 @@ exports("copyEvidenceOwner", function(slot, type)
     if evidenceItem then
         local metadata <const> = evidenceItem.metadata or {}
 
+        if not metadata[type] then
+            return        
+        end
+
         if not metadata[type].analysed then
             config.notify({ key = "evidences.notifications.not_analysed" }, "error")
             return

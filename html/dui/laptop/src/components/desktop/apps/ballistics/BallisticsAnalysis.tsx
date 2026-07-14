@@ -286,7 +286,7 @@ const DisplayEvidence = (props: DisplayEvidenceProps) => {
                         <div className="w-full flex flex-col justify-center">
                             <p className="text-20 leading-none uppercase">{t("laptop.desktop_screen.ballistics_app.no_registry_match.header")}</p>
                             {props.evidenceDetails.type &&
-                                <p className="text-30 leading-none">
+                                <p className="text-25 leading-none">
                                     {t(`laptop.desktop_screen.ballistics_app.no_registry_match.${props.evidenceDetails.type}_description`)}
                                 </p>
                             }

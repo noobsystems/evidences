@@ -267,7 +267,7 @@ end
 --         ... all other key-value pairs of data
 --     }
 -- }
----@param inventory table|string|number The inventory of the item holding the evidence (cf. https://coxdocs.dev/ox_inventory/Functions/Server#additem)
+---@param inventory table|string|number The inventory of the item holding the evidence (cf. https://overextended.dev/docs/ox_inventory/Functions/Server#additem)
 ---@param slot number The slot of the item in the inventory
 ---@param data? table
 function evidence:atItem(inventory, slot, data)
@@ -289,7 +289,7 @@ function evidence:atItem(inventory, slot, data)
 end
 
 -- Removes the evidence from the given item.
----@param inventory table|string|number The inventory of the item holding the evidence (cf. https://coxdocs.dev/ox_inventory/Functions/Server#additem)
+---@param inventory table|string|number The inventory of the item holding the evidence (cf. https://overextended.dev/docs/ox_inventory/Functions/Server#additem)
 ---@param slot number The slot of the item in the inventory
 function evidence:removeFromItem(inventory, slot)
     local item <const> = exports.ox_inventory:GetSlot(inventory, slot)

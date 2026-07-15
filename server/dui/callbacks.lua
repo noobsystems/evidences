@@ -2,7 +2,7 @@ local config <const> = require "config"
 local framework <const> = require "common.frameworks.framework"
 local imagePath <const> = GetConvar("inventory:imagepath", "nui://ox_inventory/web/images") .. "/%s.png"
 
--- https://github.com/CommunityOx/ox_inventory/blob/6be13009eebc618b282f584782d98ff16ea2f9ed/web/src/helpers/index.ts#L140
+-- https://github.com/overextended/ox_inventory/blob/6be13009eebc618b282f584782d98ff16ea2f9ed/web/src/helpers/index.ts#L140
 local function getItemImage(item)
     local metadata <const> = item.metadata
 

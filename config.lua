@@ -110,6 +110,7 @@ config.citizens = {
     synced = true
 }
 
+-- Enable or disable the firearms registry app
 config.firearmsRegistry = {
     enabled = true
 }
@@ -142,7 +143,7 @@ config.inputHelp = {
 
         -- codes.mappedValues values are formatted as "[E]" or similar
         -- Therefore, they should be used to integrate custom input help uis.
-        -- Here is an example for ox_lib's text ui (like https://coxdocs.dev/ox_lib/Modules/Interface/Client/textui)
+        -- Here is an example for ox_lib's text ui (like https://overextended.dev/docs/ox_lib/Interface/Client/textui)
         -- local replacements <const> = codes.mappedValues
         -- text = string.format(text, table.unpack(replacements))
         
@@ -162,7 +163,7 @@ config.inputHelp = {
 
 
 -- Replace the body of this function if you want to use a different notification system.
--- By default, notifications are handeled by ox_lib (https://coxdocs.dev/ox_lib/Modules/Interface/Client/notify)
+-- By default, notifications are handeled by ox_lib (https://overextended.dev/docs/ox_lib/Interface/Client/notify)
 ---@param translation { key: string, arguments: string[] }
 ---@param notifyType? string The type of the notification (e.g. "success" or "error")
 ---@param duration? number The duration for the notify ui in milliseconds
@@ -203,11 +204,13 @@ config.logging = {
         ["Observation started"] = true,
         ["Observation ended"] = true,
         ["Spy microphone placed"] = true,
-        ["Spy microphone picked up"] = true
+        ["Spy microphone picked up"] = true,
+        ["Firearm registered"] = true,
+        ["Firearm unregistering requested"] = true
     },
 
     -- Define which logging service you want to use if enabled.
-    -- You can choose between "ox_lib" (it supports Datadog, Grafana Loki and Fivemanage, see https://coxdocs.dev/ox_lib/Modules/Logger/Server) and "discord".
+    -- You can choose between "ox_lib" (it supports Datadog, Grafana Loki and Fivemanage, see https://overextended.dev/docs/ox_lib/Logger/Server) and "discord".
     service = "discord",
 
     -- If the logging service is set to "discord", you have to define a webhook url and your txAdmin web interface url.

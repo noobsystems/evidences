@@ -14,8 +14,8 @@ if config.wiretap.enabled and not exports.ox_inventory:Items("spy_microphone") t
 end
 
 
--- https://github.com/CommunityOx/ox_inventory/commit/c7dee27c97a3ef2dc9e5ea402346cf6ea4cc1b16
--- https://github.com/CommunityOx/ox_inventory/commit/895cca3c9f0cd140e75bdb050dc88843119b4418
+-- https://github.com/overextended/ox_inventory/commit/c7dee27c97a3ef2dc9e5ea402346cf6ea4cc1b16
+-- https://github.com/overextended/ox_inventory/commit/895cca3c9f0cd140e75bdb050dc88843119b4418
 if lib.checkDependency("ox_inventory", "2.44.4") then
     exports.ox_inventory:setContainerProperties("evidence_box", {
         slots = 20,
@@ -37,7 +37,7 @@ elseif lib.checkDependency("ox_inventory", "2.34.3") then
     exports.ox_inventory:RemoveInventory(temporaryInv)
 
     if evidenceBox and evidenceBox.metadata and (not evidenceBox.metadata.container) then
-        lib.print.error("Setup step missing: Make the evidence_box a container item (https://coxdocs.dev/ox_inventory/Guides/creatingItems#creating-container-items) or use ox_inventory version 2.44.4 or higher")
+        lib.print.error("Setup step missing: Make the evidence_box a container item (https://overextended.dev/docs/ox_inventory/Guides/creatingItems#creating-container-items) or use ox_inventory version 2.44.4 or higher")
         return false
     end
 else

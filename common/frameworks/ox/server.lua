@@ -19,7 +19,7 @@ function framework.getGrade(job, playerId)
     return oxPlayer and oxPlayer.getGroups()[job] or false
 end
 
--- https://github.com/CommunityOx/ox_core/blob/main/sql/install.sql
+-- https://github.com/overextended/ox_core/blob/main/sql/install.sql
 function framework.getCitizens(searchText, offset)
     local pattern <const> = "%" .. searchText:sub(1, 25):gsub("\\", "\\\\"):gsub("%%", "\\%%"):gsub("_", "\\_") .. "%"
 

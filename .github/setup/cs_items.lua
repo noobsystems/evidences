@@ -93,12 +93,24 @@
 ['collected_casing'] = {
     label = 'Sebraná nábojnice',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Kopírovat sériové číslo',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_bullet'] = {
     label = 'Sebraný náboj',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Kopírovat sériové číslo',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_gunshot_residue'] = {
     label = 'Zajištěné povýstřelové zplodiny',
@@ -110,6 +122,7 @@
     weight = 150,
     stack = false,
     decay = true,
+    consume = 0.1,
     client = {
         export = 'evidences.steel_file'
     }

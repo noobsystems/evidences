@@ -93,12 +93,24 @@
 ['collected_casing'] = {
     label = 'Casquillo recogido',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Copiar número de serie',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_bullet'] = {
     label = 'Bala recogida',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Copiar número de serie',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_gunshot_residue'] = {
     label = 'Residuos de disparo recolectados',
@@ -110,6 +122,7 @@
     weight = 150,
     stack = false,
     decay = true,
+    consume = 0.1,
     client = {
         export = 'evidences.steel_file'
     }

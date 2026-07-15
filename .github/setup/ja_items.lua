@@ -93,12 +93,24 @@
 ['collected_casing'] = {
     label = '回収された薬莢',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'シリアル番号をコピー',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_bullet'] = {
     label = '回収された銃弾',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'シリアル番号をコピー',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_gunshot_residue'] = {
     label = '採取された射撃残渣',
@@ -110,6 +122,7 @@
     weight = 150,
     stack = false,
     decay = true,
+    consume = 0.1,
     client = {
         export = 'evidences.steel_file'
     }

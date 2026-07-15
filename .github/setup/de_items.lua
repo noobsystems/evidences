@@ -93,12 +93,24 @@
 ['collected_casing'] = {
     label = 'Gesicherte Hülse',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Seriennummer kopieren',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_bullet'] = {
     label = 'Gesicherte Kugel',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Seriennummer kopieren',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_gunshot_residue'] = {
     label = 'Gesicherte Schmauchspuren',
@@ -110,6 +122,7 @@
     weight = 150,
     stack = false,
     decay = true,
+    consume = 0.1,
     client = {
         export = 'evidences.steel_file'
     }

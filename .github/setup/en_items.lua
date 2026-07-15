@@ -104,7 +104,13 @@
 ['collected_bullet'] = {
     label = 'Collected Bullet',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Copy Serial Number',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_gunshot_residue'] = {
     label = 'Collected Gunshot Residue',
@@ -116,7 +122,7 @@
     weight = 150,
     stack = false,
     decay = true,
-    consume = 0,
+    consume = 0.1,
     client = {
         export = 'evidences.steel_file'
     }

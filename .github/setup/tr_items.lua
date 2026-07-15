@@ -93,12 +93,24 @@
 ['collected_casing'] = {
     label = 'Toplanan mermi kovanı',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Seri numarasını kopyala',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_bullet'] = {
     label = 'Toplanan mermi',
     weight = 10,
-    stack = false
+    stack = false,
+    buttons = {{
+        label = 'Seri numarasını kopyala',
+        action = function(slot)
+            exports.evidences:copySerialNumber(slot)
+        end
+    }}
 },
 ['collected_gunshot_residue'] = {
     label = 'Toplanmış barut artığı',
@@ -110,6 +122,7 @@
     weight = 150,
     stack = false,
     decay = true,
+    consume = 0.1,
     client = {
         export = 'evidences.steel_file'
     }

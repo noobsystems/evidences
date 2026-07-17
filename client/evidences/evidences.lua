@@ -423,6 +423,7 @@ eventHandler.onLocal("onResourceStop", function(event)
                 exports.ox_target:removeGlobalVehicle(string.format("%s:vehicle_door:%s", evidenceType, action))
                 exports.ox_target:removeGlobalOption(string.format("%s:vehicle_seat:%s", evidenceType, action))
                 exports.ox_target:removeGlobalOption(string.format("%s:entity:%s", evidenceType, action))
+                exports.ox_target:removeGlobalOption(string.format("%s:relative_entity:%s", evidenceType, action))
             end
         end
     end

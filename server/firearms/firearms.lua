@@ -23,12 +23,20 @@ MySQL.update.await(
     ]]
 )
 
-lib.callback.register("evidences:registerFirearm", function(source, arguments)
-    if not framework.hasPermission(config.permissions.access, source) then
-        return {
-            success = false,
-            response = "laptop.notifications.no_permission.description"
-        }
+local function registerFirearm(data)
+    data.reason = data.reason or ""
+    data.registeredAt = data.registeredAt or (os.time() * 1000)
+    data.status = data.status or "unknown"
+
+    if not (data.serial and data.label and data.imagePath and data.identifier and data.registeredBy) then
+        lib.print.error("Registering a firearm requires at least a serial, weapon label and imagePath, citizen identifier and registeredBy value")
+        return
+    end
+
+    local statuses <const> = {"unknown", "registered", "lost", "stolen", "confiscated", "destroyed", "suspended"}
+    if not lib.table.contains(statuses, data.status) then
+        lib.print.error("Valid firearm registration statuses are unknown, registered, lost, stolen, confiscated, destroyed and suspended")
+        return
     end
 
     return database.update(
@@ -44,13 +52,51 @@ lib.callback.register("evidences:registerFirearm", function(source, arguments)
                 registeredAt = ?,
                 status = ?
         ]],
-        arguments.serial, arguments.label, arguments.imagePath, arguments.identifier, arguments.reason, arguments.registeredBy, arguments.registeredAt, arguments.status,
-        arguments.label, arguments.imagePath, arguments.identifier, arguments.reason, arguments.registeredBy, arguments.registeredAt, arguments.status,
+        data.serial, data.label, data.imagePath, data.identifier, data.reason, data.registeredBy, data.registeredAt, data.status,
+        data.label, data.imagePath, data.identifier, data.reason, data.registeredBy, data.registeredAt, data.status,
         function()
-            logger.log(source, "Firearm registered", arguments)
-            return arguments
+            return data
         end
     )
+end
+
+exports("registerFirearm", function(data)
+    local item = data.item and exports.ox_inventory:Items(data.item)
+    if item then
+        data.label = data.label or item.label
+        data.imagePath = data.imagePath or GetConvar("inventory:imagepath", "nui://ox_inventory/web/images") .. string.format("/%s.png", item.name)
+    end
+
+    if not data.identifier then
+        if not config.citizens.synced then
+            lib.print.error("A citizen associated with a playerId cannot be determinded as long as citizen sync is disabled in config.lua. If you want to use the export, you must provide a citizen identifier in this case.")
+            return
+        end
+
+        local playerId <const> = data.playerId or data.source
+        if playerId then
+            data.identifier = framework.getIdentifier(playerId)
+        end
+    end
+
+    return registerFirearm(data)
+end)
+
+lib.callback.register("evidences:registerFirearm", function(source, arguments)
+    if not framework.hasPermission(config.permissions.access, source) then
+        return {
+            success = false,
+            response = "laptop.notifications.no_permission.description"
+        }
+    end
+
+    local result <const> = registerFirearm(arguments)
+
+    if result.success then
+        logger.log(source, "Firearm registered", result.response)
+    end
+
+    return result
 end)
 
 lib.callback.register("evidences:unregisterFirearm", function(source, arguments)

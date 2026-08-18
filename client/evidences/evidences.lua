@@ -459,9 +459,10 @@ CreateThread(function() -- detects shooting
 
         if IsPedShooting(cache.ped) then
             local weapon <const> = exports.ox_inventory:getCurrentWeapon()
-            local hit <const>, entityHit <const>, impactCoords <const> = lib.raycast.fromCamera(1 | 2 | 16 | 64, 4, 100)
-
-            TriggerEvent("evidences:playerShot", weapon, hit, entityHit, impactCoords)
+            if weapon.ammo then
+                local hit <const>, entityHit <const>, impactCoords <const> = lib.raycast.fromCamera(1 | 2 | 16 | 64, 4, 100)
+                TriggerEvent("evidences:playerShot", weapon, hit, entityHit, impactCoords)
+            end
         end
     end
 end)
